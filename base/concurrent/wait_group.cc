@@ -23,13 +23,13 @@ void WaitGroup::done()
     --num_;
 
     if (num_ == 0)
-        condVar_.notify_all();
+        cond_var_.notify_all();
 }
 
 void WaitGroup::waitUntilDone()
 {
     unique_lock<mutex> lock(mu_);
     while (num_ > 0) {
-        condVar_.wait(lock);
+        cond_var_.wait(lock);
     }
 }

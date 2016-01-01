@@ -10,46 +10,46 @@ using namespace std;
 namespace base {
 
 // static
-unique_ptr<Executor> Executor::makeDefaultExecutor(bool automaticStart)
+unique_ptr<Executor> Executor::makeDefaultExecutor(bool automatic_start)
 {
     Executor* executor = new Executor(FLAGS_num_threads);
-    if (automaticStart)
+    if (automatic_start)
         executor->start();
 
     return unique_ptr<Executor>(executor);
 }
 
-Executor::Executor(int numThread) :
-    threads_(numThread),
-    shouldStop_(false),
-    hasStarted_(false)
+Executor::Executor(int num_thread) :
+    threads_(num_thread),
+    should_stop_(false),
+    has_started_(false)
 {
 }
 
 Executor::~Executor()
 {
-    if (hasStarted_)
+    if (has_started_)
         stop();
 }
 
 void Executor::start()
 {
-    CHECK(!hasStarted_);
-    hasStarted_ = true;
+    CHECK(!has_started_);
+    has_started_ = true;
 
     for (size_t i = 0; i < threads_.size(); ++i) {
         threads_[i] = thread([this]() {
-                runWorkerLoop();
+            runWorkerLoop();
         });
     }
 }
 
 void Executor::stop()
 {
-    CHECK(hasStarted_);
+    CHECK(has_started_);
 
-    shouldStop_ = true;
-    condVar_.notify_all();
+    should_stop_ = true;
+    cond_var_.notify_all();
     for (size_t i = 0; i < threads_.size(); ++i) {
         if (threads_[i].joinable()) {
             threads_[i].join();
@@ -63,7 +63,7 @@ void Executor::submit(Executor::Func f)
 
     unique_lock<mutex> lock(mu_);
     tasks_.push_back(std::move(f));
-    condVar_.notify_one();
+    cond_var_.notify_one();
 }
 
 void Executor::runWorkerLoop()
@@ -83,9 +83,9 @@ Executor::Func Executor::take()
     while (true) {
         if (!tasks_.empty())
             break;
-        if (shouldStop_)
+        if (should_stop_)
             return Func();
-        condVar_.wait(lock);
+        cond_var_.wait(lock);
     }
 
     Func f = std::move(tasks_.front());

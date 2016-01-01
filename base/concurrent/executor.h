@@ -20,9 +20,9 @@ class Executor {
 public:
     typedef std::function<void (void)> Func;
 
-    static std::unique_ptr<Executor> makeDefaultExecutor(bool automaticStart = true);
+    static std::unique_ptr<Executor> makeDefaultExecutor(bool automatic_start = true);
 
-    explicit Executor(int numThread);
+    explicit Executor(int num_thread);
     ~Executor();
 
     void start();
@@ -36,10 +36,10 @@ private:
 
     std::vector<std::thread> threads_;
     std::mutex mu_;
-    std::condition_variable condVar_;
-    std::atomic<bool> shouldStop_;
+    std::condition_variable cond_var_;
+    std::atomic<bool> should_stop_;
     std::deque<Func> tasks_;
-    bool hasStarted_;
+    bool has_started_;
 
     DISALLOW_COPY_AND_ASSIGN(Executor);
 };

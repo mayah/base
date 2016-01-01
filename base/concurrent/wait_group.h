@@ -17,9 +17,8 @@ public:
 
 private:
     std::mutex mu_;
-    std::condition_variable condVar_;
+    std::condition_variable cond_var_;
     int num_;
 };
 
 #endif // BASE_CONCURRENT_WAIT_GROUP_H_
-

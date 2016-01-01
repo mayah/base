@@ -89,7 +89,7 @@ public:
     const_iterator cend() const { return end(); }
 
     size_type find(StringPiece s, size_type pos = 0) const;
-    size_type rfind(StringPiece s, size_type ops = npos) const;
+    size_type rfind(StringPiece s, size_type pos = npos) const;
 
 private:
     const value_type* ptr_;
