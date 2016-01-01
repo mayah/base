@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# bazel
+bazel-base.git
+bazel-bin
+bazel-genfiles
+bazel-out
+bazel-testlogs
+
