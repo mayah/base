@@ -3,12 +3,14 @@
 
 #include <string>
 
+#include "base/strings/string_piece.h"
+
 namespace file {
 
 bool isDirectory(const char* path);
 
 // Reads file from |filename| and copy to |output|.
-bool readFile(const std::string& filename, std::string* output);
+bool readFile(const strings::StringPiece& filename, std::string* output);
 
 } // namespace file
 

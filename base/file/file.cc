@@ -19,9 +19,9 @@ bool isDirectory(const char* path)
     return S_ISDIR(st.st_mode);
 }
 
-bool readFile(const std::string& filename, string* output)
+bool readFile(const strings::StringPiece& filename, string* output)
 {
-    ifstream ifs(filename, ios::in | ios::binary);
+    ifstream ifs(filename.asString(), ios::in | ios::binary);
     if (!ifs)
         return false;
 
