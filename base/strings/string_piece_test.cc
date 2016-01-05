@@ -173,3 +173,19 @@ TEST(StringPieceTest, rfind)
     EXPECT_EQ(2UL, s.rfind("cd", 2));
     EXPECT_EQ(std::string::npos, s.rfind("de", 2));
 }
+
+TEST(StringPieceTest, substr)
+{
+    StringPiece sp("abc");
+
+    EXPECT_EQ("abc", sp.substr(0));
+    EXPECT_EQ("bc", sp.substr(1));
+    EXPECT_EQ("c", sp.substr(2));
+    EXPECT_EQ("", sp.substr(3));
+    EXPECT_EQ("", sp.substr(4));
+
+    EXPECT_EQ("", sp.substr(1, 0));
+    EXPECT_EQ("b", sp.substr(1, 1));
+    EXPECT_EQ("bc", sp.substr(1, 2));
+    EXPECT_EQ("bc", sp.substr(1, 3));
+}

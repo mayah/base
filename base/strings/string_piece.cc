@@ -30,6 +30,15 @@ StringPiece::size_type StringPiece::rfind(StringPiece s, StringPiece::size_type 
     return result != last ? result - ptr_ : npos;
 }
 
+StringPiece StringPiece::substr(size_t pos, size_t n)
+{
+    if (pos > size())
+        pos = size();
+    if (n > size() - pos)
+        n = size() - pos;
+    return StringPiece(data() + pos, n);
+}
+
 std::ostream& operator<<(std::ostream& os, StringPiece s)
 {
     os.write(s.data(), static_cast<std::streamsize>(s.size()));

@@ -79,6 +79,8 @@ public:
         length_ -= n;
     }
 
+    StringPiece substr(size_t pos, size_t n = npos);
+
     char front() const { return *ptr_; }
     char back() const { return *(ptr_ + length_ - 1); }
 
