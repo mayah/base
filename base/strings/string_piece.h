@@ -108,6 +108,9 @@ inline bool operator>=(StringPiece lhs, StringPiece rhs) { return !(lhs < rhs); 
 
 std::ostream& operator<<(std::ostream&, StringPiece);
 
+// |str| and |sp| should not be overlaped.
+inline std::string& operator+=(std::string& str, StringPiece sp) { return str.append(sp.data(), sp.size()); }
+
 } // namespace strings
 
 #endif // BASE_STRINGS_STRING_PIECE_H_
