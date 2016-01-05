@@ -8,14 +8,23 @@
 
 namespace file {
 
-bool isAbsolutePath(strings::StringPiece path);
-
+namespace internal {
 std::string joinPathImpl(std::initializer_list<strings::StringPiece> paths);
+std::string joinPathRespectAbsoluteImpl(std::initializer_list<strings::StringPiece> paths);
+} // namespace internal
+
+bool isAbsolutePath(strings::StringPiece path);
 
 template<typename... T>
 std::string joinPath(const T&... args)
 {
-    return joinPathImpl({args...});
+    return internal::joinPathImpl({args...});
+}
+
+template<typename... T>
+std::string joinPathRespectAbsolute(const T&... args)
+{
+    return internal::joinPathRespectAbsoluteImpl({args...});
 }
 
 } // namespace file

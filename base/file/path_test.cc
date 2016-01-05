@@ -31,3 +31,20 @@ TEST(FilePathTest, joinPath)
     EXPECT_EQ("/foo/bar/baz", joinPath("/foo", "bar/baz"));
     EXPECT_EQ("/foo/bar/baz", joinPath("/foo/bar", "/baz"));
 }
+
+TEST(FilePathTest, joinPathRespectAbsolute)
+{
+    EXPECT_EQ("/foo/bar", joinPathRespectAbsolute("/foo", "bar"));
+    EXPECT_EQ("/bar", joinPathRespectAbsolute("/foo", "/bar"));
+    EXPECT_EQ("foo/bar", joinPathRespectAbsolute("foo", "bar"));
+    EXPECT_EQ("/bar", joinPathRespectAbsolute("foo", "/bar"));
+
+    EXPECT_EQ("foo", joinPathRespectAbsolute("foo", ""));
+    EXPECT_EQ("/foo", joinPathRespectAbsolute("/foo", ""));
+
+    EXPECT_EQ("foo", joinPathRespectAbsolute("", "foo"));
+    EXPECT_EQ("/foo", joinPathRespectAbsolute("", "/foo"));
+
+    EXPECT_EQ("/foo/bar/baz", joinPathRespectAbsolute("/foo", "bar/baz"));
+    EXPECT_EQ("/baz", joinPathRespectAbsolute("/foo/bar", "/baz"));
+}
