@@ -4,6 +4,7 @@ cc_library(
     ],
     hdrs = [
         "small_int_set.h",
+        "vectors.h"
     ],
     visibility = [
         "//visibility:public",
@@ -19,5 +20,17 @@ cc_test(
         ":containers",
         "//external:gtest",
         "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "vectors_test",
+    srcs = [
+        "vectors_test.cc"
+    ],
+    deps = [
+        ":containers",
+        "//external:gtest",
+        "//third_party:glog"
     ],
 )
