@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(strings_test, hasPrefix)
+TEST(StringsTest, hasPrefix)
 {
     EXPECT_TRUE(strings::hasPrefix("a", ""));
     EXPECT_TRUE(strings::hasPrefix("ab", "a"));
@@ -12,7 +12,7 @@ TEST(strings_test, hasPrefix)
     EXPECT_FALSE(strings::hasPrefix("", "ac"));
 }
 
-TEST(strings_test, hasSuffix)
+TEST(StringsTest, hasSuffix)
 {
     EXPECT_TRUE(strings::hasSuffix("a", ""));
     EXPECT_TRUE(strings::hasSuffix("ab", "b"));
