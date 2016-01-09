@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "base/strings/string_piece.h"
+
 namespace encoding {
 namespace hex {
 
@@ -12,6 +14,11 @@ int fromHexChar(char c);
 
 // Converts |data| to hex string.
 std::string encode(const void* data, size_t len);
+
+// Decodes |sp| to |buf|.
+// Returns the length of buf if succeeded, negative number if failed.
+// |buf| must have (sp.size() / 2) byte.
+int decode(strings::StringPiece sp, void* buf);
 
 } // namespace hex
 } // namespace encoding

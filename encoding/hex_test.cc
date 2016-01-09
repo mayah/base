@@ -23,3 +23,13 @@ TEST(EncodingHexTest, encode)
     EXPECT_EQ("00123456789ABCDEFF", encoding::hex::encode(buf, ARRAY_SIZE(buf)));
     EXPECT_EQ("", encoding::hex::encode(buf, 0));
 }
+
+TEST(EncodingHexTest, decode)
+{
+    std::string s = "00123456789ABCDEFF";
+    std::string invalid = "012";
+
+    unsigned char data[1024];
+
+    EXPECT_GT(0, encoding::hex::decode(invalid, data));
+}

@@ -36,5 +36,26 @@ std::string encode(const void* data, size_t len)
     return result;
 }
 
+int decode(strings::StringPiece sp, void* buf)
+{
+    if (sp.size() % 2 == 1)
+        return -1;
+
+    unsigned char* data = static_cast<unsigned char*>(buf);
+    int j = 0;
+    for (size_t i = 0; i < sp.size(); i += 2) {
+        int high = fromHexChar(sp[i]);
+        if (high < 0)
+            return -1;
+        int low = fromHexChar(sp[i + 1]);
+        if (low < 0)
+            return -1;
+
+        data[j++] = (high << 4) | low;
+    }
+
+    return j;
+}
+
 } // namespace hex
 } // namespace encoding

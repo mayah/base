@@ -6,6 +6,9 @@ cc_library(
     hdrs = [
         "hex.h",
     ],
+    deps = [
+        "//base/strings",
+    ],
     visibility = [
         "//visibility:public",
     ]
