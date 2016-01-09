@@ -7,6 +7,9 @@
 
 namespace strings {
 
+std::string concat(StringPiece s1, StringPiece s2);
+std::string concat(StringPiece s1, StringPiece s2, StringPiece s3);
+
 bool hasPrefix(StringPiece s, StringPiece prefix) { return s.startsWith(prefix); }
 bool hasSuffix(StringPiece s, StringPiece suffix) { return s.endsWith(suffix); }
 
