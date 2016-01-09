@@ -132,9 +132,23 @@ TEST(StringPieceTest, find)
     EXPECT_EQ(StringPiece::npos, sp2.find("ab", 7));
 }
 
+TEST(StringPieceTest, find_char)
+{
+    StringPiece sp("abcdefg");
+
+    EXPECT_EQ(0UL, sp.find('a'));
+    EXPECT_EQ(StringPiece::npos, sp.find('a', 1));
+    EXPECT_EQ(1UL, sp.find('b'));
+    EXPECT_EQ(1UL, sp.find('b', 1));
+    EXPECT_EQ(StringPiece::npos, sp.find('b', 2));
+    EXPECT_EQ(2UL, sp.find('c'));
+    EXPECT_EQ(2UL, sp.find('c', 1));
+    EXPECT_EQ(StringPiece::npos, sp.find('c', 3));
+}
+
 TEST(StringPieceTest, rfind)
 {
-    std::string s("abcdefg");
+    StringPiece s("abcdefg");
     StringPiece sp(s);
 
     EXPECT_EQ(7UL, sp.rfind(""));
@@ -168,10 +182,29 @@ TEST(StringPieceTest, rfind)
     EXPECT_EQ(StringPiece::npos, sp.rfind("de", 2));
 
     // Confirm std::string and StringPiece has the same behavior.
-    EXPECT_EQ(2UL, s.rfind("c", 2));
-    EXPECT_EQ(std::string::npos, s.rfind("d", 2));
-    EXPECT_EQ(2UL, s.rfind("cd", 2));
-    EXPECT_EQ(std::string::npos, s.rfind("de", 2));
+    EXPECT_EQ(s.rfind("c", 2), sp.rfind("c", 2));
+    EXPECT_EQ(s.rfind("d", 2), sp.rfind("d", 2));
+    EXPECT_EQ(s.rfind("cd", 2), sp.rfind("cd", 2));
+    EXPECT_EQ(s.rfind("de", 2), sp.rfind("de", 2));
+}
+
+TEST(StringPieceTest, rfind_char)
+{
+    StringPiece s("abcabc");
+    StringPiece sp(s);
+
+    EXPECT_EQ(StringPiece::npos, sp.rfind('d'));
+
+    EXPECT_EQ(3UL, sp.rfind('a'));
+    EXPECT_EQ(3UL, sp.rfind('a', 3));
+    EXPECT_EQ(0UL, sp.rfind('a', 1));
+    EXPECT_EQ(0UL, sp.rfind('a', 0));
+
+    // Confirm std::string and StringPiece has the same behavior.
+    EXPECT_EQ(s.rfind('a'), sp.rfind('a'));
+    EXPECT_EQ(s.rfind('a', 3), sp.rfind('a', 3));
+    EXPECT_EQ(s.rfind('a', 1), sp.rfind('a', 1));
+    EXPECT_EQ(s.rfind('a', 0), sp.rfind('a', 0));
 }
 
 TEST(StringPieceTest, substr)

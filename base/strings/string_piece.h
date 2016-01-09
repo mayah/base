@@ -91,7 +91,12 @@ public:
     const_iterator cend() const { return end(); }
 
     size_type find(StringPiece s, size_type pos = 0) const;
+    size_type find(char c, size_type pos = 0) const;
     size_type rfind(StringPiece s, size_type pos = npos) const;
+    size_type rfind(char c, size_type pos = npos) const;
+
+    size_type find_first_of(char c, size_type pos = 0) const { return find(c, pos); }
+    size_type find_first_of(StringPiece s, size_type pos = 0) const;
 
 private:
     const value_type* ptr_;

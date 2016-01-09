@@ -3,12 +3,14 @@ cc_library(
     srcs = [
         "string_piece.cc",
         "strings.cc",
+        "split.cc",
         "utf8.cc",
     ],
     hdrs = [
         "string_piece.h",
         "strings.h",
-        "utf8.h"
+        "split.h",
+        "utf8.h",
     ],
     visibility = [
         "//visibility:public",
@@ -31,6 +33,18 @@ cc_test(
     name = "string_piece_test",
     srcs = [
         "string_piece_test.cc",
+    ],
+    deps = [
+        ":strings",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "split_test",
+    srcs = [
+        "split_test.cc",
     ],
     deps = [
         ":strings",
