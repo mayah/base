@@ -49,3 +49,23 @@ TEST(StringsTest, trimSpace)
     EXPECT_EQ("a", strings::trimSpace("  a  "));
     EXPECT_EQ("a  a", strings::trimSpace("  a  a  "));
 }
+
+TEST(StringsTest, trimPrefix)
+{
+    EXPECT_EQ("abc", strings::trimPrefix("abc", ""));
+    EXPECT_EQ("bc", strings::trimPrefix("abc", "a"));
+    EXPECT_EQ("c", strings::trimPrefix("abc", "ab"));
+    EXPECT_EQ("", strings::trimPrefix("abc", "abc"));
+    EXPECT_EQ("abc", strings::trimPrefix("abc", "abcd"));
+    EXPECT_EQ("abc", strings::trimPrefix("abc", "bcd"));
+}
+
+TEST(StringsTest, trimSuffix)
+{
+    EXPECT_EQ("abc", strings::trimSuffix("abc", ""));
+    EXPECT_EQ("ab", strings::trimSuffix("abc", "c"));
+    EXPECT_EQ("a", strings::trimSuffix("abc", "bc"));
+    EXPECT_EQ("", strings::trimSuffix("abc", "abc"));
+    EXPECT_EQ("abc", strings::trimSuffix("abc", "abcd"));
+    EXPECT_EQ("abc", strings::trimSuffix("abc", "bce"));
+}

@@ -16,6 +16,10 @@ bool hasSuffix(StringPiece s, StringPiece suffix) { return s.endsWith(suffix); }
 std::string repeat(StringPiece s, int count);
 
 StringPiece trimSpace(StringPiece);
+// If |s| starts with |prefix|, trim it.
+StringPiece trimPrefix(StringPiece s, StringPiece prefix);
+// If |s| ends with |suffix|, trim it.
+StringPiece trimSuffix(StringPiece s, StringPiece suffix);
 
 } // namespace strings
 

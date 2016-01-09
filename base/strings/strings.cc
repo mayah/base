@@ -41,4 +41,18 @@ StringPiece trimSpace(StringPiece s)
     return s;
 }
 
+StringPiece trimPrefix(StringPiece s, StringPiece prefix)
+{
+    if (s.startsWith(prefix))
+        return s.substr(prefix.size());
+    return s;
+}
+
+StringPiece trimSuffix(StringPiece s, StringPiece suffix)
+{
+    if (s.endsWith(suffix))
+        return s.substr(0, s.size() - suffix.size());
+    return s;
+}
+
 } // namespace strings
