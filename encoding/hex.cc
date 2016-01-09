@@ -1,11 +1,26 @@
 #include "encoding/hex.h"
 
+#include <glog/logging.h>
+
 namespace encoding {
 namespace hex {
 
 namespace {
 const char HEX_TABLE[] = "0123456789ABCDEF";
 } // namespace anonymous
+
+int fromHexChar(char c)
+{
+    if ('0' <= c && c <= '9')
+        return c - '0';
+    if ('A' <= c && c <= 'F')
+        return c - 'A' + 10;
+    if ('a' <= c && c <= 'f')
+        return c - 'a' + 10;
+
+    DCHECK(false) << "character c=" << c << " is not a hex character";
+    return -1;
+}
 
 std::string encode(const void* data, size_t len)
 {
