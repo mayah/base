@@ -18,7 +18,6 @@ cc_test(
     srcs = [
         "strings_test.cc",
     ],
-    copts = [],
     deps = [
         ":strings",
         "//external:gtest",
@@ -31,7 +30,6 @@ cc_test(
     srcs = [
         "string_piece_test.cc",
     ],
-    copts = [],
     deps = [
         ":strings",
         "//external:gtest",
