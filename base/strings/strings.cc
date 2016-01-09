@@ -55,4 +55,16 @@ StringPiece trimSuffix(StringPiece s, StringPiece suffix)
     return s;
 }
 
+std::string remove(StringPiece s, char cut)
+{
+    std::string result;
+    for (char c : s) {
+        if (c == cut)
+            continue;
+        result.push_back(c);
+    }
+
+    return result;
+}
+
 } // namespace strings

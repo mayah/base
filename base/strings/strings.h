@@ -21,6 +21,9 @@ StringPiece trimPrefix(StringPiece s, StringPiece prefix);
 // If |s| ends with |suffix|, trim it.
 StringPiece trimSuffix(StringPiece s, StringPiece suffix);
 
+// Returns a new copy of |s| with removing |cut|.
+std::string remove(StringPiece s, char cut);
+
 } // namespace strings
 
 #endif // BASE_STRINGS_STRINGS_H_

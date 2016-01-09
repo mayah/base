@@ -69,3 +69,9 @@ TEST(StringsTest, trimSuffix)
     EXPECT_EQ("abc", strings::trimSuffix("abc", "abcd"));
     EXPECT_EQ("abc", strings::trimSuffix("abc", "bce"));
 }
+
+TEST(StringsTest, remove)
+{
+    EXPECT_EQ("", strings::remove("", 'c'));
+    EXPECT_EQ("ababABCABC", strings::remove("abcabcABCABC", 'c'));
+}
