@@ -4,7 +4,7 @@
 
 using namespace std;
 
-TEST(unit_test, ident)
+TEST(UnitTest, ident)
 {
     EXPECT_EQ(base::Unit(), base::Unit());
 }
