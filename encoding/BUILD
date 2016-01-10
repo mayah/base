@@ -14,6 +14,22 @@ cc_library(
     ]
 )
 
+cc_library(
+    name = "base64",
+    srcs = [
+        "base64.cc"
+    ],
+    hdrs = [
+        "base64.h",
+    ],
+    deps = [
+        "//base/strings",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
 cc_test(
     name = "hex_test",
     srcs = [
@@ -21,6 +37,19 @@ cc_test(
     ],
     deps = [
         ":hex",
+        "//base",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "base64_test",
+    srcs = [
+        "base64_test.cc",
+    ],
+    deps = [
+        ":base64",
         "//base",
         "//external:gtest",
         "//third_party:glog",
