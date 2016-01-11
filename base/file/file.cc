@@ -25,7 +25,7 @@ bool readFile(const strings::StringPiece& filename, string* output)
     if (!ifs)
         return false;
 
-    output->assign((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+    output->assign(std::istreambuf_iterator<char>(ifs), std::istreambuf_iterator<char>());
     return true;
 }
 
