@@ -14,8 +14,6 @@ struct SkipEmpty {
     bool operator()(StringPiece sp) const { return !sp.empty(); }
 };
 
-// Split string |str| with |seps|. Allows empty.
-std::vector<std::string> split(StringPiece str, StringPiece seps);
 std::vector<std::string> split(StringPiece str, StringPiece seps, AllowEmpty);
 std::vector<std::string> split(StringPiece str, StringPiece seps, SkipEmpty);
 

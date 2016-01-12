@@ -31,11 +31,6 @@ std::vector<std::string> splitInternal(StringPiece str, StringPiece seps, Predic
 
 } // namespace anonymous
 
-std::vector<std::string> split(StringPiece str, StringPiece seps)
-{
-    return splitInternal(str, seps, AllowEmpty());
-}
-
 std::vector<std::string> split(StringPiece str, StringPiece seps, AllowEmpty pred)
 {
     return splitInternal(str, seps, pred);
