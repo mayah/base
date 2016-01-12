@@ -13,6 +13,14 @@ TEST(StringsTest, concat)
     EXPECT_EQ("ac", strings::concat("a", "", "c"));
 }
 
+TEST(StringsTest, join)
+{
+    EXPECT_EQ("", strings::join({}, ","));
+    EXPECT_EQ("a", strings::join({"a"}, ","));
+    EXPECT_EQ("a,b", strings::join({"a", "b"}, ","));
+    EXPECT_EQ("ab", strings::join({"a", "b"}, ""));
+}
+
 TEST(StringsTest, hasPrefix)
 {
     EXPECT_TRUE(strings::hasPrefix("a", ""));
