@@ -98,6 +98,9 @@ public:
     size_type find_first_of(char c, size_type pos = 0) const { return find(c, pos); }
     size_type find_first_of(StringPiece s, size_type pos = 0) const;
 
+    size_type find_first_not_of(char c, size_type pos = 0) const;
+    size_type find_first_not_of(StringPiece s, size_type pos = 0) const;
+
 private:
     const value_type* ptr_;
     size_type length_;

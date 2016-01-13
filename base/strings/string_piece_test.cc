@@ -207,6 +207,73 @@ TEST(StringPieceTest, rfind_char)
     EXPECT_EQ(s.rfind('a', 0), sp.rfind('a', 0));
 }
 
+TEST(StringPieceTest, find_first_of)
+{
+    std::string s("abc");
+    StringPiece sp(s);
+
+    EXPECT_EQ(StringPiece::npos, sp.find_first_of(""));
+
+    EXPECT_EQ(0, sp.find_first_of('a'));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_of('a', 1));
+
+    EXPECT_EQ(1, sp.find_first_of('b'));
+    EXPECT_EQ(1, sp.find_first_of('b', 1));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_of('b', 2));
+
+    EXPECT_EQ(StringPiece::npos, sp.find_first_of('d'));
+
+    EXPECT_EQ(0, sp.find_first_of("ab"));
+    EXPECT_EQ(1, sp.find_first_of("ab", 1));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_of("ab", 2));
+    EXPECT_EQ(2, sp.find_first_of("ac", 2));
+    EXPECT_EQ(2, sp.find_first_of("cd", 2));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_of("de", 2));
+
+    // Confirm std::string and StringPiece has the same behavior.
+    EXPECT_EQ(s.find_first_of(""), sp.find_first_of(""));
+    EXPECT_EQ(s.find_first_of("a"), sp.find_first_of("a"));
+    EXPECT_EQ(s.find_first_of("a", 1), sp.find_first_of("a", 1));
+    EXPECT_EQ(s.find_first_of("ab"), sp.find_first_of("ab"));
+    EXPECT_EQ(s.find_first_of("bc"), sp.find_first_of("bc"));
+    EXPECT_EQ(s.find_first_of("ac", 1), sp.find_first_of("ac", 1));
+    EXPECT_EQ(s.find_first_of("ac", 3), sp.find_first_of("ac", 3));
+}
+
+TEST(StringPieceTest, find_first_not_of)
+{
+    std::string s("abc");
+    StringPiece sp(s);
+
+    EXPECT_EQ(0, sp.find_first_not_of(""));
+
+    EXPECT_EQ(1, sp.find_first_not_of('a'));
+    EXPECT_EQ(1, sp.find_first_not_of('a', 1));
+
+    EXPECT_EQ(0, sp.find_first_not_of('b'));
+    EXPECT_EQ(2, sp.find_first_not_of('b', 1));
+    EXPECT_EQ(2, sp.find_first_not_of('b', 2));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_not_of('c', 2));
+
+    EXPECT_EQ(0, sp.find_first_not_of('d'));
+
+    EXPECT_EQ(2, sp.find_first_not_of("ab"));
+    EXPECT_EQ(2, sp.find_first_not_of("ab", 1));
+    EXPECT_EQ(2, sp.find_first_not_of("ab", 2));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_not_of("ac", 2));
+    EXPECT_EQ(StringPiece::npos, sp.find_first_not_of("cd", 2));
+    EXPECT_EQ(2, sp.find_first_not_of("de", 2));
+
+    // Confirm std::string and StringPiece has the same behavior.
+    EXPECT_EQ(s.find_first_not_of(""), sp.find_first_not_of(""));
+    EXPECT_EQ(s.find_first_not_of("a"), sp.find_first_not_of("a"));
+    EXPECT_EQ(s.find_first_not_of("a", 1), sp.find_first_not_of("a", 1));
+    EXPECT_EQ(s.find_first_not_of("ab"), sp.find_first_not_of("ab"));
+    EXPECT_EQ(s.find_first_not_of("bc"), sp.find_first_not_of("bc"));
+    EXPECT_EQ(s.find_first_not_of("ac", 1), sp.find_first_not_of("ac", 1));
+    EXPECT_EQ(s.find_first_not_of("ac", 3), sp.find_first_not_of("ac", 3));
+}
+
 TEST(StringPieceTest, substr)
 {
     StringPiece sp("abc");
