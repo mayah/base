@@ -17,6 +17,9 @@ bool hasSuffix(StringPiece s, StringPiece suffix) { return s.endsWith(suffix); }
 
 std::string repeat(StringPiece s, int count);
 
+StringPiece trimLeft(StringPiece s, StringPiece cutset);
+StringPiece trimRight(StringPiece s, StringPiece cutset);
+
 StringPiece trimSpace(StringPiece);
 // If |s| starts with |prefix|, trim it.
 StringPiece trimPrefix(StringPiece s, StringPiece prefix);

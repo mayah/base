@@ -53,6 +53,30 @@ StringPiece trimSpace(StringPiece s)
     return s;
 }
 
+StringPiece trimLeft(StringPiece s, StringPiece cutset)
+{
+    if (s.empty() || cutset.empty())
+        return s;
+
+    StringPiece::size_type pos = s.find_first_not_of(cutset);
+    if (pos == StringPiece::npos)
+        return StringPiece();
+    return s.substr(pos);
+}
+
+StringPiece trimRight(StringPiece s, StringPiece cutset)
+{
+    if (s.empty() || cutset.empty())
+        return s;
+
+    for (size_t i = s.size(); i > 0; --i) {
+        if (cutset.find(s[i - 1]) == StringPiece::npos)
+            return s.substr(0, i);
+    }
+
+    return StringPiece();
+}
+
 StringPiece trimPrefix(StringPiece s, StringPiece prefix)
 {
     if (s.startsWith(prefix))
