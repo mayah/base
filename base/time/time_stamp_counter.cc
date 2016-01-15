@@ -9,7 +9,7 @@ using namespace std;
 
 namespace base {
 
-void TimeStampCounterData::showStatistics() const
+void TimeStampCounter::showStatistics() const
 {
     int n = data_.size();
     if (n <= 1) {

@@ -13,7 +13,7 @@ inline unsigned long long rdtscp(unsigned int* aux)
     return (rdx << 32) + rax;
 }
 
-class TimeStampCounterData {
+class TimeStampCounter {
 public:
     void add(unsigned long long t) { data_.push_back(t); }
 
@@ -28,7 +28,7 @@ private:
 class ScopedTimeStampCounter {
 public:
     // Don't take the ownership of tsc
-    explicit ScopedTimeStampCounter(TimeStampCounterData* tsc) :
+    explicit ScopedTimeStampCounter(TimeStampCounter* tsc) :
         tsc_(tsc),
         start_(rdtscp(&a_))
     {
@@ -42,7 +42,7 @@ public:
     }
 
 private:
-    TimeStampCounterData* tsc_;
+    TimeStampCounter* tsc_;
     unsigned int a_;
     unsigned long long start_;
 };
@@ -50,4 +50,3 @@ private:
 } // namespace base
 
 #endif // BASE_TIME_TIME_STAMP_COUNTER_H_
-
