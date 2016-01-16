@@ -289,3 +289,15 @@ TEST(StringPieceTest, substr)
     EXPECT_EQ("bc", sp.substr(1, 2));
     EXPECT_EQ("bc", sp.substr(1, 3));
 }
+
+TEST(StringPiece, chomp)
+{
+    EXPECT_EQ("", StringPiece("").chomp());
+    EXPECT_EQ("a", StringPiece("a").chomp());
+    EXPECT_EQ("a", StringPiece("a\r").chomp());
+    EXPECT_EQ("a", StringPiece("a\r\n").chomp());
+    EXPECT_EQ("a", StringPiece("a\n").chomp());
+    EXPECT_EQ("a\n", StringPiece("a\n\n").chomp());
+    EXPECT_EQ("a\n", StringPiece("a\n\r").chomp());
+    EXPECT_EQ("a\r\n", StringPiece("a\r\n\n").chomp());
+}

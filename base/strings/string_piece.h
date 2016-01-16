@@ -61,12 +61,13 @@ public:
         return memcmp(data() + size() - x.size(), x.data(), x.size()) == 0;
     }
 
-    char operator[](size_t i) const
+    char get(size_t i) const
     {
         DCHECK_LE(0, i);
         DCHECK_LT(i, length_);
         return ptr_[i];
     }
+    char operator[](size_t i) const { return get(i); }
 
     void removePrefix(size_t n)
     {
@@ -78,6 +79,9 @@ public:
     {
         length_ -= n;
     }
+
+    // Returns the string whose last LF, CR, or CRLF is removed.
+    StringPiece chomp();
 
     StringPiece substr(size_t pos, size_t n = npos);
 

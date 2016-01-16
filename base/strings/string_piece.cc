@@ -106,6 +106,28 @@ StringPiece::size_type StringPiece::find_first_not_of(StringPiece s, StringPiece
     return StringPiece::npos;
 }
 
+StringPiece StringPiece::chomp()
+{
+    if (empty())
+        return StringPiece();
+
+    if (size() == 1) {
+        if (back() == '\r' || back() == '\n')
+            return StringPiece();
+        return *this;
+    }
+
+    if (back() == '\r')
+        return substr(0, size() - 1);
+    if (back() == '\n') {
+        if (get(size() - 2) == '\r')
+            return StringPiece(data(), size() - 2);
+        return StringPiece(data(), size() - 1);
+    }
+
+    return *this;
+}
+
 StringPiece StringPiece::substr(size_t pos, size_t n)
 {
     if (pos > size())
