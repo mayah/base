@@ -50,6 +50,12 @@ TEST(StringsTest, repeat)
 
 TEST(StringsTest, trimLeft)
 {
+    EXPECT_EQ("abc", strings::trimLeft("abc", ' '));
+    EXPECT_EQ("bc", strings::trimLeft("abc", 'a'));
+    EXPECT_EQ("bc", strings::trimLeft("aaaabc", 'a'));
+    EXPECT_EQ("abc", strings::trimLeft("abc", 'b'));
+    EXPECT_EQ("abc", strings::trimLeft("abc", 'c'));
+
     EXPECT_EQ("abc", strings::trimLeft("abc", ""));
     EXPECT_EQ("bc", strings::trimLeft("abc", "a"));
     EXPECT_EQ("c", strings::trimLeft("abc", "ba"));
@@ -60,6 +66,12 @@ TEST(StringsTest, trimLeft)
 
 TEST(StringsTest, trimRight)
 {
+    EXPECT_EQ("abc", strings::trimRight("abc", ' '));
+    EXPECT_EQ("abc", strings::trimRight("abc", 'a'));
+    EXPECT_EQ("abc", strings::trimRight("abc", 'b'));
+    EXPECT_EQ("ab", strings::trimRight("abc", 'c'));
+    EXPECT_EQ("ab", strings::trimRight("abcc", 'c'));
+
     EXPECT_EQ("abc", strings::trimRight("abc", ""));
     EXPECT_EQ("abc", strings::trimRight("abc", "a"));
     EXPECT_EQ("abc", strings::trimRight("abc", "ba"));

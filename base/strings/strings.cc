@@ -44,13 +44,18 @@ std::string repeat(StringPiece s, int count)
 
 StringPiece trimSpace(StringPiece s)
 {
-    while (!s.empty() && s.front() == ' ')
-        s.removePrefix(1);
+    return trimLeft(trimRight(s, ' '), ' ');
+}
 
-    while (!s.empty() && s.back() == ' ')
-        s.removeSuffix(1);
+StringPiece trimLeft(StringPiece s, char c)
+{
+    if (s.empty())
+        return s;
 
-    return s;
+    StringPiece::size_type pos = s.find_first_not_of(c);
+    if (pos == StringPiece::npos)
+        return StringPiece();
+    return s.substr(pos);
 }
 
 StringPiece trimLeft(StringPiece s, StringPiece cutset)
@@ -62,6 +67,19 @@ StringPiece trimLeft(StringPiece s, StringPiece cutset)
     if (pos == StringPiece::npos)
         return StringPiece();
     return s.substr(pos);
+}
+
+StringPiece trimRight(StringPiece s, char c)
+{
+    if (s.empty())
+        return s;
+
+    for (size_t i = s.size(); i > 0; --i) {
+        if (s[i - 1] != c)
+            return s.substr(0, i);
+    }
+
+    return StringPiece();
 }
 
 StringPiece trimRight(StringPiece s, StringPiece cutset)

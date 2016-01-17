@@ -69,17 +69,6 @@ public:
     }
     char operator[](size_t i) const { return get(i); }
 
-    void removePrefix(size_t n)
-    {
-        ptr_ += n;
-        length_ -= n;
-    }
-
-    void removeSuffix(size_t n)
-    {
-        length_ -= n;
-    }
-
     // Returns the string whose last LF, CR, or CRLF is removed.
     StringPiece chomp();
 
@@ -90,7 +79,6 @@ public:
 
     iterator begin() const { return data(); }
     iterator end() const { return data() + size(); }
-
     const_iterator cbegin() const { return data(); }
     const_iterator cend() const { return end(); }
 
@@ -101,7 +89,6 @@ public:
 
     size_type find_first_of(char c, size_type pos = 0) const { return find(c, pos); }
     size_type find_first_of(StringPiece s, size_type pos = 0) const;
-
     size_type find_first_not_of(char c, size_type pos = 0) const;
     size_type find_first_not_of(StringPiece s, size_type pos = 0) const;
 
