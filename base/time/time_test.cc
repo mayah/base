@@ -5,5 +5,5 @@
 TEST(TimeTest, now)
 {
     base::Time t;
-    EXPECT_EQ(std::chrono::system_clock::time_point(), t.timePoint());
+    EXPECT_EQ(std::chrono::system_clock::time_point(), t.time_point());
 }

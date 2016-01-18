@@ -10,8 +10,8 @@ public:
     Time() {}
     explicit Time(std::chrono::system_clock::time_point tp) : tp_(tp) {}
 
-    const std::chrono::system_clock::time_point& timePoint() const { return tp_; }
-    time_t toTimeT() const { return std::chrono::system_clock::to_time_t(tp_); }
+    const std::chrono::system_clock::time_point& time_point() const { return tp_; }
+    time_t to_time_t() const { return std::chrono::system_clock::to_time_t(tp_); }
 
 private:
     std::chrono::system_clock::time_point tp_;

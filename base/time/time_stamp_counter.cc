@@ -23,12 +23,12 @@ void TimeStampCounter::showStatistics() const
     }
     double average = sum / n;
 
-    double diffSquareSum = 0.0;
+    double diff_square_sum = 0.0;
     for (auto x : data_) {
-        diffSquareSum += (x - average) * (x - average);
+        diff_square_sum += (x - average) * (x - average);
     }
 
-    double deviation = pow(diffSquareSum / n, 0.5);
+    double deviation = pow(diff_square_sum / n, 0.5);
 
     cout << "        N = " << n << endl;
     cout << "      min = " << *min_element(data_.begin(), data_.end()) << endl;
