@@ -8,7 +8,7 @@ namespace strings {
 
 // Converts |codepoint| to utf8 string (containing one character).
 // If failed, result is empty.
-std::string to_UTF8(std::uint32_t codepoint);
+std::string to_utf8(std::uint32_t codepoint);
 
 } // namespace strings
 
