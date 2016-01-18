@@ -4,14 +4,14 @@
 
 #include "base/macros.h"
 
-TEST(EncodingHexTest, fromHexChar)
+TEST(EncodingHexTest, from_hex_char)
 {
-    EXPECT_EQ(0, encoding::hex::fromHexChar('0'));
-    EXPECT_EQ(9, encoding::hex::fromHexChar('9'));
-    EXPECT_EQ(10, encoding::hex::fromHexChar('A'));
-    EXPECT_EQ(10, encoding::hex::fromHexChar('a'));
-    EXPECT_EQ(15, encoding::hex::fromHexChar('F'));
-    EXPECT_EQ(15, encoding::hex::fromHexChar('f'));
+    EXPECT_EQ(0, encoding::hex::from_hex_char('0'));
+    EXPECT_EQ(9, encoding::hex::from_hex_char('9'));
+    EXPECT_EQ(10, encoding::hex::from_hex_char('A'));
+    EXPECT_EQ(10, encoding::hex::from_hex_char('a'));
+    EXPECT_EQ(15, encoding::hex::from_hex_char('F'));
+    EXPECT_EQ(15, encoding::hex::from_hex_char('f'));
 }
 
 TEST(EncodingHexTest, encode)

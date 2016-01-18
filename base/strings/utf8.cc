@@ -2,7 +2,7 @@
 
 namespace strings {
 
-std::string toUTF8(std::uint32_t x)
+std::string to_UTF8(std::uint32_t x)
 {
     if (x <= 0x7FU) {
         // 0xxxxxxx

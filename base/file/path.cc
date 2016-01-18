@@ -4,7 +4,7 @@ namespace file {
 
 namespace internal {
 
-std::string joinPathImpl(std::initializer_list<strings::StringPiece> paths)
+std::string join_path_impl(std::initializer_list<strings::StringPiece> paths)
 {
     std::string result;
     for (strings::StringPiece path : paths) {
@@ -12,18 +12,18 @@ std::string joinPathImpl(std::initializer_list<strings::StringPiece> paths)
             continue;
 
         if (result.empty()) {
-            result = path.asString();
+            result = path.as_string();
             continue;
         }
 
         if (result.back() == '/') {
-            if (isAbsolutePath(path)) {
+            if (is_absolute_path(path)) {
                 result += path.substr(1);
             } else {
                 result += path;
             }
         } else {
-            if (isAbsolutePath(path)) {
+            if (is_absolute_path(path)) {
                 result += path;
             } else {
                 result += '/';
@@ -35,7 +35,7 @@ std::string joinPathImpl(std::initializer_list<strings::StringPiece> paths)
     return result;
 }
 
-std::string joinPathRespectAbsoluteImpl(std::initializer_list<strings::StringPiece> paths)
+std::string join_path_respect_absolute_impl(std::initializer_list<strings::StringPiece> paths)
 {
     std::string result;
     for (strings::StringPiece path : paths) {
@@ -43,12 +43,12 @@ std::string joinPathRespectAbsoluteImpl(std::initializer_list<strings::StringPie
             continue;
 
         if (result.empty()) {
-            result = path.asString();
+            result = path.as_string();
             continue;
         }
 
-        if (isAbsolutePath(path)) {
-            result = path.asString();
+        if (is_absolute_path(path)) {
+            result = path.as_string();
             continue;
         }
 
@@ -65,7 +65,7 @@ std::string joinPathRespectAbsoluteImpl(std::initializer_list<strings::StringPie
 
 } // namespace internal
 
-bool isAbsolutePath(strings::StringPiece path)
+bool is_absolute_path(strings::StringPiece path)
 {
     return !path.empty() && path[0] == '/';
 }

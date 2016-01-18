@@ -8,7 +8,7 @@ namespace base {
 class Clock {
 public:
     // Returns a pointer to real clock.
-    static Clock* realClock();
+    static Clock* real_clock();
 
     virtual ~Clock() {}
 

@@ -9,12 +9,12 @@
 namespace file {
 
 namespace internal {
-std::string joinPathImpl(std::initializer_list<strings::StringPiece> paths);
-std::string joinPathRespectAbsoluteImpl(std::initializer_list<strings::StringPiece> paths);
+std::string join_path_impl(std::initializer_list<strings::StringPiece> paths);
+std::string join_path_respect_absolute_impl(std::initializer_list<strings::StringPiece> paths);
 } // namespace internal
 
 // Returns true if |path| is absolute.
-bool isAbsolutePath(strings::StringPiece path);
+bool is_absolute_path(strings::StringPiece path);
 
 // Joins path.
 // For example:
@@ -22,9 +22,9 @@ bool isAbsolutePath(strings::StringPiece path);
 //   2.  A/B, B/C/ --> A/B/B/C/
 //   3.  /, /A/B, /C --> /A/B/C
 template<typename... T>
-std::string joinPath(const T&... args)
+std::string join_path(const T&... args)
 {
-    return internal::joinPathImpl({args...});
+    return internal::join_path_impl({args...});
 }
 
 // Joins path. If some path is absolute, we respect it.
@@ -34,9 +34,9 @@ std::string joinPath(const T&... args)
 //   3.  A, B/C --> A/B/C
 //   4.  A, /B/C --> /B/C     (/B/C is absolute, it's respected.
 template<typename... T>
-std::string joinPathRespectAbsolute(const T&... args)
+std::string join_path_respect_absolute(const T&... args)
 {
-    return internal::joinPathRespectAbsoluteImpl({args...});
+    return internal::join_path_respect_absolute_impl({args...});
 }
 
 } // namespace file

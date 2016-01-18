@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
     }
 
     string output;
-    if (!file::readFile(argv[1], &output)) {
+    if (!file::read_file(argv[1], &output)) {
         cerr << "failed to read file: " << argv[1] << endl;
         return 1;
     }

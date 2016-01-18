@@ -10,7 +10,7 @@ using namespace std;
 
 namespace file {
 
-bool isDirectory(const char* path)
+bool is_directory(const char* path)
 {
     struct stat st;
     if (stat(path, &st) < 0)
@@ -19,9 +19,9 @@ bool isDirectory(const char* path)
     return S_ISDIR(st.st_mode);
 }
 
-bool readFile(const strings::StringPiece& filename, string* output)
+bool read_file(const strings::StringPiece& filename, string* output)
 {
-    ifstream ifs(filename.asString(), ios::in | ios::binary);
+    ifstream ifs(filename.as_string(), ios::in | ios::binary);
     if (!ifs)
         return false;
 

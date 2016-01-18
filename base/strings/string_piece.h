@@ -40,21 +40,21 @@ public:
         length_ = 0;
     }
 
-    std::string asString() const
+    std::string as_string() const
     {
         if (!ptr_)
             return std::string();
         return std::string(data(), size());
     }
 
-    bool startsWith(StringPiece x) const
+    bool starts_with(StringPiece x) const
     {
         if (size() < x.size())
             return false;
         return memcmp(data(), x.data(), x.length()) == 0;
     }
 
-    bool endsWith(StringPiece x) const
+    bool ends_with(StringPiece x) const
     {
         if (size() < x.size())
             return false;

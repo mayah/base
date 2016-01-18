@@ -20,7 +20,7 @@ class Executor {
 public:
     typedef std::function<void (void)> Func;
 
-    static std::unique_ptr<Executor> makeDefaultExecutor(bool automatic_start = true);
+    static std::unique_ptr<Executor> make_default(bool automatic_start = true);
 
     explicit Executor(int num_thread);
     ~Executor();
@@ -31,7 +31,7 @@ public:
     void submit(Func);
 
 private:
-    void runWorkerLoop();
+    void run_worker_loop();
     Func take();
 
     std::vector<std::thread> threads_;

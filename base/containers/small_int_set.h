@@ -25,16 +25,16 @@ public:
         return v_ & (1ULL << x);
     }
 
-    bool isEmpty() const { return v_ == 0; }
+    bool empty() const { return v_ == 0; }
     int size() const { return __builtin_popcountll(v_); }
 
     int smallest() const
     {
-        DCHECK(!isEmpty());
+        DCHECK(!empty());
         return __builtin_ctzll(v_);
     }
 
-    void removeSmallest()
+    void remove_smallest()
     {
         v_ = v_ & (v_ - 1);
     }

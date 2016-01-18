@@ -17,7 +17,7 @@ class TimeStampCounter {
 public:
     void add(unsigned long long t) { data_.push_back(t); }
 
-    void showStatistics() const;
+    void show_statistics() const;
 
 private:
     std::vector<unsigned long long> data_;

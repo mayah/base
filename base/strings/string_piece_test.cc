@@ -43,31 +43,31 @@ TEST(StringPieceTest, with_nul)
     EXPECT_EQ('a', sp[0]);
     EXPECT_EQ('\0', sp[3]);
 
-    EXPECT_EQ(7, sp.asString().size());
+    EXPECT_EQ(7, sp.as_string().size());
 }
 
-TEST(StringPieceTest, startsWith)
+TEST(StringPieceTest, starts_with)
 {
     StringPiece sp("foobar");
 
-    EXPECT_TRUE(sp.startsWith(""));
-    EXPECT_TRUE(sp.startsWith("f"));
-    EXPECT_TRUE(sp.startsWith("foobar"));
+    EXPECT_TRUE(sp.starts_with(""));
+    EXPECT_TRUE(sp.starts_with("f"));
+    EXPECT_TRUE(sp.starts_with("foobar"));
 
-    EXPECT_FALSE(sp.startsWith("oo"));
-    EXPECT_FALSE(sp.startsWith("foobarbaz"));
+    EXPECT_FALSE(sp.starts_with("oo"));
+    EXPECT_FALSE(sp.starts_with("foobarbaz"));
 }
 
-TEST(StringPieceTest, endsWith)
+TEST(StringPieceTest, ends_with)
 {
     StringPiece sp("foobar");
 
-    EXPECT_TRUE(sp.endsWith(""));
-    EXPECT_TRUE(sp.endsWith("ar"));
-    EXPECT_TRUE(sp.endsWith("foobar"));
+    EXPECT_TRUE(sp.ends_with(""));
+    EXPECT_TRUE(sp.ends_with("ar"));
+    EXPECT_TRUE(sp.ends_with("foobar"));
 
-    EXPECT_FALSE(sp.endsWith("oo"));
-    EXPECT_FALSE(sp.endsWith("bazfoobar"));
+    EXPECT_FALSE(sp.ends_with("oo"));
+    EXPECT_FALSE(sp.ends_with("bazfoobar"));
 }
 
 TEST(StringPieceTest, compare)

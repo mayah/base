@@ -9,7 +9,7 @@ namespace {
 const char HEX_TABLE[] = "0123456789ABCDEF";
 } // namespace anonymous
 
-int fromHexChar(char c)
+int from_hex_char(char c)
 {
     if ('0' <= c && c <= '9')
         return c - '0';
@@ -44,10 +44,10 @@ int decode(strings::StringPiece sp, void* buf)
     unsigned char* data = static_cast<unsigned char*>(buf);
     int j = 0;
     for (size_t i = 0; i < sp.size(); i += 2) {
-        int high = fromHexChar(sp[i]);
+        int high = from_hex_char(sp[i]);
         if (high < 0)
             return -1;
-        int low = fromHexChar(sp[i + 1]);
+        int low = from_hex_char(sp[i + 1]);
         if (low < 0)
             return -1;
 

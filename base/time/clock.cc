@@ -10,7 +10,7 @@ public:
 };
 
 // static
-Clock* Clock::realClock()
+Clock* Clock::real_clock()
 {
     static RealClock instance;
     return &instance;

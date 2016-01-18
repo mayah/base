@@ -7,10 +7,10 @@
 
 namespace file {
 
-bool isDirectory(const char* path);
+bool is_directory(const char* path);
 
 // Reads file from |filename| and copy to |output|.
-bool readFile(const strings::StringPiece& filename, std::string* output);
+bool read_file(const strings::StringPiece& filename, std::string* output);
 
 } // namespace file
 

@@ -21,24 +21,24 @@ TEST(StringsTest, join)
     EXPECT_EQ("ab", strings::join({"a", "b"}, ""));
 }
 
-TEST(StringsTest, hasPrefix)
+TEST(StringsTest, has_prefix)
 {
-    EXPECT_TRUE(strings::hasPrefix("a", ""));
-    EXPECT_TRUE(strings::hasPrefix("ab", "a"));
-    EXPECT_TRUE(strings::hasPrefix("ab", "ab"));
+    EXPECT_TRUE(strings::has_prefix("a", ""));
+    EXPECT_TRUE(strings::has_prefix("ab", "a"));
+    EXPECT_TRUE(strings::has_prefix("ab", "ab"));
 
-    EXPECT_FALSE(strings::hasPrefix("ab", "ac"));
-    EXPECT_FALSE(strings::hasPrefix("", "ac"));
+    EXPECT_FALSE(strings::has_prefix("ab", "ac"));
+    EXPECT_FALSE(strings::has_prefix("", "ac"));
 }
 
-TEST(StringsTest, hasSuffix)
+TEST(StringsTest, has_suffix)
 {
-    EXPECT_TRUE(strings::hasSuffix("a", ""));
-    EXPECT_TRUE(strings::hasSuffix("ab", "b"));
-    EXPECT_TRUE(strings::hasSuffix("ab", "ab"));
+    EXPECT_TRUE(strings::has_suffix("a", ""));
+    EXPECT_TRUE(strings::has_suffix("ab", "b"));
+    EXPECT_TRUE(strings::has_suffix("ab", "ab"));
 
-    EXPECT_FALSE(strings::hasSuffix("ab", "cab"));
-    EXPECT_FALSE(strings::hasSuffix("", "ab"));
+    EXPECT_FALSE(strings::has_suffix("ab", "cab"));
+    EXPECT_FALSE(strings::has_suffix("", "ab"));
 }
 
 TEST(StringsTest, repeat)
@@ -48,66 +48,66 @@ TEST(StringsTest, repeat)
     EXPECT_EQ("ababab", strings::repeat("ab", 3));
 }
 
-TEST(StringsTest, trimLeft)
+TEST(StringsTest, trim_left)
 {
-    EXPECT_EQ("abc", strings::trimLeft("abc", ' '));
-    EXPECT_EQ("bc", strings::trimLeft("abc", 'a'));
-    EXPECT_EQ("bc", strings::trimLeft("aaaabc", 'a'));
-    EXPECT_EQ("abc", strings::trimLeft("abc", 'b'));
-    EXPECT_EQ("abc", strings::trimLeft("abc", 'c'));
+    EXPECT_EQ("abc", strings::trim_left("abc", ' '));
+    EXPECT_EQ("bc", strings::trim_left("abc", 'a'));
+    EXPECT_EQ("bc", strings::trim_left("aaaabc", 'a'));
+    EXPECT_EQ("abc", strings::trim_left("abc", 'b'));
+    EXPECT_EQ("abc", strings::trim_left("abc", 'c'));
 
-    EXPECT_EQ("abc", strings::trimLeft("abc", ""));
-    EXPECT_EQ("bc", strings::trimLeft("abc", "a"));
-    EXPECT_EQ("c", strings::trimLeft("abc", "ba"));
-    EXPECT_EQ("", strings::trimLeft("abc", "abc"));
-    EXPECT_EQ("abc", strings::trimLeft("abc", "bc"));
-    EXPECT_EQ("abc", strings::trimLeft("abc", "d"));
+    EXPECT_EQ("abc", strings::trim_left("abc", ""));
+    EXPECT_EQ("bc", strings::trim_left("abc", "a"));
+    EXPECT_EQ("c", strings::trim_left("abc", "ba"));
+    EXPECT_EQ("", strings::trim_left("abc", "abc"));
+    EXPECT_EQ("abc", strings::trim_left("abc", "bc"));
+    EXPECT_EQ("abc", strings::trim_left("abc", "d"));
 }
 
-TEST(StringsTest, trimRight)
+TEST(StringsTest, trim_right)
 {
-    EXPECT_EQ("abc", strings::trimRight("abc", ' '));
-    EXPECT_EQ("abc", strings::trimRight("abc", 'a'));
-    EXPECT_EQ("abc", strings::trimRight("abc", 'b'));
-    EXPECT_EQ("ab", strings::trimRight("abc", 'c'));
-    EXPECT_EQ("ab", strings::trimRight("abcc", 'c'));
+    EXPECT_EQ("abc", strings::trim_right("abc", ' '));
+    EXPECT_EQ("abc", strings::trim_right("abc", 'a'));
+    EXPECT_EQ("abc", strings::trim_right("abc", 'b'));
+    EXPECT_EQ("ab", strings::trim_right("abc", 'c'));
+    EXPECT_EQ("ab", strings::trim_right("abcc", 'c'));
 
-    EXPECT_EQ("abc", strings::trimRight("abc", ""));
-    EXPECT_EQ("abc", strings::trimRight("abc", "a"));
-    EXPECT_EQ("abc", strings::trimRight("abc", "ba"));
-    EXPECT_EQ("", strings::trimRight("abc", "abc"));
-    EXPECT_EQ("a", strings::trimRight("abc", "bc"));
-    EXPECT_EQ("abc", strings::trimRight("abc", "d"));
+    EXPECT_EQ("abc", strings::trim_right("abc", ""));
+    EXPECT_EQ("abc", strings::trim_right("abc", "a"));
+    EXPECT_EQ("abc", strings::trim_right("abc", "ba"));
+    EXPECT_EQ("", strings::trim_right("abc", "abc"));
+    EXPECT_EQ("a", strings::trim_right("abc", "bc"));
+    EXPECT_EQ("abc", strings::trim_right("abc", "d"));
 }
 
-TEST(StringsTest, trimSpace)
+TEST(StringsTest, trim_space)
 {
-    EXPECT_EQ("", strings::trimSpace(""));
-    EXPECT_EQ("a", strings::trimSpace("a"));
-    EXPECT_EQ("a", strings::trimSpace("  a"));
-    EXPECT_EQ("a", strings::trimSpace("a  "));
-    EXPECT_EQ("a", strings::trimSpace("  a  "));
-    EXPECT_EQ("a  a", strings::trimSpace("  a  a  "));
+    EXPECT_EQ("", strings::trim_space(""));
+    EXPECT_EQ("a", strings::trim_space("a"));
+    EXPECT_EQ("a", strings::trim_space("  a"));
+    EXPECT_EQ("a", strings::trim_space("a  "));
+    EXPECT_EQ("a", strings::trim_space("  a  "));
+    EXPECT_EQ("a  a", strings::trim_space("  a  a  "));
 }
 
-TEST(StringsTest, trimPrefix)
+TEST(StringsTest, trim_prefix)
 {
-    EXPECT_EQ("abc", strings::trimPrefix("abc", ""));
-    EXPECT_EQ("bc", strings::trimPrefix("abc", "a"));
-    EXPECT_EQ("c", strings::trimPrefix("abc", "ab"));
-    EXPECT_EQ("", strings::trimPrefix("abc", "abc"));
-    EXPECT_EQ("abc", strings::trimPrefix("abc", "abcd"));
-    EXPECT_EQ("abc", strings::trimPrefix("abc", "bcd"));
+    EXPECT_EQ("abc", strings::trim_prefix("abc", ""));
+    EXPECT_EQ("bc", strings::trim_prefix("abc", "a"));
+    EXPECT_EQ("c", strings::trim_prefix("abc", "ab"));
+    EXPECT_EQ("", strings::trim_prefix("abc", "abc"));
+    EXPECT_EQ("abc", strings::trim_prefix("abc", "abcd"));
+    EXPECT_EQ("abc", strings::trim_prefix("abc", "bcd"));
 }
 
-TEST(StringsTest, trimSuffix)
+TEST(StringsTest, trim_suffix)
 {
-    EXPECT_EQ("abc", strings::trimSuffix("abc", ""));
-    EXPECT_EQ("ab", strings::trimSuffix("abc", "c"));
-    EXPECT_EQ("a", strings::trimSuffix("abc", "bc"));
-    EXPECT_EQ("", strings::trimSuffix("abc", "abc"));
-    EXPECT_EQ("abc", strings::trimSuffix("abc", "abcd"));
-    EXPECT_EQ("abc", strings::trimSuffix("abc", "bce"));
+    EXPECT_EQ("abc", strings::trim_suffix("abc", ""));
+    EXPECT_EQ("ab", strings::trim_suffix("abc", "c"));
+    EXPECT_EQ("a", strings::trim_suffix("abc", "bc"));
+    EXPECT_EQ("", strings::trim_suffix("abc", "abc"));
+    EXPECT_EQ("abc", strings::trim_suffix("abc", "abcd"));
+    EXPECT_EQ("abc", strings::trim_suffix("abc", "bce"));
 }
 
 TEST(StringsTest, remove)

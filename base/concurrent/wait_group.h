@@ -13,7 +13,7 @@ public:
     void add(int n);
     void done();
 
-    void waitUntilDone();
+    void wait_until_done();
 
 private:
     std::mutex mu_;

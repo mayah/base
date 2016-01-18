@@ -6,14 +6,14 @@ namespace strings {
 
 std::string concat(StringPiece s1, StringPiece s2)
 {
-    std::string s = s1.asString();
+    std::string s = s1.as_string();
     s += s2;
     return s;
 }
 
 std::string concat(StringPiece s1, StringPiece s2, StringPiece s3)
 {
-    std::string s = s1.asString();
+    std::string s = s1.as_string();
     s += s2;
     s += s3;
     return s;
@@ -42,12 +42,12 @@ std::string repeat(StringPiece s, int count)
     return result;
 }
 
-StringPiece trimSpace(StringPiece s)
+StringPiece trim_space(StringPiece s)
 {
-    return trimLeft(trimRight(s, ' '), ' ');
+    return trim_left(trim_right(s, ' '), ' ');
 }
 
-StringPiece trimLeft(StringPiece s, char c)
+StringPiece trim_left(StringPiece s, char c)
 {
     if (s.empty())
         return s;
@@ -58,7 +58,7 @@ StringPiece trimLeft(StringPiece s, char c)
     return s.substr(pos);
 }
 
-StringPiece trimLeft(StringPiece s, StringPiece cutset)
+StringPiece trim_left(StringPiece s, StringPiece cutset)
 {
     if (s.empty() || cutset.empty())
         return s;
@@ -69,7 +69,7 @@ StringPiece trimLeft(StringPiece s, StringPiece cutset)
     return s.substr(pos);
 }
 
-StringPiece trimRight(StringPiece s, char c)
+StringPiece trim_right(StringPiece s, char c)
 {
     if (s.empty())
         return s;
@@ -82,7 +82,7 @@ StringPiece trimRight(StringPiece s, char c)
     return StringPiece();
 }
 
-StringPiece trimRight(StringPiece s, StringPiece cutset)
+StringPiece trim_right(StringPiece s, StringPiece cutset)
 {
     if (s.empty() || cutset.empty())
         return s;
@@ -95,16 +95,16 @@ StringPiece trimRight(StringPiece s, StringPiece cutset)
     return StringPiece();
 }
 
-StringPiece trimPrefix(StringPiece s, StringPiece prefix)
+StringPiece trim_prefix(StringPiece s, StringPiece prefix)
 {
-    if (s.startsWith(prefix))
+    if (s.starts_with(prefix))
         return s.substr(prefix.size());
     return s;
 }
 
-StringPiece trimSuffix(StringPiece s, StringPiece suffix)
+StringPiece trim_suffix(StringPiece s, StringPiece suffix)
 {
-    if (s.endsWith(suffix))
+    if (s.ends_with(suffix))
         return s.substr(0, s.size() - suffix.size());
     return s;
 }

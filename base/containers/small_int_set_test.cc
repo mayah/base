@@ -5,7 +5,7 @@
 TEST(SmallIntSetTest, basic)
 {
     SmallIntSet s;
-    EXPECT_TRUE(s.isEmpty());
+    EXPECT_TRUE(s.empty());
     EXPECT_EQ(0, s.size());
 
     s.set(0);
@@ -23,23 +23,23 @@ TEST(SmallIntSetTest, basic)
     EXPECT_EQ(6, s.size());
 
     EXPECT_EQ(0, s.smallest());
-    s.removeSmallest();
+    s.remove_smallest();
 
     EXPECT_EQ(1, s.smallest());
-    s.removeSmallest();
+    s.remove_smallest();
 
     EXPECT_EQ(5, s.smallest());
-    s.removeSmallest();
+    s.remove_smallest();
 
     EXPECT_EQ(16, s.smallest());
-    s.removeSmallest();
+    s.remove_smallest();
 
     EXPECT_EQ(31, s.smallest());
-    s.removeSmallest();
+    s.remove_smallest();
 
     EXPECT_EQ(63, s.smallest());
-    s.removeSmallest();
+    s.remove_smallest();
 
-    EXPECT_TRUE(s.isEmpty());
+    EXPECT_TRUE(s.empty());
     EXPECT_EQ(0, s.size());
 }

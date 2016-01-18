@@ -10,7 +10,7 @@ using namespace std;
 namespace base {
 
 // static
-unique_ptr<Executor> Executor::makeDefaultExecutor(bool automatic_start)
+unique_ptr<Executor> Executor::make_default(bool automatic_start)
 {
     Executor* executor = new Executor(FLAGS_num_threads);
     if (automatic_start)
@@ -39,7 +39,7 @@ void Executor::start()
 
     for (size_t i = 0; i < threads_.size(); ++i) {
         threads_[i] = thread([this]() {
-            runWorkerLoop();
+            run_worker_loop();
         });
     }
 }
@@ -66,7 +66,7 @@ void Executor::submit(Executor::Func f)
     cond_var_.notify_one();
 }
 
-void Executor::runWorkerLoop()
+void Executor::run_worker_loop()
 {
     while (true) {
         Func f = take();

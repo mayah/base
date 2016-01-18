@@ -26,7 +26,7 @@ void WaitGroup::done()
         cond_var_.notify_all();
 }
 
-void WaitGroup::waitUntilDone()
+void WaitGroup::wait_until_done()
 {
     unique_lock<mutex> lock(mu_);
     while (num_ > 0) {

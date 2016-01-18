@@ -6,10 +6,10 @@
 namespace base {
 
 // Returns current time in seconds.
-double currentTime();
+double current_time();
 
 // Returns current time in milli seconds.
-std::int64_t currentTimeInMillis();
+std::int64_t current_time_in_millis();
 
 } // namespace base
 

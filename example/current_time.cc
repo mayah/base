@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    base::Time t = base::Clock::realClock()->now();
-    time_t now = t.toTimeT();
+    base::Time t = base::Clock::real_clock()->now();
+    time_t now = t.to_time_t();
     cout << ctime(&now) << endl;
 }

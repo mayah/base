@@ -9,7 +9,7 @@ namespace base64 {
 namespace {
 const char ENCODE_TABLE[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-int32_t decodeChar(uint8_t c)
+int32_t decode_char(uint8_t c)
 {
     if ('A' <= c && c <= 'Z')
         return c - 'A';
@@ -98,8 +98,8 @@ size_t decode(strings::StringPiece data, void* buf, size_t size)
             if (data[i + 3] != '=')
                 return 0;
 
-            int32_t v1 = decodeChar(data[i]);
-            int32_t v2 = decodeChar(data[i + 1]);
+            int32_t v1 = decode_char(data[i]);
+            int32_t v2 = decode_char(data[i + 1]);
             if (v1 < 0 || v2 < 0 || ((v2 & 0x0F) != 0))
                 return 0;
             p[pos++] = (v1 << 2) | ((v2 >> 4) & 0x03);
@@ -110,9 +110,9 @@ size_t decode(strings::StringPiece data, void* buf, size_t size)
             if (pos + 1 >= size)
                 return 0;
 
-            int32_t v1 = decodeChar(data[i]);
-            int32_t v2 = decodeChar(data[i + 1]);
-            int32_t v3 = decodeChar(data[i + 2]);
+            int32_t v1 = decode_char(data[i]);
+            int32_t v2 = decode_char(data[i + 1]);
+            int32_t v3 = decode_char(data[i + 2]);
             if (v1 < 0 || v2 < 0 || v3 < 0 || ((v3 & 0x03) != 0))
                 return 0;
             uint32_t v = (v1 << 12) | (v2 << 6) | (v3 >> 2);
@@ -123,10 +123,10 @@ size_t decode(strings::StringPiece data, void* buf, size_t size)
 
         if (pos + 2 >= size)
             return 0;
-        int32_t v1 = decodeChar(data[i]);
-        int32_t v2 = decodeChar(data[i + 1]);
-        int32_t v3 = decodeChar(data[i + 2]);
-        int32_t v4 = decodeChar(data[i + 3]);
+        int32_t v1 = decode_char(data[i]);
+        int32_t v2 = decode_char(data[i + 1]);
+        int32_t v3 = decode_char(data[i + 2]);
+        int32_t v4 = decode_char(data[i + 3]);
         if (v1 < 0 || v2 < 0 || v3 < 0 || v4 < 0)
             return 0;
         uint32_t v = (v1 << 18) | (v2 << 12) | (v3 << 6) | v4;

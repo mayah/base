@@ -12,21 +12,21 @@ std::string concat(StringPiece s1, StringPiece s2, StringPiece s3);
 
 std::string join(const std::vector<std::string>& parts, StringPiece sep);
 
-bool hasPrefix(StringPiece s, StringPiece prefix) { return s.startsWith(prefix); }
-bool hasSuffix(StringPiece s, StringPiece suffix) { return s.endsWith(suffix); }
+bool has_prefix(StringPiece s, StringPiece prefix) { return s.starts_with(prefix); }
+bool has_suffix(StringPiece s, StringPiece suffix) { return s.ends_with(suffix); }
 
 std::string repeat(StringPiece s, int count);
 
-StringPiece trimLeft(StringPiece s, char c);
-StringPiece trimLeft(StringPiece s, StringPiece cutset);
-StringPiece trimRight(StringPiece s, char c);
-StringPiece trimRight(StringPiece s, StringPiece cutset);
+StringPiece trim_left(StringPiece s, char c);
+StringPiece trim_left(StringPiece s, StringPiece cutset);
+StringPiece trim_right(StringPiece s, char c);
+StringPiece trim_right(StringPiece s, StringPiece cutset);
 
-StringPiece trimSpace(StringPiece);
+StringPiece trim_space(StringPiece);
 // If |s| starts with |prefix|, trim it.
-StringPiece trimPrefix(StringPiece s, StringPiece prefix);
+StringPiece trim_prefix(StringPiece s, StringPiece prefix);
 // If |s| ends with |suffix|, trim it.
-StringPiece trimSuffix(StringPiece s, StringPiece suffix);
+StringPiece trim_suffix(StringPiece s, StringPiece suffix);
 
 // Returns a new copy of |s| with removing |cut|.
 std::string remove(StringPiece s, char cut);

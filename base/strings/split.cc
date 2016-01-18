@@ -24,7 +24,7 @@ std::vector<std::string> splitInternal(StringPiece str, StringPiece seps, Predic
         }
 
         if (pred(piece))
-            result.push_back(piece.asString());
+            result.push_back(piece.as_string());
     }
     return result;
 }
