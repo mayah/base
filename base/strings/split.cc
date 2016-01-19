@@ -4,7 +4,7 @@ namespace strings {
 
 namespace {
 template<typename Predicate>
-std::vector<std::string> splitInternal(StringPiece str, StringPiece seps, Predicate pred)
+std::vector<std::string> split_internal(StringPiece str, StringPiece seps, Predicate pred)
 {
     std::vector<std::string> result;
     if (str.empty())
@@ -33,12 +33,12 @@ std::vector<std::string> splitInternal(StringPiece str, StringPiece seps, Predic
 
 std::vector<std::string> split(StringPiece str, StringPiece seps, AllowEmpty pred)
 {
-    return splitInternal(str, seps, pred);
+    return split_internal(str, seps, pred);
 }
 
 std::vector<std::string> split(StringPiece str, StringPiece seps, SkipEmpty pred)
 {
-    return splitInternal(str, seps, pred);
+    return split_internal(str, seps, pred);
 }
 
 } // namespace strings
