@@ -17,3 +17,13 @@ cc_library(
     linkopts = ["-pthread"],
     visibility = ["//visibility:public"],
 )
+
+cc_library(
+    name = "gtest_prod",
+    srcs = [],
+    hdrs = ["googletest/include/gtest/gtest_prod.h"],
+    includes = [
+        "googletest/include",
+    ],
+    visibility = ["//visibility:public"],
+)

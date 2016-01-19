@@ -9,3 +9,8 @@ bind(
     name = "gtest",
     actual = "@gtest_repo//:gtest",
 )
+
+bind(
+    name = "gtest_prod",
+    actual = "@gtest_repo//:gtest_prod",
+)
