@@ -4,6 +4,7 @@ cc_library(
     ],
     hdrs = [
         "small_int_set.h",
+        "slice.h",
         "vectors.h",
         "vectors_io.h"
     ],
@@ -19,6 +20,19 @@ cc_test(
     ],
     deps = [
         ":containers",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "slice_test",
+    srcs = [
+        "slice_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//base",
         "//external:gtest",
         "//third_party:glog",
     ],
