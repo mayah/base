@@ -11,19 +11,19 @@ public:
     ~ScopedTime();
 
 private:
-    double t_;
+    double begin_;
     double* sec_;
 };
 
 inline ScopedTime::ScopedTime(double* sec) :
-    t_(current_time()),
+    begin_(current_time()),
     sec_(sec)
 {
 }
 
 inline ScopedTime::~ScopedTime()
 {
-    *sec_ = current_time() - t_;
+    *sec_ = current_time() - begin_;
 }
 
 } // namespace base
