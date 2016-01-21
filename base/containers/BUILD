@@ -3,6 +3,7 @@ cc_library(
     srcs = [
     ],
     hdrs = [
+        "reverse_range.h",
         "small_int_set.h",
         "slice.h",
         "vectors.h",
@@ -29,6 +30,19 @@ cc_test(
     name = "slice_test",
     srcs = [
         "slice_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//base",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "reverse_range_test",
+    srcs = [
+        "reverse_range_test.cc",
     ],
     deps = [
         ":containers",
