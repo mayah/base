@@ -6,6 +6,10 @@ cc_binary(
 
 cc_binary(
     name = "current_time",
-    srcs = ["current_time.cc"],
-    deps = ["//base/time"],
+    srcs = [
+        "current_time.cc",
+    ],
+    deps = [
+        "//base/time",
+    ],
 )

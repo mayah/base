@@ -8,6 +8,7 @@ cc_library(
     hdrs = [
         "clock.h",
         "current_time.h",
+        "scoped_time.h",
         "time.h",
         "time_stamp_counter.h",
     ],
