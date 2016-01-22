@@ -7,7 +7,8 @@ cc_library(
         "small_int_set.h",
         "slice.h",
         "vectors.h",
-        "vectors_io.h"
+        "vectors_io.h",
+        "xrange.h",
     ],
     visibility = [
         "//visibility:public",
@@ -68,6 +69,18 @@ cc_test(
     name = "vectors_io_test",
     srcs = [
         "vectors_io_test.cc"
+    ],
+    deps = [
+        ":containers",
+        "//external:gtest",
+        "//third_party:glog"
+    ],
+)
+
+cc_test(
+    name = "xrange_test",
+    srcs = [
+        "xrange_test.cc"
     ],
     deps = [
         ":containers",
