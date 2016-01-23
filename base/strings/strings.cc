@@ -1,5 +1,7 @@
 #include "base/strings/strings.h"
 
+#include <algorithm>
+
 using namespace std;
 
 namespace strings {
@@ -118,6 +120,38 @@ std::string remove(StringPiece s, char cut)
         result.push_back(c);
     }
 
+    return result;
+}
+
+char to_lower_ASCII(char c)
+{
+    if (c < 'A' || 'Z' < c)
+        return c;
+    return c + 'a' - 'A';
+}
+
+char to_upper_ASCII(char c)
+{
+    if (c < 'a' || 'z' < c)
+        return c;
+    return c + 'A' - 'a';
+}
+
+std::string to_lower_ASCII(StringPiece s)
+{
+    std::string result = s.as_string();
+    for (auto& c : result) {
+        c = to_lower_ASCII(c);
+    }
+    return result;
+}
+
+std::string to_upper_ASCII(StringPiece s)
+{
+    std::string result = s.as_string();
+    for (auto& c : result) {
+        c = to_upper_ASCII(c);
+    }
     return result;
 }
 

@@ -31,6 +31,13 @@ StringPiece trim_suffix(StringPiece s, StringPiece suffix);
 // Returns a new copy of |s| with removing |cut|.
 std::string remove(StringPiece s, char cut);
 
+// Converts ASCII equivalent lower case.
+char to_lower_ASCII(char c);
+std::string to_lower_ASCII(StringPiece s);
+
+char to_upper_ASCII(char c);
+std::string to_upper_ASCII(StringPiece s);
+
 } // namespace strings
 
 #endif // BASE_STRINGS_STRINGS_H_
