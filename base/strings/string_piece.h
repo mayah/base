@@ -92,6 +92,11 @@ public:
     size_type find_first_not_of(char c, size_type pos = 0) const;
     size_type find_first_not_of(StringPiece s, size_type pos = 0) const;
 
+    size_type find_last_of(char c, size_type pos = npos) const { return rfind(c, pos); }
+    size_type find_last_of(StringPiece s, size_type pos = npos) const;
+    size_type find_last_not_of(char c, size_type pos = npos) const;
+    size_type find_last_not_of(StringPiece s, size_type pos = npos) const;
+
 private:
     const value_type* ptr_;
     size_type length_;

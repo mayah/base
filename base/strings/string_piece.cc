@@ -72,14 +72,49 @@ StringPiece::size_type StringPiece::find_first_of(StringPiece s, StringPiece::si
     return StringPiece::npos;
 }
 
+StringPiece::size_type StringPiece::find_last_of(StringPiece s, StringPiece::size_type pos) const
+{
+    if (empty() || s.empty())
+        return StringPiece::npos;
+
+    if (s.size() == 1)
+        return StringPiece::find_last_of(s[0], pos);
+
+    bool lookup_table[UCHAR_MAX + 1] {};
+    for (unsigned char c : s)
+        lookup_table[c] = true;
+    for (size_t i = std::min(pos, size() - 1); ; --i) {
+        if (lookup_table[static_cast<unsigned char>(get(i))])
+            return i;
+        if (i == 0)
+            break;
+    }
+    return StringPiece::npos;
+}
+
 StringPiece::size_type StringPiece::find_first_not_of(char c, StringPiece::size_type pos) const
 {
     if (empty())
         return StringPiece::npos;
 
     for (size_t i = pos; i < this->size(); ++i) {
-        if ((*this)[i] != c)
+        if (get(i) != c)
             return i;
+    }
+
+    return StringPiece::npos;
+}
+
+StringPiece::size_type StringPiece::find_last_not_of(char c, StringPiece::size_type pos) const
+{
+    if (empty())
+        return StringPiece::npos;
+
+    for (size_t i = std::min(pos, size() - 1); ; --i) {
+        if (get(i) != c)
+            return i;
+        if (i == 0)
+            break;
     }
 
     return StringPiece::npos;
@@ -99,8 +134,31 @@ StringPiece::size_type StringPiece::find_first_not_of(StringPiece s, StringPiece
         lookup_table[c] = true;
 
     for (size_t i = pos; i < this->size(); ++i) {
-        if (!lookup_table[static_cast<unsigned char>((*this)[i])])
+        if (!lookup_table[static_cast<unsigned char>(get(i))])
             return i;
+    }
+
+    return StringPiece::npos;
+}
+
+StringPiece::size_type StringPiece::find_last_not_of(StringPiece s, StringPiece::size_type pos) const
+{
+    if (empty())
+        return StringPiece::npos;
+    if (s.size() == 0)
+        return size() - 1;
+    if (s.size() == 1)
+        return StringPiece::find_last_not_of(s[0], pos);
+
+    bool lookup_table[UCHAR_MAX + 1] {};
+    for (unsigned char c : s)
+        lookup_table[c] = true;
+
+    for (size_t i = std::min(pos, size() - 1); ; --i) {
+        if (!lookup_table[static_cast<unsigned char>(get(i))])
+            return i;
+        if (i == 0)
+            break;
     }
 
     return StringPiece::npos;
