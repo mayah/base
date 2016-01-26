@@ -1,5 +1,7 @@
 #include "base/file/path.h"
 
+#include <dirent.h>
+
 namespace file {
 
 namespace internal {
@@ -68,6 +70,25 @@ std::string join_path_respect_absolute_impl(std::initializer_list<strings::Strin
 bool is_absolute_path(strings::StringPiece path)
 {
     return !path.empty() && path[0] == '/';
+}
+
+bool list_files(const char* directory_path, std::vector<std::string>* files)
+{
+    DIR* dir = opendir(directory_path);
+    if (!dir)
+        return false;
+
+    while (true) {
+        struct dirent* dent = readdir(dir);
+        if (!dent)
+            break;
+        files->push_back(dent->d_name);
+    }
+
+    if (closedir(dir) < 0)
+        return false;
+
+    return true;
 }
 
 }
