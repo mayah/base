@@ -5,6 +5,18 @@ cc_binary(
 )
 
 cc_binary(
+    name = "rm_tree",
+    srcs = [
+        "rm_tree.cc"
+    ],
+    deps = [
+        "//base/file",
+        "//base/strings",
+        "//third_party:glog",
+    ],
+)
+
+cc_binary(
     name = "current_time",
     srcs = [
         "current_time.cc",

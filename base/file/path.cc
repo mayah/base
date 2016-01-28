@@ -103,4 +103,38 @@ bool list_files(const char* directory_path, std::vector<std::string>* files)
     return true;
 }
 
+bool delete_tree(const char* path)
+{
+    struct stat st;
+    if (stat(path, &st) < 0) {
+        return false;
+    }
+
+    if (!S_ISDIR(st.st_mode)) {
+        if (unlink(path) < 0) {
+            return false;
+        }
+        return true;
+    }
+
+    std::vector<std::string> files;
+    if (!list_files(path, &files)) {
+        return false;
+    }
+
+    for (const auto& file : files) {
+        if (file == "." || file == "..")
+            continue;
+
+        std::string p = join_path(path, file);
+        if (!delete_tree(p.c_str()))
+            return false;
+    }
+
+    if (rmdir(path) < 0) {
+        return false;
+    }
+    return true;
+}
+
 }

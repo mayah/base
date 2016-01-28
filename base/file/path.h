@@ -43,6 +43,9 @@ bool is_directory(const char* path);
 
 bool list_files(const char* directory_path, std::vector<std::string>* files);
 
+// Removes all files under |path|. |path| is also removed.
+bool delete_tree(const char* path);
+
 } // namespace file
 
 #endif // BASE_FILE_PATH_H_
