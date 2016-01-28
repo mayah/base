@@ -1,6 +1,9 @@
 #include "base/file/path.h"
 
 #include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 namespace file {
 
@@ -70,6 +73,15 @@ std::string join_path_respect_absolute_impl(std::initializer_list<strings::Strin
 bool is_absolute_path(strings::StringPiece path)
 {
     return !path.empty() && path[0] == '/';
+}
+
+bool is_directory(const char* path)
+{
+    struct stat st;
+    if (stat(path, &st) < 0)
+        return false;
+
+    return S_ISDIR(st.st_mode);
 }
 
 bool list_files(const char* directory_path, std::vector<std::string>* files)

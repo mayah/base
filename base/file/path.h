@@ -39,6 +39,8 @@ std::string join_path_respect_absolute(const T&... args)
     return internal::join_path_respect_absolute_impl({args...});
 }
 
+bool is_directory(const char* path);
+
 bool list_files(const char* directory_path, std::vector<std::string>* files);
 
 } // namespace file
