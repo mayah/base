@@ -1,6 +1,8 @@
 #ifndef BASE_FILE_PATH_H_
 #define BASE_FILE_PATH_H_
 
+// path.h contains utility methods to manipulate paths or tree traversal.
+
 #include <initializer_list>
 #include <string>
 

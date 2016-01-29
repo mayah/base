@@ -25,3 +25,13 @@ cc_binary(
         "//base/time",
     ],
 )
+
+cc_binary(
+    name = "scoped_temp_dir",
+    srcs = [
+        "scoped_temp_dir.cc"
+    ],
+    deps = [
+        "//base/file"
+    ],
+)
