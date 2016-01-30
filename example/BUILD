@@ -36,3 +36,14 @@ cc_binary(
         "//third_party:glog",
     ],
 )
+
+cc_binary(
+    name = "scoped_temp_file",
+    srcs = [
+        "scoped_temp_file.cc"
+    ],
+    deps = [
+        "//base/file",
+        "//third_party:glog",
+    ],
+)
