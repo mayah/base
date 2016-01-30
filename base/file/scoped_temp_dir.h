@@ -19,7 +19,7 @@ public:
     ~ScopedTempDir();
 
     // Returns true if temporary directory is correctly created.
-    operator bool() const { return !directory_path_.empty(); }
+    explicit operator bool() const { return !directory_path_.empty(); }
 
     // Returns temporary directory path.
     const std::string& path() const { return directory_path_; }

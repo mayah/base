@@ -32,6 +32,7 @@ cc_binary(
         "scoped_temp_dir.cc"
     ],
     deps = [
-        "//base/file"
+        "//base/file",
+        "//third_party:glog",
     ],
 )
