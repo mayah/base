@@ -6,12 +6,6 @@
 namespace file {
 
 // Creates a temporary directory. Useful for testing.
-//
-// if (ScopedTempDir dir) {
-//     // do something.
-// } else {
-//     // failed to create tempdir.
-// }
 class ScopedTempDir {
 public:
     // Creates unique temporary directory.
