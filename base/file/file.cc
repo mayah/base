@@ -16,4 +16,14 @@ bool read_file(const strings::StringPiece& filename, string* output)
     return true;
 }
 
+bool write_file(const strings::StringPiece& filename, const string& data)
+{
+    ofstream ofs(filename.as_string(), ios::out | ios::binary);
+    if (!ofs)
+        return false;
+
+    copy(data.begin(), data.end(), ostreambuf_iterator<char>(ofs));
+    return ofs.good();
+}
+
 } // namespace file

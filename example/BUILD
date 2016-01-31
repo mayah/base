@@ -5,6 +5,12 @@ cc_binary(
 )
 
 cc_binary(
+    name = "write_file",
+    srcs = ["write_file.cc"],
+    deps = ["//base/file"],
+)
+
+cc_binary(
     name = "rm_tree",
     srcs = [
         "rm_tree.cc"
