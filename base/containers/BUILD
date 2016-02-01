@@ -1,6 +1,7 @@
 cc_library(
     name = "containers",
     srcs = [
+        "vectors.cc",
     ],
     hdrs = [
         "reverse_range.h",

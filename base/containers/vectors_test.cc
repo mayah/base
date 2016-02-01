@@ -13,3 +13,14 @@ TEST(VectorsTest, init)
     EXPECT_EQ(2, v[1]);
     EXPECT_EQ(18, v[9]);
 }
+
+TEST(VectorsTest, map)
+{
+    auto a = vectors::range(0, 10);
+    auto b = vectors::map(a, [](int x) -> int { return 2 * x; });
+
+    EXPECT_EQ(10U, b.size());
+    EXPECT_EQ(0, b[0]);
+    EXPECT_EQ(10, b[5]);
+    EXPECT_EQ(18, b[9]);
+}
