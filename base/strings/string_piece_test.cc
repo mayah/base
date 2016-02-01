@@ -148,7 +148,7 @@ TEST(StringPieceTest, find_char)
 
 TEST(StringPieceTest, rfind)
 {
-    StringPiece s("abcdefg");
+    std::string s("abcdefg");
     StringPiece sp(s);
 
     EXPECT_EQ(7UL, sp.rfind(""));
@@ -190,7 +190,7 @@ TEST(StringPieceTest, rfind)
 
 TEST(StringPieceTest, rfind_char)
 {
-    StringPiece s("abcabc");
+    std::string s("abcabc");
     StringPiece sp(s);
 
     EXPECT_EQ(StringPiece::npos, sp.rfind('d'));
@@ -205,6 +205,15 @@ TEST(StringPieceTest, rfind_char)
     EXPECT_EQ(s.rfind('a', 3), sp.rfind('a', 3));
     EXPECT_EQ(s.rfind('a', 1), sp.rfind('a', 1));
     EXPECT_EQ(s.rfind('a', 0), sp.rfind('a', 0));
+}
+
+TEST(StringPieceTest, rfind_empty)
+{
+    std::string s;
+    StringPiece sp;
+
+    EXPECT_EQ(StringPiece::npos, sp.rfind('a'));
+    EXPECT_EQ(s.rfind('a'), sp.rfind('a'));
 }
 
 TEST(StringPieceTest, find_first_of)
@@ -322,6 +331,18 @@ TEST(StringPieceTest, find_last_of)
     EXPECT_EQ(s.find_last_of("bc"), sp.find_last_of("bc"));
     EXPECT_EQ(s.find_last_of("ac", 1), sp.find_last_of("ac", 1));
     EXPECT_EQ(s.find_last_of("ac", 3), sp.find_last_of("ac", 3));
+}
+
+TEST(StringPieceTest, find_last_of_empty)
+{
+    std::string s;
+    StringPiece sp;
+
+    EXPECT_EQ(StringPiece::npos, sp.find_last_of(""));
+    EXPECT_EQ(StringPiece::npos, sp.find_last_of("a"));
+
+    EXPECT_EQ(s.find_last_of(""), sp.find_last_of(""));
+    EXPECT_EQ(s.find_last_of("a"), sp.find_last_of("a"));
 }
 
 TEST(StringPieceTest, find_last_not_of)

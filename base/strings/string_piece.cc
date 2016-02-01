@@ -43,8 +43,11 @@ StringPiece::size_type StringPiece::rfind(StringPiece s, StringPiece::size_type 
 
 StringPiece::size_type StringPiece::rfind(char c, StringPiece::size_type pos) const
 {
+    if (empty())
+        return StringPiece::npos;
+
     for (size_t i = std::min(pos, size() - 1); ; --i) {
-        if ((*this)[i] == c)
+        if (get(i) == c)
             return i;
         if (i == 0)
             break;
@@ -211,7 +214,6 @@ bool operator==(StringPiece lhs, StringPiece rhs)
     size_t len = lhs.size();
     return memcmp(lhs.data(), rhs.data(), len) == 0;
 }
-
 
 bool operator<(StringPiece lhs, StringPiece rhs)
 {
