@@ -5,6 +5,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include "base/strings/strings.h"
+
 namespace file {
 
 namespace internal {
@@ -69,6 +71,66 @@ std::string join_path_respect_absolute_impl(std::initializer_list<strings::Strin
 }
 
 } // namespace internal
+
+// This is not the same as posix dirname.
+// ours always return substr of the path.
+//
+// path        POSIX                 OURS
+//             dirname   basename    dirname   basename
+// -----------------------------------------------------------
+// /usr/lib    /usr      lib         /usr      lib
+// /usr/       /         usr         /         usr
+// usr         .         usr         <empty>   usr
+// /           /         /           /         <empty>
+// .           .         .           <empty>   .
+// ..          .         ..          <empty>   ..
+
+strings::StringPiece basename(strings::StringPiece path)
+{
+    path = strings::trim_right(path, '/');
+    if (path.empty())
+        return strings::StringPiece();
+
+    strings::StringPiece::size_type pos = path.find_last_of('/');
+    if (pos == strings::StringPiece::npos)
+        return path;
+    return path.substr(pos + 1);
+}
+
+strings::StringPiece dirname(strings::StringPiece path)
+{
+    if (path == "/")
+        return path;
+
+    path = strings::trim_right(path, '/');
+    if (path.empty())
+        return strings::StringPiece();
+
+    strings::StringPiece::size_type pos = path.find_last_of('/');
+    if (pos == strings::StringPiece::npos)
+        return path.substr(0, 0);
+    if (pos == 0)
+        return path.substr(0, 1);
+    return path.substr(0, pos);
+}
+
+strings::StringPiece stem(strings::StringPiece path)
+{
+    path = basename(path);
+    strings::StringPiece::size_type pos = path.find_last_of('.');
+    if (pos == strings::StringPiece::npos)
+        return path;
+    return path.substr(0, pos);
+}
+
+strings::StringPiece extension(strings::StringPiece path)
+{
+    path = basename(path);
+    strings::StringPiece::size_type pos = path.find_last_of('.');
+    if (pos == strings::StringPiece::npos)
+        return strings::StringPiece();
+    return path.substr(pos);
+}
 
 bool is_absolute_path(strings::StringPiece path)
 {

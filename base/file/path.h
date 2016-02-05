@@ -15,6 +15,11 @@ std::string join_path_impl(std::initializer_list<strings::StringPiece> paths);
 std::string join_path_respect_absolute_impl(std::initializer_list<strings::StringPiece> paths);
 } // namespace internal
 
+strings::StringPiece basename(strings::StringPiece path);
+strings::StringPiece dirname(strings::StringPiece path);
+strings::StringPiece stem(strings::StringPiece path);
+strings::StringPiece extension(strings::StringPiece path);
+
 // Returns true if |path| is absolute.
 bool is_absolute_path(strings::StringPiece path);
 
