@@ -2,61 +2,61 @@
 
 namespace toml {
 
-void Parser::skipForKey()
+void Parser::skip_for_key()
 {
     while (token().type() == TokenType::END_OF_LINE)
-        nextKey();
+        next_key();
 }
 
-void Parser::skipForValue()
+void Parser::skip_for_value()
 {
     while (token().type() == TokenType::END_OF_LINE)
-        nextValue();
+        next_value();
 }
 
-bool Parser::consumeForKey(TokenType type)
+bool Parser::consume_for_key(TokenType type)
 {
     if (token().type() == type) {
-        nextKey();
+        next_key();
         return true;
     }
 
     return false;
 }
 
-bool Parser::consumeForValue(TokenType type)
+bool Parser::consume_for_value(TokenType type)
 {
     if (token().type() == type) {
-        nextValue();
+        next_value();
         return true;
     }
 
     return false;
 }
 
-bool Parser::consumeEOLorEOFForKey()
+bool Parser::consume_EOL_or_EOF_for_key()
 {
     if (token().type() == TokenType::END_OF_LINE || token().type() == TokenType::END_OF_FILE) {
-        nextKey();
+        next_key();
         return true;
     }
 
     return false;
 }
 
-void Parser::addError(const std::string& reason)
+void Parser::add_error(const std::string& reason)
 {
-    if (!errorReason_.empty())
+    if (!error_reason_.empty())
         return;
 
     std::stringstream ss;
-    ss << "Error: line " << lexer_.lineNo() << ": " << reason;
-    errorReason_ = ss.str();
+    ss << "Error: line " << lexer_.line_no() << ": " << reason;
+    error_reason_ = ss.str();
 }
 
-const std::string& Parser::errorReason()
+const std::string& Parser::error_reason()
 {
-    return errorReason_;
+    return error_reason_;
 }
 
 Value Parser::parse()
@@ -65,34 +65,34 @@ Value Parser::parse()
     Value* currentValue = &root;
 
     while (true) {
-        skipForKey();
+        skip_for_key();
         if (token().type() == TokenType::END_OF_FILE)
             break;
         if (token().type() == TokenType::LBRACKET) {
-            currentValue = parseGroupKey(&root);
+            currentValue = parse_group_key(&root);
             if (!currentValue) {
-                addError("error when parsing group key");
+                add_error("error when parsing group key");
                 return Value();
             }
             continue;
         }
 
-        if (!parseKeyValue(currentValue)) {
-            addError("error when parsing key Value");
+        if (!parse_key_value(currentValue)) {
+            add_error("error when parsing key Value");
             return Value();
         }
     }
     return root;
 }
 
-Value* Parser::parseGroupKey(Value* root)
+Value* Parser::parse_group_key(Value* root)
 {
-    if (!consumeForKey(TokenType::LBRACKET))
+    if (!consume_for_key(TokenType::LBRACKET))
         return nullptr;
 
     bool isArray = false;
     if (token().type() == TokenType::LBRACKET) {
-        nextKey();
+        next_key();
         isArray = true;
     }
 
@@ -101,11 +101,11 @@ Value* Parser::parseGroupKey(Value* root)
         if (token().type() != TokenType::IDENT && token().type() != TokenType::STRING)
             return nullptr;
 
-        std::string key = token().strValue();
-        nextKey();
+        std::string key = token().str_value();
+        next_key();
 
         if (token().type() == TokenType::DOT) {
-            nextKey();
+            next_key();
             if (Value* candidate = currentValue->find_child(key)) {
                 if (candidate->is<Array>() && candidate->size() > 0)
                     candidate = candidate->find(candidate->size() - 1);
@@ -119,7 +119,7 @@ Value* Parser::parseGroupKey(Value* root)
         }
 
         if (token().type() == TokenType::RBRACKET) {
-            nextKey();
+            next_key();
             if (Value* candidate = currentValue->find_child(key)) {
                 if (isArray) {
                     if (!candidate->is<Array>())
@@ -147,36 +147,36 @@ Value* Parser::parseGroupKey(Value* root)
     }
 
     if (isArray) {
-        if (!consumeForKey(TokenType::RBRACKET))
+        if (!consume_for_key(TokenType::RBRACKET))
             return nullptr;
     }
 
-    if (!consumeEOLorEOFForKey())
+    if (!consume_EOL_or_EOF_for_key())
         return nullptr;
 
     return currentValue;
 }
 
-bool Parser::parseKeyValue(Value* current)
+bool Parser::parse_key_value(Value* current)
 {
     std::string key;
-    if (!parseKey(&key)) {
-        addError("parse key failed");
+    if (!parse_key(&key)) {
+        add_error("parse key failed");
         return false;
     }
-    if (!consumeForValue(TokenType::EQUAL)) {
-        addError("no equal?");
+    if (!consume_for_value(TokenType::EQUAL)) {
+        add_error("no equal?");
         return false;
     }
 
     Value v;
-    if (!parseValue(&v))
+    if (!parse_value(&v))
         return false;
-    if (!consumeEOLorEOFForKey())
+    if (!consume_EOL_or_EOF_for_key())
         return false;
 
     if (current->has(key)) {
-        addError("Multiple same key: " + key);
+        add_error("Multiple same key: " + key);
         return false;
     }
 
@@ -184,66 +184,66 @@ bool Parser::parseKeyValue(Value* current)
     return true;
 }
 
-bool Parser::parseKey(std::string* key)
+bool Parser::parse_key(std::string* key)
 {
     key->clear();
 
     if (token().type() == TokenType::IDENT || token().type() == TokenType::STRING) {
-        *key = token().strValue();
-        nextValue();
+        *key = token().str_value();
+        next_value();
         return true;
     }
 
     return false;
 }
 
-bool Parser::parseValue(Value* v)
+bool Parser::parse_value(Value* v)
 {
     switch (token().type()) {
     case TokenType::STRING:
     case TokenType::MULTILINE_STRING:
-        *v = token().strValue();
-        nextValue();
+        *v = token().str_value();
+        next_value();
         return true;
     case TokenType::LBRACKET:
-        return parseArray(v);
+        return parse_array(v);
     case TokenType::LBRACE:
-        return parseInlineTable(v);
+        return parse_inline_table(v);
     case TokenType::BOOL:
-        *v = token().boolValue();
-        nextValue();
+        *v = token().bool_value();
+        next_value();
         return true;
     case TokenType::INT:
-        *v = token().intValue();
-        nextValue();
+        *v = token().int_value();
+        next_value();
         return true;
     case TokenType::DOUBLE:
-        *v = token().doubleValue();
-        nextValue();
+        *v = token().double_value();
+        next_value();
         return true;
     case TokenType::TIME:
-        *v = token().timeValue();
-        nextValue();
+        *v = token().time_value();
+        next_value();
         return true;
     case TokenType::ERROR:
-        addError(token().strValue());
+        add_error(token().str_value());
         return false;
     default:
-        addError("unexpected token");
+        add_error("unexpected token");
         return false;
     }
 }
 
-bool Parser::parseBool(Value* v)
+bool Parser::parse_bool(Value* v)
 {
-    if (token().strValue() == "true") {
-        nextValue();
+    if (token().str_value() == "true") {
+        next_value();
         *v = true;
         return true;
     }
 
-    if (token().strValue() == "false") {
-        nextValue();
+    if (token().str_value() == "false") {
+        next_value();
         *v = false;
         return true;
     }
@@ -251,48 +251,48 @@ bool Parser::parseBool(Value* v)
     return false;
 }
 
-bool Parser::parseArray(Value* v)
+bool Parser::parse_array(Value* v)
 {
-    if (!consumeForValue(TokenType::LBRACKET))
+    if (!consume_for_value(TokenType::LBRACKET))
         return false;
 
     Array a;
     while (true) {
-        skipForValue();
+        skip_for_value();
 
         if (token().type() == TokenType::RBRACKET)
             break;
 
-        skipForValue();
+        skip_for_value();
         Value x;
-        if (!parseValue(&x))
+        if (!parse_value(&x))
             return false;
 
         if (!a.empty()) {
             if (a.front().type() != x.type()) {
-                addError("type check failed");
+                add_error("type check failed");
                 return false;
             }
         }
 
         a.push_back(std::move(x));
-        skipForValue();
+        skip_for_value();
         if (token().type() == TokenType::RBRACKET)
             break;
         if (token().type() == TokenType::COMMA)
-            nextValue();
+            next_value();
     }
 
-    if (!consumeForValue(TokenType::RBRACKET))
+    if (!consume_for_value(TokenType::RBRACKET))
         return false;
     *v = std::move(a);
     return true;
 }
 
-bool Parser::parseInlineTable(Value* value)
+bool Parser::parse_inline_table(Value* value)
 {
-    // For inline table, next is KEY, so use consumeForKey here.
-    if (!consumeForKey(TokenType::LBRACE))
+    // For inline table, next is KEY, so use consume_for_key here.
+    if (!consume_for_key(TokenType::LBRACE))
         return false;
 
     Value t((Table()));
@@ -304,31 +304,31 @@ bool Parser::parseInlineTable(Value* value)
 
         if (!first) {
             if (token().type() != TokenType::COMMA) {
-                addError("inline table didn't have ',' for delimiter?");
+                add_error("inline table didn't have ',' for delimiter?");
                 return false;
             }
-            nextKey();
+            next_key();
         }
         first = false;
 
         std::string key;
-        if (!parseKey(&key))
+        if (!parse_key(&key))
             return false;
-        if (!consumeForValue(TokenType::EQUAL))
+        if (!consume_for_value(TokenType::EQUAL))
             return false;
         Value v;
-        if (!parseValue(&v))
+        if (!parse_value(&v))
             return false;
 
         if (t.has(key)) {
-            addError("inline table has multiple same keys: key=" + key);
+            add_error("inline table has multiple same keys: key=" + key);
             return false;
         }
 
         t.set(key, v);
     }
 
-    if (!consumeForValue(TokenType::RBRACE))
+    if (!consume_for_value(TokenType::RBRACE))
         return false;
     *value = std::move(t);
     return true;

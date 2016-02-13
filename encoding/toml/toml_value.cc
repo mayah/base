@@ -262,12 +262,12 @@ const Value* Value::find(const std::string& key) const
 
     const Value* current = this;
     while (true) {
-        Token t = lexer.nextKeyToken();
+        Token t = lexer.next_key_token();
         if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING))
             return nullptr;
 
-        std::string part = t.strValue();
-        t = lexer.nextKeyToken();
+        std::string part = t.str_value();
+        t = lexer.next_key_token();
         if (t.type() == TokenType::DOT) {
             current = current->find_child(part);
             if (!current || !current->is<Table>())
@@ -338,12 +338,12 @@ bool Value::erase(const std::string& key)
 
     Value* current = this;
     while (true) {
-        Token t = lexer.nextKeyToken();
+        Token t = lexer.next_key_token();
         if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING))
             return false;
 
-        std::string part = t.strValue();
-        t = lexer.nextKeyToken();
+        std::string part = t.str_value();
+        t = lexer.next_key_token();
         if (t.type() == TokenType::DOT) {
             current = current->find_child(part);
             if (!current || !current->is<Table>())
@@ -403,14 +403,14 @@ Value* Value::ensureValue(const std::string& key)
 
     Value* current = this;
     while (true) {
-        Token t = lexer.nextKeyToken();
+        Token t = lexer.next_key_token();
         if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING)) {
             failwith("invalid key");
             return nullptr;
         }
 
-        std::string part = t.strValue();
-        t = lexer.nextKeyToken();
+        std::string part = t.str_value();
+        t = lexer.next_key_token();
         if (t.type() == TokenType::DOT) {
             if (Value* candidate = current->find_child(part)) {
                 if (!candidate->is<Table>())

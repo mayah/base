@@ -10,6 +10,23 @@
 
 namespace toml {
 
+namespace internal {
+
+#if defined(_MSC_VER)
+// Windows does not have timegm but have _mkgmtime.
+inline time_t timegm(std::tm* timeptr)
+{
+    return _mkgmtime(timeptr);
+}
+inline std::tm* gmtime_r(const time_t* timer, std::tm* result)
+{
+    gmtime_s(result, timer);
+    return result;
+}
+#endif
+
+} // namespace internal
+
 inline std::string format(std::stringstream& ss)
 {
     return ss.str();
@@ -34,7 +51,7 @@ void failwith(Args&&... args)
     throw std::runtime_error(format(ss, std::forward<Args>(args)...));
 }
 
-inline std::string removeDelimiter(const std::string& s)
+inline std::string remove_delimiter(const std::string& s)
 {
     return strings::remove(s, '_');
 }

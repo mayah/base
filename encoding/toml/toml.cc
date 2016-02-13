@@ -10,7 +10,7 @@ ParseResult parse(std::istream& is)
     if (v.valid())
         return ParseResult(std::move(v), std::string());
 
-    return ParseResult(std::move(v), std::move(parser.errorReason()));
+    return ParseResult(std::move(v), std::move(parser.error_reason()));
 }
 
 } // namespace toml

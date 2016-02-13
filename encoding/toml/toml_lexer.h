@@ -32,55 +32,55 @@ enum class TokenType {
 class Token {
 public:
     explicit Token(TokenType type) : type_(type) {}
-    Token(TokenType type, const std::string& v) : type_(type), strValue_(v) {}
-    Token(TokenType type, bool v) : type_(type), intValue_(v) {}
-    Token(TokenType type, std::int64_t v) : type_(type), intValue_(v) {}
-    Token(TokenType type, double v) : type_(type), doubleValue_(v) {}
-    Token(TokenType type, std::chrono::system_clock::time_point tp) : type_(type), timeValue_(tp) {}
+    Token(TokenType type, const std::string& v) : type_(type), str_value_(v) {}
+    Token(TokenType type, bool v) : type_(type), int_value_(v) {}
+    Token(TokenType type, std::int64_t v) : type_(type), int_value_(v) {}
+    Token(TokenType type, double v) : type_(type), double_value_(v) {}
+    Token(TokenType type, std::chrono::system_clock::time_point tp) : type_(type), time_value_(tp) {}
 
     TokenType type() const { return type_; }
-    const std::string& strValue() const { return strValue_; }
-    bool boolValue() const { return intValue_; }
-    std::int64_t intValue() const { return intValue_; }
-    double doubleValue() const { return doubleValue_; }
-    std::chrono::system_clock::time_point timeValue() const { return timeValue_; }
+    const std::string& str_value() const { return str_value_; }
+    bool bool_value() const { return int_value_; }
+    std::int64_t int_value() const { return int_value_; }
+    double double_value() const { return double_value_; }
+    std::chrono::system_clock::time_point time_value() const { return time_value_; }
 
 private:
     TokenType type_;
-    std::string strValue_;
-    std::int64_t intValue_;
-    double doubleValue_;
-    std::chrono::system_clock::time_point timeValue_;
+    std::string str_value_;
+    std::int64_t int_value_;
+    double double_value_;
+    std::chrono::system_clock::time_point time_value_;
 };
 
 class Lexer {
 public:
-    explicit Lexer(std::istream& is) : is_(is), lineNo_(1) {}
+    explicit Lexer(std::istream& is) : is_(is), line_no_(1) {}
 
-    Token nextKeyToken();
-    Token nextValueToken();
+    Token next_key_token();
+    Token next_value_token();
 
-    int lineNo() const { return lineNo_; }
+    int line_no() const { return line_no_; }
 
 private:
     bool current(char* c);
     void next();
     bool consume(char c);
 
-    Token nextToken(bool isValueToken);
+    Token next_token(bool isValueToken);
 
-    void skipUntilNewLine();
+    void skip_until_newline();
 
-    Token nextStringDoubleQuote();
-    Token nextStringSingleQuote();
+    Token next_string_double_quote();
+    Token next_string_single_quote();
 
-    Token nextKey();
-    Token nextValue();
+    Token next_key();
+    Token next_value();
 
-    Token parseAsTime(const std::string&);
+    Token parse_as_time(const std::string&);
 
     std::istream& is_;
-    int lineNo_;
+    int line_no_;
 };
 
 } // namespace toml

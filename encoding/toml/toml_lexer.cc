@@ -17,7 +17,7 @@ void Lexer::next()
 {
     int x = is_.get();
     if (x == '\n')
-        ++lineNo_;
+        ++line_no_;
 }
 
 bool Lexer::consume(char c)
@@ -31,7 +31,7 @@ bool Lexer::consume(char c)
     return true;
 }
 
-void Lexer::skipUntilNewLine()
+void Lexer::skip_until_newline()
 {
     char c;
     while (current(&c)) {
@@ -41,7 +41,7 @@ void Lexer::skipUntilNewLine()
     }
 }
 
-Token Lexer::nextStringDoubleQuote()
+Token Lexer::next_string_double_quote()
 {
     if (!consume('"'))
         return Token(TokenType::ERROR, std::string("string didn't start with '\"'"));
@@ -130,7 +130,7 @@ Token Lexer::nextStringDoubleQuote()
     return Token(TokenType::ERROR, std::string("string didn't end"));
 }
 
-Token Lexer::nextStringSingleQuote()
+Token Lexer::next_string_single_quote()
 {
     if (!consume('\''))
         return Token(TokenType::ERROR, std::string("string didn't start with '\''?"));
@@ -189,7 +189,7 @@ Token Lexer::nextStringSingleQuote()
     return Token(TokenType::ERROR, std::string("string didn't end with '\''?"));
 }
 
-Token Lexer::nextKey()
+Token Lexer::next_key()
 {
     std::string s;
     char c;
@@ -204,7 +204,7 @@ Token Lexer::nextKey()
     return Token(TokenType::IDENT, s);
 }
 
-Token Lexer::nextValue()
+Token Lexer::next_value()
 {
     std::string s;
     char c;
@@ -231,23 +231,23 @@ Token Lexer::nextValue()
     }
 
     if (isInteger(s)) {
-        std::stringstream ss(removeDelimiter(s));
+        std::stringstream ss(remove_delimiter(s));
         std::int64_t x;
         ss >> x;
         return Token(TokenType::INT, x);
     }
 
     if (isDouble(s)) {
-        std::stringstream ss(removeDelimiter(s));
+        std::stringstream ss(remove_delimiter(s));
         double d;
         ss >> d;
         return Token(TokenType::DOUBLE, d);
     }
 
-    return parseAsTime(s);
+    return parse_as_time(s);
 }
 
-Token Lexer::parseAsTime(const std::string& str)
+Token Lexer::parse_as_time(const std::string& str)
 {
     const char* s = str.c_str();
 
@@ -317,17 +317,17 @@ Token Lexer::parseAsTime(const std::string& str)
     return Token(TokenType::TIME, tp);
 }
 
-Token Lexer::nextKeyToken()
+Token Lexer::next_key_token()
 {
-    return nextToken(false);
+    return next_token(false);
 }
 
-Token Lexer::nextValueToken()
+Token Lexer::next_value_token()
 {
-    return nextToken(true);
+    return next_token(true);
 }
 
-Token Lexer::nextToken(bool isValueToken)
+Token Lexer::next_token(bool isValueToken)
 {
     char c;
     while (current(&c)) {
@@ -337,7 +337,7 @@ Token Lexer::nextToken(bool isValueToken)
         }
 
         if (c == '#') {
-            skipUntilNewLine();
+            skip_until_newline();
             continue;
         }
 
@@ -367,14 +367,14 @@ Token Lexer::nextToken(bool isValueToken)
             next();
             return Token(TokenType::DOT);
         case '\"':
-            return nextStringDoubleQuote();
+            return next_string_double_quote();
         case '\'':
-            return nextStringSingleQuote();
+            return next_string_single_quote();
         default:
             if (isValueToken) {
-                return nextValue();
+                return next_value();
             } else {
-                return nextKey();
+                return next_key();
             }
         }
     }

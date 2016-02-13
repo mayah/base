@@ -16,7 +16,7 @@ static toml::Value parse(const std::string& s)
     toml::Parser p(ss);
 
     toml::Value v = p.parse();
-    EXPECT_TRUE(v.valid()) << p.errorReason();
+    EXPECT_TRUE(v.valid()) << p.error_reason();
     return v;
 }
 
@@ -51,7 +51,7 @@ TEST(ParserTest, parseCommentAndEmptyLine)
     EXPECT_EQ(0UL, v.size());
 }
 
-TEST(ParserTest, parseBool)
+TEST(ParserTest, parse_bool)
 {
     toml::Value v = parse(
         "x = true\n"
@@ -210,7 +210,7 @@ foo bar \
     EXPECT_EQ("foo bar \\\n   foo bar", v.get<string>("z"));
 }
 
-TEST(ParserTest, parseArray)
+TEST(ParserTest, parse_array)
 {
     toml::Value v = parse(
         "x = [1, 2, 3]\n"
@@ -232,7 +232,7 @@ TEST(ParserTest, parseArray)
     EXPECT_EQ("", z.get<string>(1));
 }
 
-TEST(ParserTest, parseInlineTable)
+TEST(ParserTest, parse_inline_table)
 {
     toml::Value v = parse(R"(
 x = {}
@@ -261,7 +261,7 @@ TEST(ParserTest, parseTable)
     EXPECT_EQ(3, v.get<int>("piyo.piyo.piyo.puyo"));
 }
 
-TEST(ParserTest, parseArrayTable)
+TEST(ParserTest, parse_array_table)
 {
     toml::Value v = parse(
         "[[kotori]]\n"
@@ -299,7 +299,7 @@ TEST(ParserTest, commentInArray)
     EXPECT_EQ(3, ar[3].as<int>());
 }
 
-TEST(ParserTest, parseNumberKey)
+TEST(ParserTest, parse_numberKey)
 {
     toml::Value v = parse(
         "0000 = 1\n"
