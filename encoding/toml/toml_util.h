@@ -5,6 +5,9 @@
 #include <sstream>
 #include <utility>
 
+#include "base/strings/strings.h"
+#include "base/strings/utf8.h"
+
 namespace toml {
 
 inline std::string format(std::stringstream& ss)
@@ -33,50 +36,16 @@ void failwith(Args&&... args)
 
 inline std::string removeDelimiter(const std::string& s)
 {
-    std::string r;
-    for (char c : s) {
-        if (c == '_')
-            continue;
-        r += c;
-    }
-    return r;
+    return strings::remove(s, '_');
 }
 
 inline std::string unescape(const std::string& codepoint)
 {
-    std::uint32_t x;
-    std::uint8_t buf[8];
     std::stringstream ss(codepoint);
 
+    std::uint32_t x;
     ss >> std::hex >> x;
-
-    if (x <= 0x7FUL) {
-        // 0xxxxxxx
-        buf[0] = 0x00 | ((x >> 0) & 0x7F);
-        buf[1] = '\0';
-    } else if (x <= 0x7FFUL) {
-        // 110yyyyx 10xxxxxx
-        buf[0] = 0xC0 | ((x >> 6) & 0xDF);
-        buf[1] = 0x80 | ((x >> 0) & 0xBF);
-        buf[2] = '\0';
-    } else if (x <= 0xFFFFUL) {
-        // 1110yyyy 10yxxxxx 10xxxxxx
-        buf[0] = 0xE0 | ((x >> 12) & 0xEF);
-        buf[1] = 0x80 | ((x >> 6) & 0xBF);
-        buf[2] = 0x80 | ((x >> 0) & 0xBF);
-        buf[3] = '\0';
-    } else if (x <= 0x10FFFFUL) {
-        // 11110yyy 10yyxxxx 10xxxxxx 10xxxxxx
-        buf[0] = 0xF0 | ((x >> 18) & 0xF7);
-        buf[1] = 0x80 | ((x >> 12) & 0xBF);
-        buf[2] = 0x80 | ((x >> 6) & 0xBF);
-        buf[3] = 0x80 | ((x >> 0) & 0xBF);
-        buf[4] = '\0';
-    } else {
-        buf[0] = '\0';
-    }
-
-    return reinterpret_cast<char*>(buf);
+    return strings::to_utf8(x);
 }
 
 // Returns true if |s| is integer.
