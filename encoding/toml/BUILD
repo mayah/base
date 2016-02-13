@@ -3,11 +3,13 @@ cc_library(
     srcs = [
         "toml.cc",
         "toml_lexer.cc",
+        "toml_parser.cc",
         "toml_value.cc",
     ],
     hdrs = [
         "toml.h",
         "toml_lexer.h",
+        "toml_parser.h",
         "toml_util.h",
         "toml_value.h",
     ],
