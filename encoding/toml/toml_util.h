@@ -5,6 +5,7 @@
 #include <sstream>
 #include <utility>
 
+#include "base/strings/concat.h"
 #include "base/strings/utf8.h"
 
 namespace toml {
@@ -26,18 +27,6 @@ inline std::tm* gmtime_r(const time_t* timer, std::tm* result)
 
 } // namespace internal
 
-inline std::string format(std::stringstream& ss)
-{
-    return ss.str();
-}
-
-template<typename T, typename... Args>
-std::string format(std::stringstream& ss, T&& t, Args&&... args)
-{
-    ss << std::forward<T>(t);
-    return format(ss, std::forward<Args>(args)...);
-}
-
 template<typename... Args>
 #if defined(_MSC_VER)
 __declspec(noreturn)
@@ -46,8 +35,7 @@ __declspec(noreturn)
 #endif
 void failwith(Args&&... args)
 {
-    std::stringstream ss;
-    throw std::runtime_error(format(ss, std::forward<Args>(args)...));
+    throw std::runtime_error(strings::concat(std::forward<Args>(args)...));
 }
 
 inline std::string unescape(const std::string& codepoint)

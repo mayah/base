@@ -7,6 +7,7 @@ cc_library(
         "utf8.cc",
     ],
     hdrs = [
+        "concat.h",
         "string_piece.h",
         "strings.h",
         "split.h",
@@ -14,6 +15,18 @@ cc_library(
     ],
     visibility = [
         "//visibility:public",
+    ],
+)
+
+cc_test(
+    name = "concat_test",
+    srcs = [
+        "concat_test.cc",
+    ],
+    deps = [
+        ":strings",
+        "//external:gtest",
+        "//third_party:glog",
     ],
 )
 

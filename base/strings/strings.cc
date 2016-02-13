@@ -6,21 +6,6 @@ using namespace std;
 
 namespace strings {
 
-std::string concat(StringPiece s1, StringPiece s2)
-{
-    std::string s = s1.as_string();
-    s += s2;
-    return s;
-}
-
-std::string concat(StringPiece s1, StringPiece s2, StringPiece s3)
-{
-    std::string s = s1.as_string();
-    s += s2;
-    s += s3;
-    return s;
-}
-
 std::string join(const std::vector<std::string>& parts, StringPiece sep)
 {
     std::string s;
