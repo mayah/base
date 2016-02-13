@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include "base/strings/strings.h"
+
 namespace toml {
 
 bool Lexer::current(char* c)
@@ -231,14 +233,14 @@ Token Lexer::next_value()
     }
 
     if (isInteger(s)) {
-        std::stringstream ss(remove_delimiter(s));
+        std::stringstream ss(strings::remove(s, '_'));
         std::int64_t x;
         ss >> x;
         return Token(TokenType::INT, x);
     }
 
     if (isDouble(s)) {
-        std::stringstream ss(remove_delimiter(s));
+        std::stringstream ss(strings::remove(s, '_'));
         double d;
         ss >> d;
         return Token(TokenType::DOUBLE, d);

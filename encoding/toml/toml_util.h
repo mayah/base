@@ -5,7 +5,6 @@
 #include <sstream>
 #include <utility>
 
-#include "base/strings/strings.h"
 #include "base/strings/utf8.h"
 
 namespace toml {
@@ -49,11 +48,6 @@ void failwith(Args&&... args)
 {
     std::stringstream ss;
     throw std::runtime_error(format(ss, std::forward<Args>(args)...));
-}
-
-inline std::string remove_delimiter(const std::string& s)
-{
-    return strings::remove(s, '_');
 }
 
 inline std::string unescape(const std::string& codepoint)
