@@ -2,9 +2,12 @@ cc_library(
     name = "toml",
     srcs = [
         "toml.cc",
+        "toml_value.cc",
     ],
     hdrs = [
         "toml.h",
+        "toml_util.h",
+        "toml_value.h",
     ],
     visibility = [
         "//visibility:public",
