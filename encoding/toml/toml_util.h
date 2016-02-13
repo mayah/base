@@ -61,7 +61,7 @@ inline std::string unescape(const std::string& codepoint)
 
 // Returns true if |s| is integer.
 // [+-]?\d+(_\d+)*
-inline bool isInteger(const std::string& s)
+inline bool is_integer(const std::string& s)
 {
     if (s.empty())
         return false;
@@ -86,7 +86,7 @@ inline bool isInteger(const std::string& s)
 // [+-]? (\d+(_\d+)*)? (\.\d+(_\d+)*)? ([eE] [+-]? \d+(_\d+)*)?
 //       1-----------  2-------------  3----------------------
 // 2 or (1 and 3) should exist.
-inline bool isDouble(const std::string& s)
+inline bool is_double(const std::string& s)
 {
     if (s.empty())
         return false;
@@ -146,8 +146,7 @@ inline bool isDouble(const std::string& s)
     return p == s.size();
 }
 
-// static
-inline std::string escapeString(const std::string& s)
+inline std::string escape_string(const std::string& s)
 {
     std::stringstream ss;
     for (size_t i = 0; i < s.size(); ++i) {

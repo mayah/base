@@ -232,14 +232,14 @@ Token Lexer::next_value()
         s += c;
     }
 
-    if (isInteger(s)) {
+    if (is_integer(s)) {
         std::stringstream ss(strings::remove(s, '_'));
         std::int64_t x;
         ss >> x;
         return Token(TokenType::INT, x);
     }
 
-    if (isDouble(s)) {
+    if (is_double(s)) {
         std::stringstream ss(strings::remove(s, '_'));
         double d;
         ss >> d;

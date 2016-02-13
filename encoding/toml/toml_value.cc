@@ -188,7 +188,7 @@ void Value::write(std::ostream* os, const std::string& keyPrefix) const
         break;
     }
     case STRING_TYPE:
-        (*os) << '"' << escapeString(*string_) << '"';
+        (*os) << '"' << escape_string(*string_) << '"';
         break;
     case TIME_TYPE: {
         time_t tt = std::chrono::system_clock::to_time_t(*time_);
