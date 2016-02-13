@@ -4,6 +4,7 @@ cc_library(
         "toml.cc",
         "toml_lexer.cc",
         "toml_parser.cc",
+        "toml_util.cc",
         "toml_value.cc",
     ],
     hdrs = [
