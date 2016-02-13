@@ -6,7 +6,6 @@
 
 using namespace std;
 using namespace toml;
-using namespace toml::internal;
 
 TEST(LexerTest, empty)
 {

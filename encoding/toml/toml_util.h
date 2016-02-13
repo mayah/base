@@ -31,8 +31,6 @@ void failwith(Args&&... args)
     throw std::runtime_error(format(ss, std::forward<Args>(args)...));
 }
 
-namespace internal {
-
 inline std::string removeDelimiter(const std::string& s)
 {
     std::string r;
@@ -186,8 +184,6 @@ inline std::string escapeString(const std::string& s)
 
     return ss.str();
 }
-
-} // namespace internal
 
 } // namespace toml
 

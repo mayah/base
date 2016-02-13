@@ -5,7 +5,6 @@
 #include "encoding/toml/toml_value.h"
 
 namespace toml {
-namespace internal {
 
 class Parser {
 public:
@@ -45,7 +44,6 @@ private:
     std::string errorReason_;
 };
 
-} // namespace internal
 } // namespace toml
 
 #endif // ENCODING_TOML_TOML_PARSER_H_

@@ -1,7 +1,6 @@
 #include "encoding/toml/toml_parser.h"
 
 namespace toml {
-namespace internal {
 
 void Parser::skipForKey()
 {
@@ -335,5 +334,4 @@ bool Parser::parseInlineTable(Value* value)
     return true;
 }
 
-} // namespace internal
 } // namespace toml

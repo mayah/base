@@ -13,7 +13,7 @@ using toml::timegm;
 static toml::Value parse(const std::string& s)
 {
     stringstream ss(s);
-    toml::internal::Parser p(ss);
+    toml::Parser p(ss);
 
     toml::Value v = p.parse();
     EXPECT_TRUE(v.valid()) << p.errorReason();

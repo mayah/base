@@ -4,7 +4,7 @@ namespace toml {
 
 ParseResult parse(std::istream& is)
 {
-    internal::Parser parser(is);
+    Parser parser(is);
     toml::Value v = parser.parse();
 
     if (v.valid())

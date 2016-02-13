@@ -188,7 +188,7 @@ void Value::write(std::ostream* os, const std::string& keyPrefix) const
         break;
     }
     case STRING_TYPE:
-        (*os) << '"' << internal::escapeString(*string_) << '"';
+        (*os) << '"' << escapeString(*string_) << '"';
         break;
     case TIME_TYPE: {
         time_t tt = std::chrono::system_clock::to_time_t(*time_);
@@ -258,21 +258,21 @@ const Value* Value::find(const std::string& key) const
         return nullptr;
 
     std::istringstream ss(key);
-    internal::Lexer lexer(ss);
+    Lexer lexer(ss);
 
     const Value* current = this;
     while (true) {
-        internal::Token t = lexer.nextKeyToken();
-        if (!(t.type() == internal::TokenType::IDENT || t.type() == internal::TokenType::STRING))
+        Token t = lexer.nextKeyToken();
+        if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING))
             return nullptr;
 
         std::string part = t.strValue();
         t = lexer.nextKeyToken();
-        if (t.type() == internal::TokenType::DOT) {
+        if (t.type() == TokenType::DOT) {
             current = current->find_child(part);
             if (!current || !current->is<Table>())
                 return nullptr;
-        } else if (t.type() == internal::TokenType::END_OF_FILE) {
+        } else if (t.type() == TokenType::END_OF_FILE) {
             return current->find_child(part);
         } else {
             return nullptr;
@@ -334,21 +334,21 @@ bool Value::erase(const std::string& key)
         return false;
 
     std::istringstream ss(key);
-    internal::Lexer lexer(ss);
+    Lexer lexer(ss);
 
     Value* current = this;
     while (true) {
-        internal::Token t = lexer.nextKeyToken();
-        if (!(t.type() == internal::TokenType::IDENT || t.type() == internal::TokenType::STRING))
+        Token t = lexer.nextKeyToken();
+        if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING))
             return false;
 
         std::string part = t.strValue();
         t = lexer.nextKeyToken();
-        if (t.type() == internal::TokenType::DOT) {
+        if (t.type() == TokenType::DOT) {
             current = current->find_child(part);
             if (!current || !current->is<Table>())
                 return false;
-        } else if (t.type() == internal::TokenType::END_OF_FILE) {
+        } else if (t.type() == TokenType::END_OF_FILE) {
             return current->erase_child(part);
         } else {
             return false;
@@ -399,19 +399,19 @@ Value* Value::ensureValue(const std::string& key)
     }
 
     std::istringstream ss(key);
-    internal::Lexer lexer(ss);
+    Lexer lexer(ss);
 
     Value* current = this;
     while (true) {
-        internal::Token t = lexer.nextKeyToken();
-        if (!(t.type() == internal::TokenType::IDENT || t.type() == internal::TokenType::STRING)) {
+        Token t = lexer.nextKeyToken();
+        if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING)) {
             failwith("invalid key");
             return nullptr;
         }
 
         std::string part = t.strValue();
         t = lexer.nextKeyToken();
-        if (t.type() == internal::TokenType::DOT) {
+        if (t.type() == TokenType::DOT) {
             if (Value* candidate = current->find_child(part)) {
                 if (!candidate->is<Table>())
                     failwith("encountered non table value");
@@ -419,7 +419,7 @@ Value* Value::ensureValue(const std::string& key)
             } else {
                 current = current->set_child(part, Table());
             }
-        } else if (t.type() == internal::TokenType::END_OF_FILE) {
+        } else if (t.type() == TokenType::END_OF_FILE) {
             if (Value* v = current->find_child(part))
                 return v;
             return current->set_child(part, Value());

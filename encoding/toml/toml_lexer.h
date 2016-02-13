@@ -8,7 +8,6 @@
 #include "encoding/toml/toml_util.h"
 
 namespace toml {
-namespace internal {
 
 enum class TokenType {
     ERROR,
@@ -84,7 +83,6 @@ private:
     int lineNo_;
 };
 
-} // namespace internal
 } // namespace toml
 
 #endif // ENCODING_TOML_TOML_LEXER_H_

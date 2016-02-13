@@ -3,7 +3,6 @@
 #include <cmath>
 
 namespace toml {
-namespace internal {
 
 bool Lexer::current(char* c)
 {
@@ -383,5 +382,4 @@ Token Lexer::nextToken(bool isValueToken)
     return Token(TokenType::END_OF_FILE);
 }
 
-} // namespace internal
 } // namespace toml
