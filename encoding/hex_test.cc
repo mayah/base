@@ -4,6 +4,23 @@
 
 #include "base/macros.h"
 
+TEST(EncodingHexTest, is_hex_char)
+{
+    EXPECT_TRUE(encoding::hex::is_hex_char('0'));
+    EXPECT_TRUE(encoding::hex::is_hex_char('9'));
+    EXPECT_TRUE(encoding::hex::is_hex_char('A'));
+    EXPECT_TRUE(encoding::hex::is_hex_char('F'));
+    EXPECT_TRUE(encoding::hex::is_hex_char('a'));
+    EXPECT_TRUE(encoding::hex::is_hex_char('f'));
+
+    EXPECT_FALSE(encoding::hex::is_hex_char('G'));
+    EXPECT_FALSE(encoding::hex::is_hex_char('g'));
+    EXPECT_FALSE(encoding::hex::is_hex_char('+'));
+    EXPECT_FALSE(encoding::hex::is_hex_char('-'));
+    EXPECT_FALSE(encoding::hex::is_hex_char('@'));
+    EXPECT_FALSE(encoding::hex::is_hex_char(' '));
+}
+
 TEST(EncodingHexTest, from_hex_char)
 {
     EXPECT_EQ(0, encoding::hex::from_hex_char('0'));

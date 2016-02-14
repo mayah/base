@@ -8,9 +8,11 @@
 namespace encoding {
 namespace hex {
 
-// Converts hex character |c|.
+// Converts hex character |c| to integer.
 // If |c| is not hex character the return value is undefined.
 int from_hex_char(char c);
+// Retruns true if |c| is hex. (0-9A-Fa-f)
+bool is_hex_char(char c);
 
 // Converts |data| to hex string.
 std::string encode(const void* data, size_t len);
