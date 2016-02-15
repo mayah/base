@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include <glog/logging.h>
+
 #include "encoding/toml/toml_util.h"
 
 namespace toml {
@@ -226,8 +228,8 @@ template<> inline const char* type_name<toml::Table>() { return "table"; }
 template<typename T>
 void Value::assureType() const
 {
-    if (!is<T>())
-        failwith("type error: this value is ", typeToString(type_), " but ", internal::type_name<T>(), " was requested");
+    CHECK(is<T>()) << "type error: this value is " << typeToString(type_)
+                   << " but " << internal::type_name<T>() << " was requested";
 }
 
 template<typename T>
@@ -245,23 +247,19 @@ typename call_traits<T>::return_type Value::as() const
 template<typename T>
 typename call_traits<T>::return_type Value::get(const std::string& key) const
 {
-    if (!is<Table>())
-        failwith("type must be table to do get(key).");
+    CHECK(is<Table>()) << "type must be table to do get(key).";
 
     const Value* obj = find(key);
-    if (!obj)
-        failwith("key ", key, " was not found.");
+    CHECK(obj) << "key " << key << " was not found.";
+
     return obj->as<T>();
 }
 
 template<typename T>
 typename call_traits<T>::return_type Value::get(size_t index) const
 {
-    if (!is<Array>())
-        failwith("type must be array to do get(index).");
-
-    if (array_->size() <= index)
-        failwith("index out of bound");
+    CHECK(is<Array>()) << "type must be array to do get(index).";
+    CHECK(index < array_->size()) << "index out of bound";
 
     return (*array_)[index].as<T>();
 }

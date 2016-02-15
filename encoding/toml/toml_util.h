@@ -27,17 +27,6 @@ inline std::tm* gmtime_r(const time_t* timer, std::tm* result)
 
 } // namespace internal
 
-template<typename... Args>
-#if defined(_MSC_VER)
-__declspec(noreturn)
-#else
-[[noreturn]]
-#endif
-void failwith(Args&&... args)
-{
-    throw std::runtime_error(strings::concat(std::forward<Args>(args)...));
-}
-
 // Converts codepoint to utf8 character.
 std::string unescape(const std::string& codepoint);
 

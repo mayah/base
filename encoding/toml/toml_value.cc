@@ -2,6 +2,8 @@
 
 #include <cassert>
 
+#include <glog/logging.h>
+
 #include "encoding/toml/toml.h"
 
 namespace toml {
@@ -167,7 +169,7 @@ double Value::asNumber() const
     if (is<double>())
         return as<double>();
 
-    failwith("type error: this value is ", typeToString(type_), " but number is requested");
+    CHECK(false) << "type error: this value is " << typeToString(type_) << " but number is requested";
     return 0.0;
 }
 
@@ -175,7 +177,7 @@ void Value::write(std::ostream* os, const std::string& keyPrefix) const
 {
     switch (type_) {
     case NULL_TYPE:
-        failwith("null type value is not a valid value");
+        CHECK(false) << "null type value is not a valid value";
         break;
     case BOOL_TYPE:
         (*os) << (bool_ ? "true" : "false");
@@ -240,7 +242,7 @@ void Value::write(std::ostream* os, const std::string& keyPrefix) const
         }
         break;
     default:
-        failwith("writing unknown type");
+        CHECK(false) << "writing unknown type";
         break;
     }
 }
@@ -321,8 +323,7 @@ Value* Value::set_child(const std::string& key, const Value& v)
     if (!valid())
         *this = Value((Table()));
 
-    if (!is<Table>())
-        failwith("type must be table to do set(key, v).");
+    CHECK(is<Table>()) << "type must be table to do set(key, v).";
 
     (*table_)[key] = v;
     return &(*table_)[key];
@@ -358,8 +359,7 @@ bool Value::erase(const std::string& key)
 
 bool Value::erase_child(const std::string& key)
 {
-    if (!is<Table>())
-        failwith("type must be table to do erase(key).");
+    CHECK(is<Table>()) << "type must be table to do erase(key).";
 
     return table_->erase(key) > 0;
 }
@@ -382,8 +382,8 @@ Value* Value::push(const Value& v)
 {
     if (!valid())
         *this = Value((Array()));
-    else if (!is<Array>())
-        failwith("type must be array to do push(Value).");
+
+    CHECK(is<Array>()) << "type must be array to do push(Value).";
 
     array_->push_back(v);
     return &array_->back();
@@ -393,10 +393,8 @@ Value* Value::ensureValue(const std::string& key)
 {
     if (!valid())
         *this = Value((Table()));
-    if (!is<Table>()) {
-        failwith("encountered non table value");
-        return nullptr;
-    }
+
+    CHECK(is<Table>()) << "type must be value to do ensureValue().";
 
     std::istringstream ss(key);
     Lexer lexer(ss);
@@ -405,7 +403,7 @@ Value* Value::ensureValue(const std::string& key)
     while (true) {
         Token t = lexer.next_key_token();
         if (!(t.type() == TokenType::IDENT || t.type() == TokenType::STRING)) {
-            failwith("invalid key");
+            CHECK(false) << "invalid key";
             return nullptr;
         }
 
@@ -413,8 +411,7 @@ Value* Value::ensureValue(const std::string& key)
         t = lexer.next_key_token();
         if (t.type() == TokenType::DOT) {
             if (Value* candidate = current->find_child(part)) {
-                if (!candidate->is<Table>())
-                    failwith("encountered non table value");
+                CHECK(candidate->is<Table>()) << "encountered non table value";
                 current = candidate;
             } else {
                 current = current->set_child(part, Table());
@@ -424,7 +421,7 @@ Value* Value::ensureValue(const std::string& key)
                 return v;
             return current->set_child(part, Value());
         } else {
-            failwith("invalid key");
+            CHECK(false) << "invalid key";
             return nullptr;
         }
     }
