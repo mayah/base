@@ -4,7 +4,7 @@
 
 #include <glog/logging.h>
 
-#include "encoding/toml/toml.h"
+#include "encoding/toml/toml_lexer.h"
 
 namespace toml {
 

@@ -1,25 +1,9 @@
 #ifndef ENCODING_TOML_TOML_H_
 #define ENCODING_TOML_TOML_H_
 
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <cstdint>
-#include <cstdio>
-#include <ctime>
-#include <iomanip>
 #include <istream>
-#include <sstream>
-#include <stdexcept>
 #include <string>
-#include <map>
-#include <memory>
-#include <utility>
-#include <vector>
 
-#include "encoding/toml/toml_lexer.h"
-#include "encoding/toml/toml_parser.h"
-#include "encoding/toml/toml_util.h"
 #include "encoding/toml/toml_value.h"
 
 namespace toml {

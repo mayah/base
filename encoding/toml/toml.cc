@@ -1,5 +1,7 @@
 #include "encoding/toml/toml.h"
 
+#include "encoding/toml/toml_parser.h"
+
 namespace toml {
 
 ParseResult parse(std::istream& is)
