@@ -1,7 +1,5 @@
 #include "encoding/toml/toml_value.h"
 
-#include <cassert>
-
 #include <glog/logging.h>
 
 #include "encoding/toml/toml_lexer.h"
@@ -36,9 +34,7 @@ Value::Value(const Value& v) :
     case ARRAY_TYPE: array_ = new Array(*v.array_); break;
     case TABLE_TYPE: table_ = new Table(*v.table_); break;
     default:
-        assert(false);
-        type_ = NULL_TYPE;
-        null_ = nullptr;
+        CHECK(false) << "Unknown type: " << static_cast<int>(v.type_);
     }
 }
 
@@ -55,9 +51,7 @@ Value::Value(Value&& v) :
     case ARRAY_TYPE: array_ = v.array_; break;
     case TABLE_TYPE: table_ = v.table_; break;
     default:
-        assert(false);
-        type_ = NULL_TYPE;
-        null_ = nullptr;
+        CHECK(false) << "Unknown type: " << static_cast<int>(v.type_);
     }
 
     v.type_ = NULL_TYPE;
@@ -82,7 +76,7 @@ Value& Value::operator=(const Value& v)
     case ARRAY_TYPE: array_ = new Array(*v.array_); break;
     case TABLE_TYPE: table_ = new Table(*v.table_); break;
     default:
-        assert(false);
+        CHECK(false) << "Unknown type: " << static_cast<int>(v.type_);
         type_ = NULL_TYPE;
         null_ = nullptr;
     }
@@ -108,7 +102,7 @@ Value& Value::operator=(Value&& v)
     case ARRAY_TYPE: array_ = v.array_; break;
     case TABLE_TYPE: table_ = v.table_; break;
     default:
-        assert(false);
+        CHECK(false) << "Unknown type: " << static_cast<int>(v.type_);
         type_ = NULL_TYPE;
         null_ = nullptr;
     }
@@ -429,7 +423,7 @@ Value* Value::ensureValue(const std::string& key)
 
 Value* Value::find_child(const std::string& key)
 {
-    assert(is<Table>());
+    CHECK(is<Table>());
 
     auto it = table_->find(key);
     if (it == table_->end())
@@ -440,7 +434,7 @@ Value* Value::find_child(const std::string& key)
 
 const Value* Value::find_child(const std::string& key) const
 {
-    assert(is<Table>());
+    CHECK(is<Table>());
 
     auto it = table_->find(key);
     if (it == table_->end())
