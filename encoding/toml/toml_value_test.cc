@@ -95,7 +95,7 @@ TEST(ValueTest, double)
     EXPECT_EQ(100.0, v.as<double>());
 }
 
-TEST(ValueTest, doubleWrite)
+TEST(ValueTest, double_write)
 {
     {
         const toml::Value v(1.0);
@@ -117,6 +117,20 @@ TEST(ValueTest, doubleWrite)
         v.write(&ss);
         EXPECT_EQ("123456.789123", ss.str());
     }
+}
+
+TEST(ValueTest, number)
+{
+    toml::Value v(1);
+    EXPECT_TRUE(v.is_number());
+    EXPECT_EQ(1.0, v.as_number());
+
+    v = 2.5;
+    EXPECT_TRUE(v.is_number());
+    EXPECT_EQ(2.5, v.as_number());
+
+    v = false;
+    EXPECT_FALSE(v.is_number());
 }
 
 TEST(ValueTest, string)
@@ -293,7 +307,7 @@ TEST(ValueTest, table_array)
     EXPECT_TRUE(v.is<std::vector<toml::Table>>());
 }
 
-TEST(ValueTest, arrayWrite)
+TEST(ValueTest, array_write)
 {
     toml::Value v((toml::Array()));
     {
@@ -354,7 +368,7 @@ TEST(ValueTest, table3)
     EXPECT_EQ(2, vs[2]);
 }
 
-TEST(ValueTest, tableErase)
+TEST(ValueTest, table_erase)
 {
     toml::Value v;
     v.set("key1.key2", 1);
@@ -369,21 +383,7 @@ TEST(ValueTest, tableErase)
     EXPECT_FALSE(v.has("key1"));
 }
 
-TEST(ValueTest, number)
-{
-    toml::Value v(1);
-    EXPECT_TRUE(v.isNumber());
-    EXPECT_EQ(1.0, v.asNumber());
-
-    v = 2.5;
-    EXPECT_TRUE(v.isNumber());
-    EXPECT_EQ(2.5, v.asNumber());
-
-    v = false;
-    EXPECT_FALSE(v.isNumber());
-}
-
-TEST(ValueTest, tableFind)
+TEST(ValueTest, table_find)
 {
     toml::Value v;
     v.set("foo", 1);
@@ -395,7 +395,7 @@ TEST(ValueTest, tableFind)
     EXPECT_EQ(2, v.find("foo")->as<int>());
 }
 
-TEST(ValueTest, tableHas)
+TEST(ValueTest, table_has)
 {
     toml::Value v;
     v.set("foo", 1);
@@ -424,7 +424,7 @@ TEST(ValueTest, merge)
     EXPECT_EQ(5, v1.get<int>("foo.baz"));
 }
 
-TEST(ValueTest, arrayFind)
+TEST(ValueTest, array_find)
 {
     toml::Value v;
     v.push(1);
@@ -436,7 +436,7 @@ TEST(ValueTest, arrayFind)
     EXPECT_EQ(2, v.find(0)->as<int>());
 }
 
-TEST(ValueTest, keyParsing)
+TEST(ValueTest, key_parsing)
 {
     toml::Value v;
     v.set("0000.0000", 1);

@@ -6,7 +6,7 @@
 
 namespace toml {
 
-const char* Value::typeToString(Value::Type type)
+const char* Value::type_to_string(Value::Type type)
 {
     switch (type) {
     case NULL_TYPE:   return "null";
@@ -151,19 +151,19 @@ bool Value::empty() const
     return size() == 0;
 }
 
-bool Value::isNumber() const
+bool Value::is_number() const
 {
     return is<int>() || is<double>();
 }
 
-double Value::asNumber() const
+double Value::as_number() const
 {
     if (is<int>())
         return as<int>();
     if (is<double>())
         return as<double>();
 
-    CHECK(false) << "type error: this value is " << typeToString(type_) << " but number is requested";
+    CHECK(false) << "type error: this value is " << type_to_string(type_) << " but number is requested";
     return 0.0;
 }
 
@@ -307,7 +307,7 @@ bool Value::merge(const toml::Value& v)
 
 Value* Value::set(const std::string& key, const Value& v)
 {
-    Value* result = ensureValue(key);
+    Value* result = ensure_value(key);
     *result = v;
     return result;
 }
@@ -383,12 +383,12 @@ Value* Value::push(const Value& v)
     return &array_->back();
 }
 
-Value* Value::ensureValue(const std::string& key)
+Value* Value::ensure_value(const std::string& key)
 {
     if (!valid())
         *this = Value((Table()));
 
-    CHECK(is<Table>()) << "type must be value to do ensureValue().";
+    CHECK(is<Table>()) << "type must be value to do ensure_value().";
 
     std::istringstream ss(key);
     Lexer lexer(ss);

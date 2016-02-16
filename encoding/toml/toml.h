@@ -12,12 +12,12 @@ namespace toml {
 struct ParseResult {
     ParseResult(toml::Value v, std::string er) :
         value(std::move(v)),
-        errorReason(std::move(er)) {}
+        error_reason(std::move(er)) {}
 
     bool valid() const { return value.valid(); }
 
     toml::Value value;
-    std::string errorReason;
+    std::string error_reason;
 };
 
 // Parses from std::istream.

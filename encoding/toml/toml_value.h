@@ -88,9 +88,9 @@ public:
     template<typename T> typename call_traits<T>::return_type as() const;
 
     // Returns true if the value is int or double.
-    bool isNumber() const;
+    bool is_number() const;
     // Returns number. Convert to double.
-    double asNumber() const;
+    double as_number() const;
 
     // For table value
     template<typename T> typename call_traits<T>::return_type get(const std::string&) const;
@@ -120,10 +120,10 @@ public:
     friend std::ostream& operator<<(std::ostream&, const Value&);
 
 private:
-    static const char* typeToString(Type);
+    static const char* type_to_string(Type);
 
-    template<typename T> void assureType() const;
-    Value* ensureValue(const std::string& key);
+    template<typename T> void assure_type() const;
+    Value* ensure_value(const std::string& key);
 
     template<typename T> struct ValueConverter;
 
@@ -145,43 +145,43 @@ private:
 template<> struct Value::ValueConverter<bool>
 {
     bool is(const Value& v) { return v.type() == Value::BOOL_TYPE; }
-    bool to(const Value& v) { v.assureType<bool>(); return v.bool_; }
+    bool to(const Value& v) { v.assure_type<bool>(); return v.bool_; }
 
 };
 template<> struct Value::ValueConverter<int64_t>
 {
     bool is(const Value& v) { return v.type() == Value::INT_TYPE; }
-    int64_t to(const Value& v) { v.assureType<int64_t>(); return v.int_; }
+    int64_t to(const Value& v) { v.assure_type<int64_t>(); return v.int_; }
 };
 template<> struct Value::ValueConverter<int>
 {
     bool is(const Value& v) { return v.type() == Value::INT_TYPE; }
-    int to(const Value& v) { v.assureType<int>(); return static_cast<int>(v.int_); }
+    int to(const Value& v) { v.assure_type<int>(); return static_cast<int>(v.int_); }
 };
 template<> struct Value::ValueConverter<double>
 {
     bool is(const Value& v) { return v.type() == Value::DOUBLE_TYPE; }
-    double to(const Value& v) { v.assureType<double>(); return v.double_; }
+    double to(const Value& v) { v.assure_type<double>(); return v.double_; }
 };
 template<> struct Value::ValueConverter<std::string>
 {
     bool is(const Value& v) { return v.type() == Value::STRING_TYPE; }
-    const std::string& to(const Value& v) { v.assureType<std::string>(); return *v.string_; }
+    const std::string& to(const Value& v) { v.assure_type<std::string>(); return *v.string_; }
 };
 template<> struct Value::ValueConverter<Time>
 {
     bool is(const Value& v) { return v.type() == Value::TIME_TYPE; }
-    const Time& to(const Value& v) { v.assureType<Time>(); return *v.time_; }
+    const Time& to(const Value& v) { v.assure_type<Time>(); return *v.time_; }
 };
 template<> struct Value::ValueConverter<Array>
 {
     bool is(const Value& v) { return v.type() == Value::ARRAY_TYPE; }
-    const Array& to(const Value& v) { v.assureType<Array>(); return *v.array_; }
+    const Array& to(const Value& v) { v.assure_type<Array>(); return *v.array_; }
 };
 template<> struct Value::ValueConverter<Table>
 {
     bool is(const Value& v) { return v.type() == Value::TABLE_TYPE; }
-    const Table& to(const Value& v) { v.assureType<Table>(); return *v.table_; }
+    const Table& to(const Value& v) { v.assure_type<Table>(); return *v.table_; }
 };
 
 template<typename T>
@@ -202,7 +202,7 @@ struct Value::ValueConverter<std::vector<T>>
         const Array& array = v.as<Array>();
         if (array.empty())
             return std::vector<T>();
-        array.front().assureType<T>();
+        array.front().assure_type<T>();
 
         std::vector<T> result;
         for (const auto& element : array) {
@@ -226,9 +226,9 @@ template<> inline const char* type_name<toml::Table>() { return "table"; }
 } // namespace internal
 
 template<typename T>
-void Value::assureType() const
+void Value::assure_type() const
 {
-    CHECK(is<T>()) << "type error: this value is " << typeToString(type_)
+    CHECK(is<T>()) << "type error: this value is " << type_to_string(type_)
                    << " but " << internal::type_name<T>() << " was requested";
 }
 
