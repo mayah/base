@@ -4,6 +4,8 @@
 #include <condition_variable>
 #include <mutex>
 
+namespace concurrent {
+
 // WaitGroup provides a simple synchronization mechanism.
 // The usage is the same as WaitGroup in golang. c.f. http://golang.org/pkg/sync/#WaitGroup
 class WaitGroup {
@@ -20,5 +22,7 @@ private:
     std::condition_variable cond_var_;
     int num_;
 };
+
+} // namespace concurrent
 
 #endif // BASE_CONCURRENT_WAIT_GROUP_H_

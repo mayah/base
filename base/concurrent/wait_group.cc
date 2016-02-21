@@ -4,6 +4,8 @@
 
 using namespace std;
 
+namespace concurrent {
+
 WaitGroup::WaitGroup() :
     num_(0)
 {
@@ -33,3 +35,5 @@ void WaitGroup::wait_until_done()
         cond_var_.wait(lock);
     }
 }
+
+} // namespace concurrent
