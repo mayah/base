@@ -4,6 +4,7 @@ cc_library(
         "vectors.cc",
     ],
     hdrs = [
+        "blocking_queue.h",
         "reverse_range.h",
         "small_int_set.h",
         "slice.h",
@@ -13,6 +14,19 @@ cc_library(
     ],
     visibility = [
         "//visibility:public",
+    ],
+)
+
+cc_test(
+    name = "blocking_queue_test",
+    srcs = [
+        "blocking_queue_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//base/concurrent",
+        "//external:gtest",
+        "//third_party:glog",
     ],
 )
 
