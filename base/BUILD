@@ -3,6 +3,7 @@ cc_library(
     srcs = [
     ],
     hdrs = [
+        "build_config.h",
         "macros.h",
         "unit.h",
     ],
