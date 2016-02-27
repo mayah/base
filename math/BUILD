@@ -1,10 +1,24 @@
 cc_library(
     name = "math",
     hdrs = [
+        "gauss.h",
         "math.h",
     ],
     srcs = [
+        "gauss.cc",
         "math.cc",
+    ],
+)
+
+cc_test(
+    name = "gauss_test",
+    srcs = [
+        "gauss_test.cc",
+    ],
+    deps = [
+        ":math",
+        "//external:gtest",
+        "//third_party:glog",
     ],
 )
 
