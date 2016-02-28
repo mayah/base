@@ -23,10 +23,11 @@ std::vector<T> init(size_t size, F fn)
 // range() creates a new vector that starts with |begin|.
 std::vector<int> range(int begin, int end);
 
+// map() creates a new vector whose ith element is f(vs[i]).
 template<typename T, typename F>
 auto map(const std::vector<T>& vs, F f) -> std::vector<decltype(f(vs[0]))>
 {
-    using R = decltype(f(T()));
+    using R = decltype(f(vs[0]));
     std::vector<R> results;
     results.reserve(vs.size());
     for (const auto& v : vs) {
