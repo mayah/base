@@ -15,6 +15,7 @@ cc_library(
         "toml_value.h",
     ],
     deps = [
+        "//base",
         "//base/strings",
     ],
     visibility = [

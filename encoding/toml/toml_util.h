@@ -5,6 +5,7 @@
 #include <sstream>
 #include <utility>
 
+#include "base/build_config.h"
 #include "base/strings/concat.h"
 #include "base/strings/utf8.h"
 
@@ -12,7 +13,7 @@ namespace toml {
 
 namespace internal {
 
-#if defined(_MSC_VER)
+#ifdef OS_WIN
 // Windows does not have timegm but have _mkgmtime.
 inline time_t timegm(std::tm* timeptr)
 {
