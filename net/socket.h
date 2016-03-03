@@ -16,6 +16,8 @@ public:
 
     bool valid() const { return sd_ != INVALID_SOCKET; }
 
+    bool set_tcpnodelay();
+
 private:
     SocketDescriptor sd_;
 
