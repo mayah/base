@@ -10,13 +10,14 @@ namespace net {
 // fd will be closed when Socket is destructed.
 class Socket {
 public:
-    explicit Socket(SocketDescriptor fd) : fd_(fd) {}
+    explicit Socket(SocketDescriptor sd) : sd_(sd) {}
+    Socket(Socket&& socket);
     ~Socket();
 
-    bool valid() const { return fd_ != INVALID_SOCKET; }
+    bool valid() const { return sd_ != INVALID_SOCKET; }
 
 private:
-    SocketDescriptor fd_;
+    SocketDescriptor sd_;
 
     DISALLOW_COPY_AND_ASSIGN(Socket);
 };
