@@ -2,6 +2,7 @@
 #define NET_SOCKET_H_
 
 #include "base/macros.h"
+#include "net/socket_descriptor.h"
 
 namespace net {
 
@@ -9,14 +10,13 @@ namespace net {
 // fd will be closed when Socket is destructed.
 class Socket {
 public:
-    explicit Socket(int fd) : fd_(fd) {}
+    explicit Socket(SocketDescriptor fd) : fd_(fd) {}
     ~Socket();
 
     bool valid() const { return fd_ != INVALID_SOCKET; }
 
 private:
-    const int INVALID_SOCKET = -1;
-    int fd_;
+    SocketDescriptor fd_;
 
     DISALLOW_COPY_AND_ASSIGN(Socket);
 };

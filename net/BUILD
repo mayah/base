@@ -5,12 +5,13 @@ cc_library(
     ],
     hdrs = [
         "socket.h",
+        "socket_descriptor.h",
     ],
     visibility = [
         "//visibility:public",
     ],
     deps = [
         "//base",
-        "//third_party:glog",        
+        "//third_party:glog",
     ],
 )
