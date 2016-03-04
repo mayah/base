@@ -23,6 +23,8 @@ public:
     ssize_t read(void* buf, size_t size);
     ssize_t write(const void* buf, size_t size);
 
+    bool connect(const char* host, int port);
+
     bool bind_any(int port);
     bool listen(int backlog);
 

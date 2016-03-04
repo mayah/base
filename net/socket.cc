@@ -1,7 +1,10 @@
 #include "net/socket.h"
 
+#include <arpa/inet.h>
 #include <netdb.h>
+#include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <sys/socket.h>
 #include <sys/types.h>
 
 #include "glog/logging.h"
@@ -34,6 +37,23 @@ ssize_t Socket::write(const void* buf, size_t size)
     return ::write(sd_, buf, size);
 }
 
+bool Socket::connect(const char* host, int port)
+{
+    struct sockaddr_in client_addr;
+    memset(&client_addr, 0, sizeof(client_addr));
+    client_addr.sin_family = PF_INET;
+    client_addr.sin_addr.s_addr = inet_addr(host);
+    client_addr.sin_port = htons(port);
+
+    if (::connect(sd_, reinterpret_cast<struct sockaddr*>(&client_addr), sizeof(client_addr)) < 0) {
+        PLOG(ERROR) << "connect"
+                    << " host=" << host
+                    << " port=" << port;
+        return false;
+    }
+
+    return true;
+}
 
 bool Socket::bind_any(int port)
 {
