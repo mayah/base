@@ -1,5 +1,5 @@
 cc_library(
-    name = "base",
+    name = "net",
     srcs = [
         "socket.cc",
         "socket_factory.cc",
