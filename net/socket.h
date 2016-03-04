@@ -1,6 +1,8 @@
 #ifndef NET_SOCKET_H_
 #define NET_SOCKET_H_
 
+#include <sys/types.h>
+
 #include "base/macros.h"
 #include "net/socket_descriptor.h"
 
