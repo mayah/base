@@ -61,7 +61,7 @@ cc_binary(
     ],
     deps = [
         "//base/time",
-        "//net",
+        "//net/socket",
         "//third_party:glog",
     ],
 )
@@ -72,7 +72,7 @@ cc_binary(
         "unix_domain_socket_server.cc"
     ],
     deps = [
-        "//net",
+        "//net/socket",
         "//third_party:glog",
     ],
 )

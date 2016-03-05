@@ -2,7 +2,7 @@
 #define NET_UNIX_DOMAIN_SOCKET_H_
 
 #include "base/macros.h"
-#include "net/socket.h"
+#include "net/socket/socket.h"
 
 namespace net {
 

@@ -2,8 +2,8 @@
 #define NET_SOCKET_FACTORY_H_
 
 #include "base/macros.h"
-#include "net/tcp_socket.h"
-#include "net/unix_domain_socket.h"
+#include "net/socket/tcp_socket.h"
+#include "net/socket/unix_domain_socket.h"
 
 namespace net {
 

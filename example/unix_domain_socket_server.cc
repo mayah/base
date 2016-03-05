@@ -1,7 +1,7 @@
 #include <glog/logging.h>
 
-#include "net/socket_factory.h"
-#include "net/unix_domain_socket.h"
+#include "net/socket/socket_factory.h"
+#include "net/socket/unix_domain_socket.h"
 
 const char* const UNIX_DOMAIN_SOCKET_PATH = "/tmp/uds-test.sock";
 
