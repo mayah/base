@@ -32,9 +32,35 @@ ssize_t Socket::read(void* buf, size_t size)
     return ::read(sd_, buf, size);
 }
 
+bool Socket::read_exactly(void* buf, size_t size)
+{
+    while (size > 0) {
+        ssize_t s = ::read(sd_, buf, size);
+        if (s <= 0)
+            return false;
+        size -= s;
+        buf = reinterpret_cast<char*>(buf) + s;
+    }
+
+    return true;
+}
+
 ssize_t Socket::write(const void* buf, size_t size)
 {
     return ::write(sd_, buf, size);
+}
+
+bool Socket::write_exactly(const void* buf, size_t size)
+{
+    while (size > 0) {
+        ssize_t s = ::write(sd_, buf, size);
+        if (s <= 0)
+            return false;
+        size -= s;
+        buf = reinterpret_cast<const char*>(buf) + s;
+    }
+
+    return true;
 }
 
 } // namespace net
