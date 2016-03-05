@@ -26,6 +26,7 @@ private:
     explicit TCPSocket(SocketDescriptor sd) : Socket(sd) {}
 
     friend class SocketFactory;
+    DISALLOW_COPY_AND_ASSIGN(TCPSocket);
 };
 
 } // namespace net

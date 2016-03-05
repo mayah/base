@@ -3,6 +3,7 @@
 
 #include "base/macros.h"
 #include "net/tcp_socket.h"
+#include "net/unix_domain_socket.h"
 
 namespace net {
 
@@ -12,6 +13,9 @@ public:
 
     // Returns TCP socket. If failed, socket will be invalid.
     TCPSocket make_tcp_socket();
+
+    // Returns UnixDomainSocket. If failed, socket will be invalid.
+    UnixDomainSocket make_unix_domain_socket();
 
 private:
     SocketFactory() {}
