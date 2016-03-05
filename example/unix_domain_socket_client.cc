@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-    net::UnixDomainSocket socket = net::SocketFactory::instance()->make_unix_domain_socket();
+    net::UnixDomainClientSocket socket = net::SocketFactory::instance()->make_unix_domain_client_socket();
     CHECK(socket.valid());
 
     CHECK(socket.connect(UNIX_DOMAIN_SOCKET_PATH));

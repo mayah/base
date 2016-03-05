@@ -4,6 +4,8 @@ cc_library(
         "tcp_socket.cc",
         "socket.cc",
         "socket_factory.cc",
+        "unix_domain_client_socket.cc",
+        "unix_domain_server_socket.cc",
         "unix_domain_socket.cc",
     ],
     hdrs = [
@@ -11,6 +13,8 @@ cc_library(
         "socket.h",
         "socket_descriptor.h",
         "socket_factory.h",
+        "unix_domain_client_socket.h",
+        "unix_domain_server_socket.h",
         "unix_domain_socket.h",
     ],
     visibility = [

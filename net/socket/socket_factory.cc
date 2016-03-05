@@ -23,15 +23,26 @@ TCPSocket SocketFactory::make_tcp_socket()
     return TCPSocket(sock);
 }
 
-UnixDomainSocket SocketFactory::make_unix_domain_socket()
+UnixDomainClientSocket SocketFactory::make_unix_domain_client_socket()
 {
     int sock = socket(AF_UNIX, SOCK_STREAM, 0);
     if (sock < 0) {
         PLOG(ERROR) << "failed to make socket";
-        return UnixDomainSocket(INVALID_SOCKET);
+        return UnixDomainClientSocket(INVALID_SOCKET);
     }
 
-    return UnixDomainSocket(sock);
+    return UnixDomainClientSocket(sock);
+}
+
+UnixDomainServerSocket SocketFactory::make_unix_domain_server_socket()
+{
+    int sock = socket(AF_UNIX, SOCK_STREAM, 0);
+    if (sock < 0) {
+        PLOG(ERROR) << "failed to make socket";
+        return UnixDomainServerSocket(INVALID_SOCKET);
+    }
+
+    return UnixDomainServerSocket(sock);
 }
 
 } // namespace net

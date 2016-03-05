@@ -1,13 +1,13 @@
 #include <glog/logging.h>
 
 #include "net/socket/socket_factory.h"
-#include "net/socket/unix_domain_socket.h"
+#include "net/socket/unix_domain_server_socket.h"
 
 const char* const UNIX_DOMAIN_SOCKET_PATH = "/tmp/uds-test.sock";
 
 int main()
 {
-    net::UnixDomainSocket sock = net::SocketFactory::instance()->make_unix_domain_socket();
+    net::UnixDomainServerSocket sock = net::SocketFactory::instance()->make_unix_domain_server_socket();
     CHECK(sock.valid());
 
     (void)unlink(UNIX_DOMAIN_SOCKET_PATH);
@@ -15,7 +15,7 @@ int main()
     CHECK(sock.listen(5));
 
     while (true) {
-        net::AcceptedUnixDomainSocket accepted = sock.accept();
+        net::UnixDomainSocket accepted = sock.accept();
         CHECK(accepted.valid());
 
         while (true) {

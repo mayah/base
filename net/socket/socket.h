@@ -8,7 +8,6 @@
 
 namespace net {
 
-// Socket is TCP socket.
 // fd will be closed when Socket is destructed.
 class Socket {
 public:

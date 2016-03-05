@@ -6,28 +6,18 @@
 
 namespace net {
 
-class UnixDomainSocket;
-typedef UnixDomainSocket AcceptedUnixDomainSocket;
-
 class UnixDomainSocket : public Socket {
 public:
     UnixDomainSocket(UnixDomainSocket&& socket);
     ~UnixDomainSocket() override;
 
-    bool connect(const char* path);
-
-    bool bind(const char* path);
-    bool listen(int backlog);
-
-    AcceptedUnixDomainSocket accept();
-
 private:
     explicit UnixDomainSocket(SocketDescriptor sd) : Socket(sd) {}
 
-    friend class SocketFactory;
+    friend class UnixDomainServerSocket;
     DISALLOW_COPY_AND_ASSIGN(UnixDomainSocket);
 };
 
-}
+} // namespace net
 
 #endif // NET_UNIX_DOMAIN_SOCKET_H_
