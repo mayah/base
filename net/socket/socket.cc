@@ -29,13 +29,13 @@ Socket::~Socket()
 
 ssize_t Socket::read(void* buf, size_t size)
 {
-    return ::read(sd_, buf, size);
+    return ::recv(sd_, buf, size, 0);
 }
 
 bool Socket::read_exactly(void* buf, size_t size)
 {
     while (size > 0) {
-        ssize_t s = ::read(sd_, buf, size);
+        ssize_t s = read(buf, size);
         if (s <= 0)
             return false;
         size -= s;
@@ -47,13 +47,13 @@ bool Socket::read_exactly(void* buf, size_t size)
 
 ssize_t Socket::write(const void* buf, size_t size)
 {
-    return ::write(sd_, buf, size);
+    return ::send(sd_, buf, size, 0);
 }
 
 bool Socket::write_exactly(const void* buf, size_t size)
 {
     while (size > 0) {
-        ssize_t s = ::write(sd_, buf, size);
+        ssize_t s = write(buf, size);
         if (s <= 0)
             return false;
         size -= s;
