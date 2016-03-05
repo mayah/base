@@ -12,15 +12,15 @@ SocketFactory* SocketFactory::instance()
     return &instance;
 }
 
-Socket SocketFactory::make()
+TCPSocket SocketFactory::make_tcp_socket()
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         PLOG(ERROR) << "failed to make socket";
-        return Socket(INVALID_SOCKET);
+        return TCPSocket(INVALID_SOCKET);
     }
 
-    return Socket(sock);
+    return TCPSocket(sock);
 }
 
 } // namespace net
