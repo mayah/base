@@ -1,5 +1,5 @@
-#ifndef NET_SOCKET_DESCRIPTOR_H_
-#define NET_SOCKET_DESCRIPTOR_H_
+#ifndef NET_SOCKET_SOCKET_DESCRIPTOR_H_
+#define NET_SOCKET_SOCKET_DESCRIPTOR_H_
 
 namespace net {
 
@@ -8,4 +8,4 @@ const SocketDescriptor INVALID_SOCKET = -1;
 
 } // namespace net
 
-#endif // NET_SOCKET_DESCRIPTOR_H_
+#endif // NET_SOCKET_SOCKET_DESCRIPTOR_H_

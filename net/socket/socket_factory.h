@@ -5,6 +5,8 @@
 #include "net/socket/tcp_socket.h"
 #include "net/socket/unix_domain_client_socket.h"
 #include "net/socket/unix_domain_server_socket.h"
+#include "net/socket/tcp_client_socket.h"
+#include "net/socket/tcp_server_socket.h"
 
 namespace net {
 
@@ -13,7 +15,8 @@ public:
     static SocketFactory* instance();
 
     // Returns TCP socket. If failed, socket will be invalid.
-    TCPSocket make_tcp_socket();
+    TCPClientSocket make_tcp_client_socket();
+    TCPServerSocket make_tcp_server_socket();
 
     // Returns UnixDomainSocket. If failed, socket will be invalid.
     UnixDomainClientSocket make_unix_domain_client_socket();

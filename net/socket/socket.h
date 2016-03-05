@@ -1,5 +1,5 @@
-#ifndef NET_SOCKET_H_
-#define NET_SOCKET_H_
+#ifndef NET_SOCKET_SOCKET_H_
+#define NET_SOCKET_SOCKET_H_
 
 #include <sys/types.h>
 
@@ -35,4 +35,4 @@ protected:
 
 } // namespace net
 
-#endif // NET_SOCKET_H_
+#endif // NET_SOCKET_SOCKET_H_

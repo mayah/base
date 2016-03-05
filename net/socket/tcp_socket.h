@@ -1,34 +1,24 @@
-#ifndef NET_TCP_SOCKET_H_
-#define NET_TCP_SOCKET_H_
+#ifndef NET_SOCKET_TCP_SOCKET_H_
+#define NET_SOCKET_TCP_SOCKET_H_
 
 #include "net/socket/socket.h"
 
 namespace net {
-
-class TCPSocket;
-typedef TCPSocket AcceptedTCPSocket;
 
 class TCPSocket : public Socket {
 public:
     TCPSocket(TCPSocket&& socket);
     ~TCPSocket() override;
 
-    bool connect(const char* host, int port);
-
-    bool bind_any(int port);
-    bool listen(int backlog);
-
-    AcceptedTCPSocket accept();
-
     bool set_tcpnodelay();
 
-private:
+protected:
     explicit TCPSocket(SocketDescriptor sd) : Socket(sd) {}
 
-    friend class SocketFactory;
+    friend class TCPServerSocket;
     DISALLOW_COPY_AND_ASSIGN(TCPSocket);
 };
 
 } // namespace net
 
-#endif // NET_TCP_SOCKET_H_
+#endif // NET_SOCKET_TCP_SOCKET_H_

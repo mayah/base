@@ -76,3 +76,26 @@ cc_binary(
         "//third_party:glog",
     ],
 )
+
+cc_binary(
+    name = "tcp_socket_client",
+    srcs = [
+        "tcp_socket_client.cc"
+    ],
+    deps = [
+        "//base/time",
+        "//net/socket",
+        "//third_party:glog",
+    ],
+)
+
+cc_binary(
+    name = "tcp_socket_server",
+    srcs = [
+        "tcp_socket_server.cc"
+    ],
+    deps = [
+        "//net/socket",
+        "//third_party:glog",
+    ],
+)

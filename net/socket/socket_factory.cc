@@ -12,15 +12,26 @@ SocketFactory* SocketFactory::instance()
     return &instance;
 }
 
-TCPSocket SocketFactory::make_tcp_socket()
+TCPClientSocket SocketFactory::make_tcp_client_socket()
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         PLOG(ERROR) << "failed to make socket";
-        return TCPSocket(INVALID_SOCKET);
+        return TCPClientSocket(INVALID_SOCKET);
     }
 
-    return TCPSocket(sock);
+    return TCPClientSocket(sock);
+}
+
+TCPServerSocket SocketFactory::make_tcp_server_socket()
+{
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock < 0) {
+        PLOG(ERROR) << "failed to make socket";
+        return TCPServerSocket(INVALID_SOCKET);
+    }
+
+    return TCPServerSocket(sock);
 }
 
 UnixDomainClientSocket SocketFactory::make_unix_domain_client_socket()
