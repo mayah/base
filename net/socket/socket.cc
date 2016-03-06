@@ -22,9 +22,26 @@ Socket::~Socket()
     if (!valid())
         return;
 
-    if (close(sd_) < 0) {
+    if (::close(sd_) < 0) {
         PLOG(ERROR) << "failed to close socket";
     }
+}
+
+bool Socket::close()
+{
+    if (!valid())
+        return true;
+
+    // Even close() failed, sd_ gets invalid. Let's close.
+
+    if (::close(sd_) < 0) {
+        PLOG(ERROR) << "failed to close socket";
+        sd_ = INVALID_SOCKET;
+        return false;
+    }
+
+    sd_ = INVALID_SOCKET;
+    return true;
 }
 
 ssize_t Socket::read(void* buf, size_t size)

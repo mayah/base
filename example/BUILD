@@ -78,6 +78,22 @@ cc_binary(
 )
 
 cc_binary(
+    name = "unix_domain_socket_experimental",
+    srcs = [
+        "unix_domain_socket_experimental.cc"
+    ],
+    linkopts = [
+        "-pthread",
+    ],
+    deps = [
+        "//base/concurrent",
+        "//base/strings",
+        "//net/socket",
+        "//third_party:glog",
+    ],
+)
+
+cc_binary(
     name = "tcp_socket_client",
     srcs = [
         "tcp_socket_client.cc"
