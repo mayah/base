@@ -115,3 +115,15 @@ cc_binary(
         "//third_party:glog",
     ],
 )
+
+cc_binary(
+    name = "deps_parser",
+    srcs = [
+        "deps_parser.cc",
+    ],
+    deps = [
+        "//base/file",
+        "//base/strings",
+        "//third_party:glog",
+    ],
+)
