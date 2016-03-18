@@ -6,7 +6,7 @@ using namespace std;
 
 namespace file {
 
-bool read_file(const strings::StringPiece& filename, string* output)
+bool read_file(strings::StringPiece filename, string* output)
 {
     ifstream ifs(filename.as_string(), ios::in | ios::binary);
     if (!ifs)
@@ -16,7 +16,7 @@ bool read_file(const strings::StringPiece& filename, string* output)
     return true;
 }
 
-bool write_file(const strings::StringPiece& filename, const string& data)
+bool write_file(strings::StringPiece filename, const string& data)
 {
     ofstream ofs(filename.as_string(), ios::out | ios::binary);
     if (!ofs)

@@ -10,10 +10,10 @@
 namespace file {
 
 // Reads file from |filename| and copy to |output|.
-bool read_file(const strings::StringPiece& filename, std::string* output);
+bool read_file(strings::StringPiece filename, std::string* output);
 
 // Writes |data| to |filename|.
-bool write_file(const strings::StringPiece& filename, const std::string& data);
+bool write_file(strings::StringPiece filename, const std::string& data);
 
 } // namespace file
 
