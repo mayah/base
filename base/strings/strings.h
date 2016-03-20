@@ -32,11 +32,11 @@ StringPiece trim_suffix(StringPiece s, StringPiece suffix);
 std::string remove(StringPiece s, char cut);
 
 // Converts ASCII equivalent lower case.
-char to_lower_ASCII(char c);
-std::string to_lower_ASCII(StringPiece s);
+char tolower_ascii(char c);
+std::string tolower_ascii(StringPiece s);
 
-char to_upper_ASCII(char c);
-std::string to_upper_ASCII(StringPiece s);
+char toupper_ascii(char c);
+std::string toupper_ascii(StringPiece s);
 
 } // namespace strings
 

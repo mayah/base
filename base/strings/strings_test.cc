@@ -105,26 +105,26 @@ TEST(StringsTest, remove)
     EXPECT_EQ("ababABCABC", strings::remove("abcabcABCABC", 'c'));
 }
 
-TEST(StringsTest, to_lower_ASCII)
+TEST(StringsTest, tolower_ascii)
 {
-    EXPECT_EQ('a', strings::to_lower_ASCII('A'));
-    EXPECT_EQ('a', strings::to_lower_ASCII('a'));
-    EXPECT_EQ('z', strings::to_lower_ASCII('Z'));
-    EXPECT_EQ('z', strings::to_lower_ASCII('z'));
-    EXPECT_EQ('0', strings::to_lower_ASCII('0'));
-    EXPECT_EQ('9', strings::to_lower_ASCII('9'));
+    EXPECT_EQ('a', strings::tolower_ascii('A'));
+    EXPECT_EQ('a', strings::tolower_ascii('a'));
+    EXPECT_EQ('z', strings::tolower_ascii('Z'));
+    EXPECT_EQ('z', strings::tolower_ascii('z'));
+    EXPECT_EQ('0', strings::tolower_ascii('0'));
+    EXPECT_EQ('9', strings::tolower_ascii('9'));
 
-    EXPECT_EQ("abcdefgh", strings::to_lower_ASCII("ABCDefgh"));
+    EXPECT_EQ("abcdefgh", strings::tolower_ascii("ABCDefgh"));
 }
 
-TEST(StringsTest, to_upper_ASCII)
+TEST(StringsTest, toupper_ascii)
 {
-    EXPECT_EQ('A', strings::to_upper_ASCII('A'));
-    EXPECT_EQ('A', strings::to_upper_ASCII('a'));
-    EXPECT_EQ('Z', strings::to_upper_ASCII('Z'));
-    EXPECT_EQ('Z', strings::to_upper_ASCII('z'));
-    EXPECT_EQ('0', strings::to_upper_ASCII('0'));
-    EXPECT_EQ('9', strings::to_upper_ASCII('9'));
+    EXPECT_EQ('A', strings::toupper_ascii('A'));
+    EXPECT_EQ('A', strings::toupper_ascii('a'));
+    EXPECT_EQ('Z', strings::toupper_ascii('Z'));
+    EXPECT_EQ('Z', strings::toupper_ascii('z'));
+    EXPECT_EQ('0', strings::toupper_ascii('0'));
+    EXPECT_EQ('9', strings::toupper_ascii('9'));
 
-    EXPECT_EQ("ABCDEFGH", strings::to_upper_ASCII("ABCDefgh"));
+    EXPECT_EQ("ABCDEFGH", strings::toupper_ascii("ABCDefgh"));
 }
