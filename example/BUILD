@@ -23,6 +23,17 @@ cc_binary(
 )
 
 cc_binary(
+    name = "cwd",
+    srcs = [
+        "cwd.cc",
+    ],
+    deps = [
+        "//base/file",
+        "//third_party:glog",
+    ],
+)
+
+cc_binary(
     name = "current_time",
     srcs = [
         "current_time.cc",

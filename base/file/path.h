@@ -20,6 +20,9 @@ strings::StringPiece dirname(strings::StringPiece path);
 strings::StringPiece stem(strings::StringPiece path);
 strings::StringPiece extension(strings::StringPiece path);
 
+// Gets current directory name. If failed, empty.
+std::string get_current_directory();
+
 // Returns true if |path| is absolute.
 bool is_absolute_path(strings::StringPiece path);
 

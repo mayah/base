@@ -132,6 +132,18 @@ strings::StringPiece extension(strings::StringPiece path)
     return path.substr(pos);
 }
 
+std::string get_current_directory()
+{
+    char* dir = getcwd(nullptr, 0);
+    if (!dir)
+        return std::string();
+
+    std::string result(dir);
+    // Since getcwd allocates memory with malloc, we need to free it.
+    free(dir);
+    return result;
+}
+
 bool is_absolute_path(strings::StringPiece path)
 {
     return !path.empty() && path[0] == '/';
