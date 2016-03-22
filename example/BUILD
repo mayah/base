@@ -1,13 +1,31 @@
 cc_binary(
+    name = "copy_file",
+    srcs = [
+        "copy_file.cc"
+    ],
+    deps = [
+        "//base/file"
+    ],
+)
+
+cc_binary(
     name = "read_file",
-    srcs = ["read_file.cc"],
-    deps = ["//base/file"],
+    srcs = [
+        "read_file.cc"
+    ],
+    deps = [
+        "//base/file"
+    ],
 )
 
 cc_binary(
     name = "write_file",
-    srcs = ["write_file.cc"],
-    deps = ["//base/file"],
+    srcs = [
+        "write_file.cc"
+    ],
+    deps = [
+        "//base/file"
+    ],
 )
 
 cc_binary(
@@ -18,6 +36,17 @@ cc_binary(
     deps = [
         "//base/file",
         "//base/strings",
+        "//third_party:glog",
+    ],
+)
+
+cc_binary(
+    name = "cwd",
+    srcs = [
+        "cwd.cc",
+    ],
+    deps = [
+        "//base/file",
         "//third_party:glog",
     ],
 )

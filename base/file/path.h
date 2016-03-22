@@ -20,6 +20,9 @@ strings::StringPiece dirname(strings::StringPiece path);
 strings::StringPiece stem(strings::StringPiece path);
 strings::StringPiece extension(strings::StringPiece path);
 
+// Gets current directory name. If failed, empty.
+std::string get_current_directory();
+
 // Returns true if |path| is absolute.
 bool is_absolute_path(strings::StringPiece path);
 
@@ -46,8 +49,10 @@ std::string join_path_respect_absolute(const T&... args)
     return internal::join_path_respect_absolute_impl({args...});
 }
 
+// Returns true if |path| is directory.
 bool is_directory(const char* path);
 
+// Returns all files in |directory_path|.
 bool list_files(const char* directory_path, std::vector<std::string>* files);
 
 // Removes all files under |path|. |path| is also removed.

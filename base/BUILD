@@ -4,6 +4,7 @@ cc_library(
     ],
     hdrs = [
         "build_config.h",
+        "compiler_specific.h",
         "macros.h",
         "unit.h",
     ],

@@ -3,6 +3,7 @@ cc_library(
     srcs = [
         "clock.cc",
         "current_time.cc",
+        "time.cc",
         "time_stamp_counter.cc",
     ],
     hdrs = [
