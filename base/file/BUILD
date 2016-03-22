@@ -3,12 +3,14 @@ cc_library(
     srcs = [
         "file.cc",
         "path.cc",
+        "scoped_fd.cc",
         "scoped_temp_dir.cc",
         "scoped_temp_file.cc",
     ],
     hdrs = [
         "file.h",
         "path.h",
+        "scoped_fd.h",
         "scoped_temp_dir.h",
         "scoped_temp_file.h",
     ],
@@ -16,7 +18,9 @@ cc_library(
         "//visibility:public",
     ],
     deps = [
+        "//base",
         "//base/strings",
+        "//third_party:glog",
     ],
 )
 
