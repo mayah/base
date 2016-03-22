@@ -13,7 +13,7 @@ bool gauss(std::vector<std::vector<double>> A, std::vector<double> b, std::vecto
         // --- choose pivot.
         size_t pivot = i;
         for (size_t j = i + 1; j < H; ++j) {
-            if (abs(A[pivot][i]) < abs(A[j][i]))
+            if (std::abs(A[pivot][i]) < std::abs(A[j][i]))
                 pivot = j;
         }
         if (A[pivot][i] == 0)
