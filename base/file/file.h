@@ -15,6 +15,9 @@ bool read_file(strings::StringPiece filename, std::string* output);
 // Writes |data| to |filename|.
 bool write_file(strings::StringPiece filename, const std::string& data);
 
+// Copies file from |src| to |dest|.
+bool copy_file(const char* src, const char* dest);
+
 } // namespace file
 
 #endif // BASE_FILE_FILE_H_
