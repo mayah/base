@@ -167,7 +167,7 @@ StringPiece::size_type StringPiece::find_last_not_of(StringPiece s, StringPiece:
     return StringPiece::npos;
 }
 
-StringPiece StringPiece::chomp()
+StringPiece StringPiece::chomp() const
 {
     if (empty())
         return StringPiece();
@@ -189,7 +189,7 @@ StringPiece StringPiece::chomp()
     return *this;
 }
 
-StringPiece StringPiece::substr(size_t pos, size_t n)
+StringPiece StringPiece::substr(size_t pos, size_t n) const
 {
     if (pos > size())
         pos = size();

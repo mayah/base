@@ -70,9 +70,9 @@ public:
     char operator[](size_t i) const { return get(i); }
 
     // Returns the string whose last LF, CR, or CRLF is removed.
-    StringPiece chomp();
+    StringPiece chomp() const;
 
-    StringPiece substr(size_t pos, size_t n = npos);
+    StringPiece substr(size_t pos, size_t n = npos) const;
 
     char front() const { return *ptr_; }
     char back() const { return *(ptr_ + length_ - 1); }
