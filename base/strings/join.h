@@ -8,7 +8,28 @@
 
 namespace strings {
 
-std::string join(const std::vector<std::string>& parts, StringPiece sep);
+template<typename Iterator>
+std::string join(Iterator begin, Iterator end, StringPiece sep)
+{
+    bool first = true;
+    std::string s;
+    for (Iterator it = begin; it != end; ++it) {
+        if (first) {
+            first = false;
+        } else {
+            s += sep;
+        }
+
+        s += *it;
+    }
+
+    return s;
+}
+
+inline std::string join(const std::vector<std::string>& parts, StringPiece sep)
+{
+    return join(parts.begin(), parts.end(), sep);
+}
 
 } // namesapce strings
 

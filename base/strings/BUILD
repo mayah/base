@@ -1,7 +1,6 @@
 cc_library(
     name = "strings",
     srcs = [
-        "join.cc",
         "string_piece.cc",
         "strings.cc",
         "split.cc",
