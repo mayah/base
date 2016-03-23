@@ -2,14 +2,6 @@
 
 #include <gtest/gtest.h>
 
-TEST(StringsTest, join)
-{
-    EXPECT_EQ("", strings::join({}, ","));
-    EXPECT_EQ("a", strings::join({"a"}, ","));
-    EXPECT_EQ("a,b", strings::join({"a", "b"}, ","));
-    EXPECT_EQ("ab", strings::join({"a", "b"}, ""));
-}
-
 TEST(StringsTest, has_prefix)
 {
     EXPECT_TRUE(strings::has_prefix("a", ""));

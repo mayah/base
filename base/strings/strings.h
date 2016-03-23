@@ -10,8 +10,6 @@ namespace strings {
 std::string concat(StringPiece s1, StringPiece s2);
 std::string concat(StringPiece s1, StringPiece s2, StringPiece s3);
 
-std::string join(const std::vector<std::string>& parts, StringPiece sep);
-
 inline bool has_prefix(StringPiece s, StringPiece prefix) { return s.starts_with(prefix); }
 inline bool has_suffix(StringPiece s, StringPiece suffix) { return s.ends_with(suffix); }
 
