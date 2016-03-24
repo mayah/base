@@ -158,6 +158,20 @@ bool is_directory(const char* path)
     return S_ISDIR(st.st_mode);
 }
 
+bool create_directory(const char* path, int mode)
+{
+    if (mkdir(path, mode) < 0)
+        return false;
+    return true;
+}
+
+bool remove_directory(const char* path)
+{
+    if (rmdir(path) < 0)
+        return false;
+    return true;
+}
+
 bool list_files(const char* directory_path, std::vector<std::string>* files)
 {
     DIR* dir = opendir(directory_path);

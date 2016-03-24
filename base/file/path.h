@@ -51,6 +51,8 @@ std::string join_path_respect_absolute(const T&... args)
 
 // Returns true if |path| is directory.
 bool is_directory(const char* path);
+bool create_directory(const char* path, int mode = 0755);
+bool remove_directory(const char* path);
 
 // Returns all files in |directory_path|.
 bool list_files(const char* directory_path, std::vector<std::string>* files);
