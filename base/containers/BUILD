@@ -7,6 +7,7 @@ cc_library(
         "blocking_queue.h",
         "reverse_range.h",
         "small_int_set.h",
+        "static_vector.h",
         "slice.h",
         "vectors.h",
         "vectors_io.h",
@@ -37,6 +38,19 @@ cc_test(
     ],
     deps = [
         ":containers",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "static_vector_test",
+    srcs = [
+        "static_vector_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//base",
         "//external:gtest",
         "//third_party:glog",
     ],
