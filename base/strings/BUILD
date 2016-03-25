@@ -1,6 +1,7 @@
 cc_library(
     name = "strings",
     srcs = [
+        "replace_string.cc",
         "string_piece.cc",
         "strings.cc",
         "split.cc",
@@ -9,6 +10,7 @@ cc_library(
     hdrs = [
         "concat.h",
         "join.h",
+        "replace_string.h",
         "string_piece.h",
         "strings.h",
         "split.h",
@@ -35,6 +37,18 @@ cc_test(
     name = "join_test",
     srcs = [
         "join_test.cc",
+    ],
+    deps = [
+        ":strings",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "replace_string_test",
+    srcs = [
+        "replace_string_test.cc",
     ],
     deps = [
         ":strings",
