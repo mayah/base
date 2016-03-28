@@ -2,6 +2,7 @@ cc_library(
     name = "math",
     hdrs = [
         "gauss.h",
+        "sigmoid.h",
         "math.h",
     ],
     srcs = [
