@@ -5,22 +5,22 @@
 
 namespace math {
 
-inline float sigmoid(float x, float a)
+inline float sigmoid(float x, float a = 1.0f)
 {
     return 1 / (1 + std::exp(-a * x));
 }
 
-inline double sigmoid(double x, double a)
+inline double sigmoid(double x, double a = 1.0)
 {
     return 1 / (1 + std::exp(-a * x));
 }
 
-inline float d_sigmoid(float x, float a)
+inline float d_sigmoid(float x, float a = 1.0f)
 {
     return a * sigmoid(x, a) * (1 - sigmoid(x, a));
 }
 
-inline double d_sigmoid(double x, double a)
+inline double d_sigmoid(double x, double a = 1.0f)
 {
     return a * sigmoid(x, a) * (1 - sigmoid(x, a));
 }
