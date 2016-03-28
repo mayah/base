@@ -9,6 +9,9 @@ cc_library(
         "gauss.cc",
         "math.cc",
     ],
+    visibility = [
+        "//visibility:public",
+    ],
 )
 
 cc_test(
