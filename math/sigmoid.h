@@ -20,7 +20,7 @@ inline float d_sigmoid(float x, float a = 1.0f)
     return a * sigmoid(x, a) * (1 - sigmoid(x, a));
 }
 
-inline double d_sigmoid(double x, double a = 1.0f)
+inline double d_sigmoid(double x, double a = 1.0)
 {
     return a * sigmoid(x, a) * (1 - sigmoid(x, a));
 }
