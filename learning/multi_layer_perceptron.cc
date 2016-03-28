@@ -10,6 +10,20 @@
 
 #include "math/sigmoid.h"
 
+namespace {
+
+inline float activator(float x)
+{
+    return tanh(x);
+}
+
+inline float d_activator(float x)
+{
+    return 1 / cosh(x) / cosh(x);
+}
+
+} // namespace
+
 namespace learning {
 
 MultiLayerPerceptron::MultiLayerPerceptron(int in, int hid, int out) :
@@ -67,7 +81,7 @@ void MultiLayerPerceptron::train(int label, const float x[], float learning_rate
         for (int j = 0; j < num_output_; ++j) {
             t += w3_[i * num_output_ + j] * e3_[j];
         }
-        e2_[i] = t * math::d_sigmoid(i2_[i]);
+        e2_[i] = t * d_activator(i2_[i]);
     }
 
     for (int i = 0; i < num_input_ + 1; ++i) {
@@ -98,7 +112,7 @@ void MultiLayerPerceptron::forward(const float x[])
     }
 
     for (int i = 0; i < num_hidden_; ++i) {
-        o2_[i] = math::sigmoid(i2_[i]);
+        o2_[i] = activator(i2_[i]);
     }
     o2_[num_hidden_] = 1;
 
