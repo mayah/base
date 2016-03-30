@@ -13,10 +13,15 @@ public:
     ~MultiLayerPerceptron();
 
     // Train single data.
+    // |x| should have |num_input_| size.
     void train(int label, const float x[], float learning_rate = 0.1);
 
     // Returns the label.
+    // |x| should have |num_input_| size.
     int predict(const float x[]);
+
+    bool save_parameter(const char* path) const;
+    bool load_parameter(const char* path);
 
 private:
     void forward(const float x[]);

@@ -7,6 +7,7 @@ cc_library(
         "multi_layer_perceptron.cc",
     ],
     deps = [
+        "//base/file",
         "//math",
     ],
 )

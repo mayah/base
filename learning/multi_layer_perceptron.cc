@@ -8,6 +8,7 @@
 #include <random>
 #include <string>
 
+#include "base/file/scoped_fd.h"
 #include "math/sigmoid.h"
 
 namespace {
@@ -122,6 +123,34 @@ void MultiLayerPerceptron::forward(const float x[])
             i3_[i] += w3_[j * num_output_ + i] * o2_[j];
         }
     }
+}
+
+bool MultiLayerPerceptron::save_parameter(const char* path) const
+{
+    file::ScopedFd fd(file::ScopedFd::open_for_write(path));
+    if (!fd.valid())
+        return false;
+
+    if (!fd.write_exactly(w2_.get(), sizeof(float) * (num_input_ + 1) * num_hidden_))
+        return false;
+    if (!fd.write_exactly(w3_.get(), sizeof(float) * (num_hidden_ + 1) * num_output_))
+        return false;
+
+    return true;
+}
+
+bool MultiLayerPerceptron::load_parameter(const char* path)
+{
+    file::ScopedFd fd(file::ScopedFd::open_for_read(path));
+    if (!fd.valid())
+        return false;
+
+    if (!fd.read_exactly(w2_.get(), sizeof(float) * (num_input_ + 1) * num_hidden_))
+        return false;
+    if (!fd.read_exactly(w3_.get(), sizeof(float) * (num_hidden_ + 1) * num_output_))
+        return false;
+
+    return true;
 }
 
 } // namespace learning
