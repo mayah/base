@@ -8,6 +8,8 @@
 
 namespace base {
 
+// StaticVector is similar to std::vector, however, it allocates data memory
+// in stack.
 template<typename T, std::size_t N>
 class StaticVector {
 public:
@@ -18,7 +20,9 @@ public:
     bool empty() const { return size_ == 0; }
     std::size_t capacity() const { return N; }
 
+    // Inserts an element at back. If size exceeded, the result is undefined.
     void push_back(const T& value);
+    // Removes the last element. When the container is empty, the result is undefined.
     void pop_back();
 
     T* begin() { return ptr(); }
