@@ -1,6 +1,7 @@
 cc_library(
     name = "strings",
     srcs = [
+        "ascii_ctype.cc",
         "replace_string.cc",
         "string_piece.cc",
         "strings.cc",
@@ -8,6 +9,7 @@ cc_library(
         "utf8.cc",
     ],
     hdrs = [
+        "ascii_ctype.h",
         "concat.h",
         "join.h",
         "replace_string.h",
@@ -19,6 +21,18 @@ cc_library(
     visibility = [
         "//visibility:public",
     ],
+)
+
+cc_test(
+    name = "ascii_ctype_test",
+    srcs = [
+        "ascii_ctype_test.cc",
+    ],
+    deps = [
+        ":strings",
+        "//external:gtest",
+        "//third_party:glog",
+    ]
 )
 
 cc_test(
