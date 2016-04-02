@@ -164,34 +164,28 @@ bool MultiLayerPerceptron::save_parameter_as_c_source(const char* path, const ch
          << output_layer_weight_size() << ";" << std::endl;
     body << std::endl;
 
-    body << "const float " << prefix << "_HIDDEN_LAYER_WEIGHT[] = {" << std::endl;
+    body << "const float " << prefix << "_HIDDEN_LAYER_WEIGHT[] = {";
     for (int i = 0; i < hidden_layer_weight_size(); ++i) {
         if (i % 4 == 0) {
-            body << "    ";
+            body << std::endl << "    ";
         } else {
             body << " ";
         }
         body << std::scientific << std::showpos << std::setprecision(10) << w2_[i] << ",";
-        if (i % 4 == 3) {
-            body << std::endl;
-        }
     }
-    body << "};" << std::endl;
+    body << std::endl << "};" << std::endl;
     body << std::endl;
 
-    body << "const float " << prefix << "_OUTPUT_LAYER_WEIGHT[] = {" << std::endl;
+    body << "const float " << prefix << "_OUTPUT_LAYER_WEIGHT[] = {";
     for (int i = 0; i < output_layer_weight_size(); ++i) {
         if (i % 4 == 0) {
-            body << "    ";
+            body  << std::endl << "    ";
         } else {
             body << " ";
         }
         body << std::scientific << std::showpos << std::setprecision(10) << w3_[i] << ",";
-        if (i % 4 == 3) {
-            body << std::endl;
-        }
     }
-    body << "};" << std::endl;
+    body << std::endl << "};" << std::endl;
     body << std::endl;
 
     file::ScopedFd fd(file::ScopedFd::open_for_write(path));
