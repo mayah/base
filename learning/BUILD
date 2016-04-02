@@ -10,6 +10,12 @@ cc_library(
         "//base/file",
         "//math",
     ],
+    linkopts = [
+        "-lm",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
 )
 
 cc_test(

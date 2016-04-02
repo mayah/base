@@ -21,9 +21,13 @@ public:
     int predict(const float x[]);
 
     bool save_parameter(const char* path) const;
+    bool save_parameter_as_c_source(const char* path, const char* prefix) const;
     bool load_parameter(const char* path);
 
 private:
+    int hidden_layer_weight_size() const;
+    int output_layer_weight_size() const;
+
     void forward(const float x[]);
 
     const int num_input_;  // the number of input layer neuron.

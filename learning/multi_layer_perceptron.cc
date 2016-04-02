@@ -5,7 +5,9 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <iomanip>
 #include <random>
+#include <sstream>
 #include <string>
 
 #include "base/file/scoped_fd.h"
@@ -15,12 +17,12 @@ namespace {
 
 inline float activator(float x)
 {
-    return tanh(x);
+    return std::tanh(x);
 }
 
 inline float d_activator(float x)
 {
-    return 1 / cosh(x) / cosh(x);
+    return 1 / std::cosh(x) / std::cosh(x);
 }
 
 } // namespace
@@ -57,6 +59,16 @@ MultiLayerPerceptron::MultiLayerPerceptron(int in, int hid, int out) :
 
 MultiLayerPerceptron::~MultiLayerPerceptron()
 {
+}
+
+int MultiLayerPerceptron::hidden_layer_weight_size() const
+{
+    return ((num_input_ + 1) * num_hidden_);
+}
+
+int MultiLayerPerceptron::output_layer_weight_size() const
+{
+    return ((num_hidden_ + 1) * num_output_);
 }
 
 void MultiLayerPerceptron::train(int label, const float x[], float learning_rate)
@@ -136,6 +148,57 @@ bool MultiLayerPerceptron::save_parameter(const char* path) const
     if (!fd.write_exactly(w3_.get(), sizeof(float) * (num_hidden_ + 1) * num_output_))
         return false;
 
+    return true;
+}
+
+bool MultiLayerPerceptron::save_parameter_as_c_source(const char* path, const char* prefix) const
+{
+    std::stringstream body;
+
+    body << "#include <cstddef>" << std::endl;
+    body << "#include <cstdint>" << std::endl;
+
+    body << "const std::size_t " << prefix << "_HIDDEN_LAYER_WEIGHT_SIZE = "
+         << hidden_layer_weight_size() << ";" << std::endl;
+    body << "const std::size_t " << prefix << "_OUTPUT_LAYER_WEIGHT_SIZE = "
+         << output_layer_weight_size() << ";" << std::endl;
+    body << std::endl;
+
+    body << "const float " << prefix << "_HIDDEN_LAYER_WEIGHT[] = {" << std::endl;
+    for (int i = 0; i < hidden_layer_weight_size(); ++i) {
+        if (i % 4 == 0) {
+            body << "    ";
+        } else {
+            body << " ";
+        }
+        body << std::scientific << std::showpos << std::setprecision(10) << w2_[i] << ",";
+        if (i % 4 == 3) {
+            body << std::endl;
+        }
+    }
+    body << "};" << std::endl;
+    body << std::endl;
+
+    body << "const float " << prefix << "_OUTPUT_LAYER_WEIGHT[] = {" << std::endl;
+    for (int i = 0; i < output_layer_weight_size(); ++i) {
+        if (i % 4 == 0) {
+            body << "    ";
+        } else {
+            body << " ";
+        }
+        body << std::scientific << std::showpos << std::setprecision(10) << w3_[i] << ",";
+        if (i % 4 == 3) {
+            body << std::endl;
+        }
+    }
+    body << "};" << std::endl;
+    body << std::endl;
+
+    file::ScopedFd fd(file::ScopedFd::open_for_write(path));
+    if (!fd.valid())
+        return false;
+    if (!fd.write_exactly(body.str()))
+        return false;
     return true;
 }
 
