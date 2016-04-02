@@ -1,6 +1,9 @@
 #ifndef BASE_STRINGS_ASCII_CTYPE_H_
 #define BASE_STRINGS_ASCII_CTYPE_H_
 
+// Since these functions in libc will check locale, it could be slow and unpredictable.
+// So we implement them.
+
 namespace strings {
 
 inline char isspace_ascii(char c)
