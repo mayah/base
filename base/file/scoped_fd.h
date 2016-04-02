@@ -25,11 +25,11 @@ public:
     int get() const { return fd_; }
 
     ssize_t read(void* buf, size_t size) WARN_UNUSED_RESULT;
-    bool read_exactly(void* buf, size_t size);
+    bool read_exactly(void* buf, size_t size) WARN_UNUSED_RESULT;
 
     ssize_t write(const void* buf, size_t size) WARN_UNUSED_RESULT;
-    bool write_exactly(const void* buf, size_t size);
-    bool write_exactly(strings::StringPiece sp);
+    bool write_exactly(const void* buf, size_t size) WARN_UNUSED_RESULT;
+    bool write_exactly(strings::StringPiece sp) WARN_UNUSED_RESULT;
 
 private:
     static const int INVALID_FD = -1;
