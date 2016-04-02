@@ -28,7 +28,7 @@ ScopedFd ScopedFd::open_for_read(const char* filename)
 // static
 ScopedFd ScopedFd::open_for_write(const char* filename)
 {
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     return ScopedFd(fd);
 }
 
@@ -66,6 +66,11 @@ bool ScopedFd::write_exactly(const void* buf, size_t size)
     }
 
     return true;
+}
+
+bool ScopedFd::write_exactly(strings::StringPiece sp)
+{
+    return write_exactly(sp.data(), sp.size());
 }
 
 } // namespace file

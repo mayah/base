@@ -5,6 +5,7 @@
 
 #include "base/compiler_specific.h"
 #include "base/macros.h"
+#include "base/strings/string_piece.h"
 
 namespace file {
 
@@ -15,6 +16,7 @@ public:
     ~ScopedFd();
 
     static ScopedFd open_for_read(const char* filename);
+    // Opens a file for writing. The content will be truncated.
     static ScopedFd open_for_write(const char* filename);
 
     ScopedFd& operator=(ScopedFd&&);
@@ -27,6 +29,7 @@ public:
 
     ssize_t write(const void* buf, size_t size) WARN_UNUSED_RESULT;
     bool write_exactly(const void* buf, size_t size);
+    bool write_exactly(strings::StringPiece sp);
 
 private:
     static const int INVALID_FD = -1;
