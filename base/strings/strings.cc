@@ -17,6 +17,24 @@ std::string repeat(StringPiece s, int count)
     return result;
 }
 
+std::string pad_left(StringPiece s, size_t n, char c)
+{
+    if (s.size() >= n)
+        return s.as_string();
+
+    size_t count = n - s.size();
+    return std::string(count, c) + s.as_string();
+}
+
+std::string pad_right(StringPiece s, size_t n, char c)
+{
+    if (s.size() >= n)
+        return s.as_string();
+
+    size_t count = n - s.size();
+    return s.as_string() + std::string(count, c);
+}
+
 StringPiece trim_space(StringPiece s)
 {
     return trim_left(trim_right(s, ' '), ' ');

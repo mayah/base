@@ -29,6 +29,32 @@ TEST(StringsTest, repeat)
     EXPECT_EQ("ababab", strings::repeat("ab", 3));
 }
 
+TEST(StringsTest, pad_left)
+{
+    EXPECT_EQ("", strings::pad_left("", 0, '@'));
+    EXPECT_EQ("@", strings::pad_left("", 1, '@'));
+    EXPECT_EQ("@@", strings::pad_left("", 2, '@'));
+
+    EXPECT_EQ("aa", strings::pad_left("aa", 0, '@'));
+    EXPECT_EQ("aa", strings::pad_left("aa", 1, '@'));
+    EXPECT_EQ("aa", strings::pad_left("aa", 2, '@'));
+    EXPECT_EQ("@aa", strings::pad_left("aa", 3, '@'));
+    EXPECT_EQ("@@aa", strings::pad_left("aa", 4, '@'));
+}
+
+TEST(StringTest, pad_right)
+{
+    EXPECT_EQ("", strings::pad_right("", 0, '@'));
+    EXPECT_EQ("@", strings::pad_right("", 1, '@'));
+    EXPECT_EQ("@@", strings::pad_right("", 2, '@'));
+
+    EXPECT_EQ("aa", strings::pad_right("aa", 0, '@'));
+    EXPECT_EQ("aa", strings::pad_right("aa", 1, '@'));
+    EXPECT_EQ("aa", strings::pad_right("aa", 2, '@'));
+    EXPECT_EQ("aa@", strings::pad_right("aa", 3, '@'));
+    EXPECT_EQ("aa@@", strings::pad_right("aa", 4, '@'));
+}
+
 TEST(StringsTest, trim_left)
 {
     EXPECT_EQ("abc", strings::trim_left("abc", ' '));

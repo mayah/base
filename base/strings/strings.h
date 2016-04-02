@@ -15,6 +15,10 @@ inline bool has_suffix(StringPiece s, StringPiece suffix) { return s.ends_with(s
 
 std::string repeat(StringPiece s, int count);
 
+// If the length of |s| is less than |n|, add |c| to left.
+std::string pad_left(StringPiece s, size_t n, char c);
+std::string pad_right(StringPiece s, size_t n, char c);
+
 StringPiece trim_left(StringPiece s, char c);
 StringPiece trim_left(StringPiece s, StringPiece cutset);
 StringPiece trim_right(StringPiece s, char c);
