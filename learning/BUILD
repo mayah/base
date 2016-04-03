@@ -18,6 +18,22 @@ cc_library(
     ],
 )
 
+cc_library(
+    name = "arow",
+    hdrs = [
+        "arow.h",
+    ],
+    srcs = [
+        "arow.cc",
+    ],
+    deps = [
+        "//base/file",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
+
 cc_test(
     name = "multi_layer_perceptron_test",
     srcs = [
@@ -25,6 +41,17 @@ cc_test(
     ],
     deps = [
         ":multi_layer_perceptron",
+        "//external:gtest",
+    ],
+)
+
+cc_test(
+    name = "arow_test",
+    srcs = [
+        "arow_test.cc"
+    ],
+    deps = [
+        ":arow",
         "//external:gtest",
     ],
 )
