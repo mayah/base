@@ -71,7 +71,7 @@ int MultiLayerPerceptron::output_layer_weight_size() const
     return ((num_hidden_ + 1) * num_output_);
 }
 
-void MultiLayerPerceptron::train(int label, const float x[], float learning_rate)
+void MultiLayerPerceptron::train(int label, const float x[], float learning_rate, float l2_normalization)
 {
     forward(x);
 
@@ -100,6 +100,16 @@ void MultiLayerPerceptron::train(int label, const float x[], float learning_rate
     for (int i = 0; i < num_input_ + 1; ++i) {
         for (int j = 0; j < num_hidden_; ++j) {
             w2_[i * num_hidden_ + j] -= learning_rate * o1_[i] * e2_[j];
+        }
+    }
+
+    // normalization
+    if (l2_normalization != 0.0) {
+        for (int i = 0; i < hidden_layer_weight_size(); ++i) {
+            w2_[i] -= learning_rate * l2_normalization * w2_[i];
+        }
+        for (int i = 0; i < output_layer_weight_size(); ++i) {
+            w3_[i] -= learning_rate * l2_normalization * w3_[i];
         }
     }
 }
