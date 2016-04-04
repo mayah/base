@@ -75,17 +75,12 @@ void MultiLayerPerceptron::train(int label, const float x[], float learning_rate
 {
     forward(x);
 
+    // calculate error.
     for (int i = 0; i < num_output_; ++i) {
         if (label == i) {
             e3_[i] = i3_[i] - 1;
         } else {
             e3_[i] = i3_[i];
-        }
-    }
-
-    for (int i = 0; i < num_hidden_ + 1; ++i) {
-        for (int j = 0; j < num_output_; ++j) {
-            w3_[i * num_output_ + j] -= learning_rate * e3_[j] * o2_[i];
         }
     }
 
@@ -95,6 +90,13 @@ void MultiLayerPerceptron::train(int label, const float x[], float learning_rate
             t += w3_[i * num_output_ + j] * e3_[j];
         }
         e2_[i] = t * d_activator(i2_[i]);
+    }
+
+    // back propagation
+    for (int i = 0; i < num_hidden_ + 1; ++i) {
+        for (int j = 0; j < num_output_; ++j) {
+            w3_[i * num_output_ + j] -= learning_rate * e3_[j] * o2_[i];
+        }
     }
 
     for (int i = 0; i < num_input_ + 1; ++i) {
