@@ -29,6 +29,9 @@ cc_library(
     deps = [
         "//base/file",
     ],
+    linkopts = [
+        "-lm",
+    ],
     visibility = [
         "//visibility:public",
     ],
