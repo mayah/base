@@ -5,6 +5,7 @@ cc_library(
     ],
     hdrs = [
         "blocking_queue.h",
+        "flat_set.h",
         "reverse_range.h",
         "small_int_set.h",
         "static_vector.h",
@@ -35,6 +36,18 @@ cc_test(
     name = "containers_test",
     srcs = [
         "small_int_set_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "flat_set_test",
+    srcs = [
+        "flat_set_test.cc",
     ],
     deps = [
         ":containers",
