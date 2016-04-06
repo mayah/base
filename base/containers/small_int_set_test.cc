@@ -4,7 +4,7 @@
 
 TEST(SmallIntSetTest, basic)
 {
-    SmallIntSet s;
+    base::SmallIntSet s;
     EXPECT_TRUE(s.empty());
     EXPECT_EQ(0, s.size());
 

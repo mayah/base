@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <glog/logging.h>
 
+namespace base {
+
 // SmallIntSet is an integer set that contains [0, 64).
 class SmallIntSet {
 public:
@@ -45,5 +47,7 @@ public:
 private:
     std::uint64_t v_ = 0;
 };
+
+} // namespace base
 
 #endif // BASE_CONTAINERS_SMALL_INT_SET_H_
