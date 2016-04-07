@@ -90,7 +90,7 @@ bool Arow::save(const std::string& filename) const
 
     if (!fd.write_exactly(mean_.data(), sizeof(double) * (size_ + 1)))
         return false;
-    if (!fd.write_exactly(cov_.data(), sizeof(double) * (size_ + 1)));
+    if (!fd.write_exactly(cov_.data(), sizeof(double) * (size_ + 1)))
         return false;
     return true;
 }
