@@ -6,7 +6,8 @@
 
 namespace strings {
 
-std::string replace_string(StringPiece s, StringPiece old_sub, StringPiece new_sub, bool replace_all);
+enum class OneOrAll { ONE, ALL };
+std::string replace_string(StringPiece s, StringPiece old_sub, StringPiece new_sub, OneOrAll one_or_all);
 
 } // namespace base
 

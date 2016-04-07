@@ -2,7 +2,7 @@
 
 namespace strings {
 
-std::string replace_string(StringPiece s, StringPiece oldsub, StringPiece newsub, bool replace_all)
+std::string replace_string(StringPiece s, StringPiece oldsub, StringPiece newsub, OneOrAll one_or_all)
 {
     if (oldsub.empty())
         return s.as_string();
@@ -19,7 +19,7 @@ std::string replace_string(StringPiece s, StringPiece oldsub, StringPiece newsub
         result.append(s.data() + start_pos, pos - start_pos);
         result.append(newsub.data(), newsub.length());
         start_pos = pos + oldsub.length();
-    } while (replace_all);
+    } while (one_or_all == OneOrAll::ALL);
 
     result.append(s.data() + start_pos, s.length() - start_pos);
     return result;
