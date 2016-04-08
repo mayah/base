@@ -10,16 +10,18 @@ TEST(MultiLayerPerceptronTest, xor_test)
     const float one_one[2]   = { 1, 1 };
 
     learning::MultiLayerPerceptron mlp(2, 4, 2);
+    auto data = mlp.make_forwading_storage();
+    auto error_data = mlp.make_backpropagation_storage();
 
     for (int i = 0; i < 100000; ++i) {
-        mlp.train(0, zero_zero);
-        mlp.train(1, zero_one);
-        mlp.train(1, one_zero);
-        mlp.train(0, one_one);
+        mlp.train(0, zero_zero, &data, &error_data);
+        mlp.train(1, zero_one, &data, &error_data);
+        mlp.train(1, one_zero, &data, &error_data);
+        mlp.train(0, one_one, &data, &error_data);
     }
 
-    EXPECT_EQ(0, mlp.predict(zero_zero));
-    EXPECT_EQ(1, mlp.predict(zero_one));
-    EXPECT_EQ(1, mlp.predict(one_zero));
-    EXPECT_EQ(0, mlp.predict(one_one));
+    EXPECT_EQ(0, mlp.predict(zero_zero, &data));
+    EXPECT_EQ(1, mlp.predict(zero_one, &data));
+    EXPECT_EQ(1, mlp.predict(one_zero, &data));
+    EXPECT_EQ(0, mlp.predict(one_one, &data));
 }
