@@ -11,4 +11,4 @@ inline bool operator!=(const Unit&, const Unit&) { return false; }
 
 } // namespace base
 
-#endif
+#endif // BASE_UNIT_H_
