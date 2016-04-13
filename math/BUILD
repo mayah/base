@@ -2,11 +2,13 @@ cc_library(
     name = "math",
     hdrs = [
         "gauss.h",
-        "sigmoid.h",
+        "knapsack.h",
         "math.h",
+        "sigmoid.h",
     ],
     srcs = [
         "gauss.cc",
+        "knapsack.cc",
         "math.cc",
     ],
     visibility = [
