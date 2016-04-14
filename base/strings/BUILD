@@ -6,6 +6,8 @@ cc_library(
         "string_piece.cc",
         "strings.cc",
         "split.cc",
+        "symbol.cc",
+        "symbol_pool.cc",
         "utf8.cc",
     ],
     hdrs = [
@@ -16,6 +18,8 @@ cc_library(
         "string_piece.h",
         "strings.h",
         "split.h",
+        "symbol.h",
+        "symbol_pool.h",
         "utf8.h",
     ],
     visibility = [
@@ -99,6 +103,18 @@ cc_test(
     name = "split_test",
     srcs = [
         "split_test.cc",
+    ],
+    deps = [
+        ":strings",
+        "//external:gtest",
+        "//third_party:glog",
+    ],
+)
+
+cc_test(
+    name = "symbol_test",
+    srcs = [
+        "symbol_test.cc",
     ],
     deps = [
         ":strings",
