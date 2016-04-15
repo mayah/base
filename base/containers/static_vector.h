@@ -32,7 +32,8 @@ public:
     const T* cbegin() const { return ptr(); }
     const T* cend() const { return ptr() + size_; }
 
-    const T& operator[](int index) { return ptr()[index]; }
+    T& operator[](int index) { return ptr()[index]; }
+    const T& operator[](int index) const { return ptr()[index]; }
 
 private:
     const T* ptr() const { return reinterpret_cast<T*>(data_); }

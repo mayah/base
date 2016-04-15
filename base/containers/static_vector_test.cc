@@ -38,6 +38,21 @@ TEST(StaticVectorTest, basic)
     }
 }
 
+TEST(StaticVectorTest, rewrite)
+{
+    base::StaticVector<int, 10> st;
+    st.push_back(1);
+    st.push_back(2);
+    st.push_back(3);
+
+    st[0] = 10;
+
+    EXPECT_EQ(3UL, st.size());
+    EXPECT_EQ(10, st[0]);
+    EXPECT_EQ(2, st[1]);
+    EXPECT_EQ(3, st[2]);
+}
+
 TEST(StaticVectorTest, destructable)
 {
     EXPECT_EQ(0, Destructable::dtor_counter);
