@@ -1,10 +1,10 @@
-#include "base/containers/small_int_set.h"
+#include "base/containers/flag_set.h"
 
 #include <gtest/gtest.h>
 
-TEST(SmallIntSetTest, basic)
+TEST(FlagSetTest, basic)
 {
-    base::SmallIntSet s;
+    base::FlagSet s;
     EXPECT_TRUE(s.empty());
     EXPECT_EQ(0, s.size());
 

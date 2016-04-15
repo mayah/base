@@ -5,10 +5,10 @@ cc_library(
     ],
     hdrs = [
         "blocking_queue.h",
+        "flag_set.h",
         "flat_set.h",
         "reverse_range.h",
         "slice.h",
-        "small_int_set.h",
         "static_vector.h",
         "vectors.h",
         "vectors_io.h",
@@ -33,9 +33,9 @@ cc_test(
 )
 
 cc_test(
-    name = "containers_test",
+    name = "flag_set_test",
     srcs = [
-        "small_int_set_test.cc",
+        "flag_set_test.cc",
     ],
     deps = [
         ":containers",

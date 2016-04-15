@@ -1,13 +1,13 @@
-#ifndef BASE_CONTAINERS_SMALL_INT_SET_H_
-#define BASE_CONTAINERS_SMALL_INT_SET_H_
+#ifndef BASE_CONTAINERS_FLAG_SET_H_
+#define BASE_CONTAINERS_FLAG_SET_H_
 
 #include <cstdint>
 #include <glog/logging.h>
 
 namespace base {
 
-// SmallIntSet is an integer set that contains [0, 64).
-class SmallIntSet {
+// FlagSet is an integer set that contains [0, 64).
+class FlagSet {
 public:
     void set(int x)
     {
@@ -41,8 +41,8 @@ public:
         v_ = v_ & (v_ - 1);
     }
 
-    friend bool operator==(SmallIntSet lhs, SmallIntSet rhs) { return lhs.v_ == rhs.v_; }
-    friend bool operator!=(SmallIntSet lhs, SmallIntSet rhs) { return lhs.v_ != rhs.v_; }
+    friend bool operator==(FlagSet lhs, FlagSet rhs) { return lhs.v_ == rhs.v_; }
+    friend bool operator!=(FlagSet lhs, FlagSet rhs) { return lhs.v_ != rhs.v_; }
 
 private:
     std::uint64_t v_ = 0;
@@ -50,4 +50,4 @@ private:
 
 } // namespace base
 
-#endif // BASE_CONTAINERS_SMALL_INT_SET_H_
+#endif // BASE_CONTAINERS_FLAG_SET_H_
