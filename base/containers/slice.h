@@ -48,7 +48,7 @@ private:
 };
 
 template<typename T>
-inline const T&Slice<T>::get(size_t idx) const
+inline const T& Slice<T>::get(size_t idx) const
 {
     DCHECK_LT(idx, size());
     return ptr_[idx];

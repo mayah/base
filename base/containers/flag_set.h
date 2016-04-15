@@ -21,7 +21,7 @@ public:
         v_ &= ~(1ULL << x);
     }
 
-    bool isSet(int x) const
+    bool is_set(int x) const
     {
         DCHECK(0 <= x && x < 64) << x;
         return v_ & (1ULL << x);
