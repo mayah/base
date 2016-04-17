@@ -37,3 +37,15 @@ TEST(SymbolTest, ope)
 
     EXPECT_EQ("a", ss.str());
 }
+
+TEST(SymbolTest, map)
+{
+    strings::SymbolPool pool;
+    std::map<strings::Symbol, int> m;
+
+    m.emplace(pool.intern("a"), 1);
+    m.emplace(pool.intern("b"), 2);
+
+    EXPECT_EQ(1, m[pool.intern("a")]);
+    EXPECT_EQ(2, m[pool.intern("b")]);
+}

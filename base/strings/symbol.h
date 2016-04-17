@@ -18,6 +18,8 @@ public:
     friend bool operator==(const Symbol& lhs, const Symbol& rhs) { return lhs.impl_ == rhs.impl_; }
     friend bool operator!=(const Symbol& lhs, const Symbol& rhs) { return lhs.impl_ != rhs.impl_; }
 
+    friend bool operator<(const Symbol& lhs, const Symbol& rhs);
+
 private:
     friend class SymbolPool;
 
@@ -31,6 +33,17 @@ inline std::string Symbol::to_string() const
     if (impl_ == nullptr)
         return std::string();
     return *impl_;
+}
+
+inline bool operator<(const Symbol& lhs, const Symbol& rhs)
+{
+    if (lhs.impl() == rhs.impl())
+        return false;
+    if (lhs.impl() == nullptr)
+        return true;
+    if (rhs.impl() == nullptr)
+        return false;
+    return *lhs.impl() < *rhs.impl();
 }
 
 } // namespace strings
