@@ -25,7 +25,7 @@ public:
     // Inserts a new element. O(N)
     std::pair<iterator, bool> insert(const T& t);
 
-    // Finds an element. O(N log N)
+    // Finds an element. O(log N)
     iterator find(const T& t) const;
 
 private:
