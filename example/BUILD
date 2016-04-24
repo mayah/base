@@ -1,4 +1,14 @@
 cc_binary(
+    name = "blocking_queue",
+    srcs = [
+        "blocking_queue.cc"
+    ],
+    deps = [
+        "//base/containers"
+    ],
+)
+
+cc_binary(
     name = "copy_file",
     srcs = [
         "copy_file.cc"
