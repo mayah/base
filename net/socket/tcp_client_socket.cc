@@ -11,13 +11,19 @@
 
 namespace net {
 
-TCPClientSocket::TCPClientSocket(TCPClientSocket&& socket) :
+TCPClientSocket::TCPClientSocket(TCPClientSocket&& socket) noexcept :
     TCPSocket(std::move(socket))
 {
 }
 
 TCPClientSocket::~TCPClientSocket()
 {
+}
+
+TCPClientSocket& TCPClientSocket::operator=(TCPClientSocket&& socket) noexcept
+{
+    std::swap(sd_, socket.sd_);
+    return *this;
 }
 
 bool TCPClientSocket::connect(const char* host, int port)

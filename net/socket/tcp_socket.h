@@ -7,10 +7,13 @@ namespace net {
 
 class TCPSocket : public Socket {
 public:
-    TCPSocket(TCPSocket&& socket);
+    TCPSocket(TCPSocket&& socket) noexcept;
     ~TCPSocket() override;
 
+    TCPSocket& operator=(TCPSocket&& socket) noexcept;
+
     bool set_tcpnodelay();
+    bool set_reuseaddr();
 
 protected:
     explicit TCPSocket(SocketDescriptor sd) : Socket(sd) {}

@@ -11,13 +11,19 @@
 
 namespace net {
 
-TCPServerSocket::TCPServerSocket(TCPServerSocket&& socket) :
+TCPServerSocket::TCPServerSocket(TCPServerSocket&& socket) noexcept :
     TCPSocket(std::move(socket))
 {
 }
 
 TCPServerSocket::~TCPServerSocket()
 {
+}
+
+TCPServerSocket& TCPServerSocket::operator=(TCPServerSocket&& socket) noexcept
+{
+    std::swap(sd_, socket.sd_);
+    return *this;
 }
 
 bool TCPServerSocket::bind_from_any(int port)

@@ -11,7 +11,7 @@
 
 namespace net {
 
-Socket::Socket(Socket&& socket) :
+Socket::Socket(Socket&& socket) noexcept :
     sd_(socket.sd_)
 {
     socket.sd_ = INVALID_SOCKET;
@@ -22,9 +22,16 @@ Socket::~Socket()
     if (!valid())
         return;
 
+    LOG(INFO) << "closing socket=" << sd_;
     if (::close(sd_) < 0) {
         PLOG(ERROR) << "failed to close socket";
     }
+}
+
+Socket& Socket::operator=(Socket&& socket) noexcept
+{
+    std::swap(sd_, socket.sd_);
+    return *this;
 }
 
 bool Socket::close()

@@ -139,6 +139,9 @@ cc_binary(
     srcs = [
         "tcp_socket_server.cc"
     ],
+    linkopts = [
+        "-pthread",
+    ],
     deps = [
         "//net/socket",
         "//third_party:glog",

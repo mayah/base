@@ -11,11 +11,16 @@ namespace net {
 // fd will be closed when Socket is destructed.
 class Socket {
 public:
-    Socket(Socket&& socket);
+    Socket(Socket&& socket) noexcept;
     virtual ~Socket();
+
+    Socket& operator=(Socket&& socket) noexcept;
 
     bool valid() const { return sd_ != INVALID_SOCKET; }
     bool close();
+
+    // Returns
+    SocketDescriptor descriptor() const { return sd_; }
 
     // Reads to |buf|.
     ssize_t read(void* buf, size_t size);
