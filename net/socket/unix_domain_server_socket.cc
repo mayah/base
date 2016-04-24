@@ -7,13 +7,19 @@
 
 namespace net {
 
-UnixDomainServerSocket::UnixDomainServerSocket(UnixDomainServerSocket&& socket) :
+UnixDomainServerSocket::UnixDomainServerSocket(UnixDomainServerSocket&& socket) noexcept :
     Socket(std::move(socket))
 {
 }
 
 UnixDomainServerSocket::~UnixDomainServerSocket()
 {
+}
+
+UnixDomainServerSocket& UnixDomainServerSocket::operator=(UnixDomainServerSocket&& socket) noexcept
+{
+    std::swap(sd_, socket.sd_);
+    return *this;
 }
 
 bool UnixDomainServerSocket::bind(const char* path)

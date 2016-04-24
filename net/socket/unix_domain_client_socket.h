@@ -8,8 +8,10 @@ namespace net {
 
 class UnixDomainClientSocket : public Socket {
 public:
-    UnixDomainClientSocket(UnixDomainClientSocket&& socket);
+    UnixDomainClientSocket(UnixDomainClientSocket&& socket) noexcept;
     ~UnixDomainClientSocket() override;
+
+    UnixDomainClientSocket& operator=(UnixDomainClientSocket&& socket) noexcept;
 
     bool connect(const char* path);
 
