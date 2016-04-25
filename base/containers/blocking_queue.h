@@ -21,6 +21,8 @@ public:
     void push(const T& v);
     T take();
 
+    // Takes a value to |v| if queue is not empty.
+    // If empty, wait until |timeout| or for |d|.
     // Return true if succeeded, false if timeout.
     bool take_with_timeout(const std::chrono::system_clock::time_point& timeout, T* v);
     bool take_with_timeout(const std::chrono::seconds& d, T* v);
