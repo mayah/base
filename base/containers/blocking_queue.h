@@ -1,5 +1,5 @@
-#ifndef BASE_BLOCKING_QUEUE_H_
-#define BASE_BLOCKING_QUEUE_H_
+#ifndef BASE_CONTAINERS_BLOCKING_QUEUE_H_
+#define BASE_CONTAINERS_BLOCKING_QUEUE_H_
 
 #include <chrono>
 #include <condition_variable>
@@ -104,4 +104,4 @@ bool BlockingQueue<T>::take_with_timeout(const std::chrono::system_clock::time_p
 
 } // namespace base
 
-#endif // BASE_BLOCKING_QUEUE_H_
+#endif // BASE_CONTAINERS_BLOCKING_QUEUE_H_
