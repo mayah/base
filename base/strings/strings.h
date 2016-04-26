@@ -34,10 +34,7 @@ StringPiece trim_suffix(StringPiece s, StringPiece suffix);
 std::string remove(StringPiece s, char cut);
 
 // Converts ASCII equivalent lower case.
-char tolower_ascii(char c);
 std::string tolower_ascii(StringPiece s);
-
-char toupper_ascii(char c);
 std::string toupper_ascii(StringPiece s);
 
 } // namespace strings

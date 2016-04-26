@@ -125,24 +125,10 @@ TEST(StringsTest, remove)
 
 TEST(StringsTest, tolower_ascii)
 {
-    EXPECT_EQ('a', strings::tolower_ascii('A'));
-    EXPECT_EQ('a', strings::tolower_ascii('a'));
-    EXPECT_EQ('z', strings::tolower_ascii('Z'));
-    EXPECT_EQ('z', strings::tolower_ascii('z'));
-    EXPECT_EQ('0', strings::tolower_ascii('0'));
-    EXPECT_EQ('9', strings::tolower_ascii('9'));
-
     EXPECT_EQ("abcdefgh", strings::tolower_ascii("ABCDefgh"));
 }
 
 TEST(StringsTest, toupper_ascii)
 {
-    EXPECT_EQ('A', strings::toupper_ascii('A'));
-    EXPECT_EQ('A', strings::toupper_ascii('a'));
-    EXPECT_EQ('Z', strings::toupper_ascii('Z'));
-    EXPECT_EQ('Z', strings::toupper_ascii('z'));
-    EXPECT_EQ('0', strings::toupper_ascii('0'));
-    EXPECT_EQ('9', strings::toupper_ascii('9'));
-
     EXPECT_EQ("ABCDEFGH", strings::toupper_ascii("ABCDefgh"));
 }

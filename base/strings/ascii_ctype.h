@@ -6,6 +6,9 @@
 
 namespace strings {
 
+char tolower_ascii(char c);
+char toupper_ascii(char c);
+
 inline char isspace_ascii(char c)
 {
     switch (c) {

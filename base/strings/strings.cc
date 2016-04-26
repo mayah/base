@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "base/strings/ascii_ctype.h"
+
 using namespace std;
 
 namespace strings {
@@ -112,20 +114,6 @@ std::string remove(StringPiece s, char cut)
     }
 
     return result;
-}
-
-char tolower_ascii(char c)
-{
-    if (c < 'A' || 'Z' < c)
-        return c;
-    return c + 'a' - 'A';
-}
-
-char toupper_ascii(char c)
-{
-    if (c < 'a' || 'z' < c)
-        return c;
-    return c + 'A' - 'a';
 }
 
 std::string tolower_ascii(StringPiece s)
