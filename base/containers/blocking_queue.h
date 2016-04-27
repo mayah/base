@@ -24,7 +24,7 @@ public:
     // Takes a value to |v| if queue is not empty.
     // If empty, wait until |timeout| or for |d|.
     // Return true if succeeded, false if timeout.
-    bool take_with_timeout(const std::chrono::system_clock::time_point& timeout, T* v);
+    bool take_with_timeout(const std::chrono::steady_clock::time_point& timeout, T* v);
     bool take_with_timeout(const std::chrono::seconds& d, T* v);
 
 private:
@@ -84,12 +84,12 @@ T BlockingQueue<T>::take()
 template<typename T>
 bool BlockingQueue<T>::take_with_timeout(const std::chrono::seconds& d, T* v)
 {
-    auto timeout = std::chrono::system_clock::now() + d;
+    auto timeout = std::chrono::steady_clock::now() + d;
     return take_with_timeout(timeout, v);
 }
 
 template<typename T>
-bool BlockingQueue<T>::take_with_timeout(const std::chrono::system_clock::time_point& timeout, T* v)
+bool BlockingQueue<T>::take_with_timeout(const std::chrono::steady_clock::time_point& timeout, T* v)
 {
     std::unique_lock<std::mutex> lock(mu_);
     if (!take_cond_var_.wait_until(lock, timeout, [this]() { return !q_.empty(); })) {
