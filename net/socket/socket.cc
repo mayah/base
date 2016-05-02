@@ -60,8 +60,20 @@ bool Socket::read_exactly(void* buf, size_t size)
 {
     while (size > 0) {
         ssize_t s = read(buf, size);
-        if (s <= 0)
+        if (s <= 0) {
+            if (s == 0) {
+                PLOG(ERROR) << "unexpected EOF";
+                return false;
+            }
+
+            if (errno == EAGAIN) {
+                continue;
+            }
+
+            PLOG(ERROR) << "failed to read";
             return false;
+        }
+
         size -= s;
         buf = reinterpret_cast<char*>(buf) + s;
     }
@@ -78,8 +90,20 @@ bool Socket::write_exactly(const void* buf, size_t size)
 {
     while (size > 0) {
         ssize_t s = write(buf, size);
-        if (s <= 0)
+        if (s <= 0) {
+            if (s == 0) {
+                PLOG(ERROR) << "connection closed";
+                return false;
+            }
+
+            if (errno == EAGAIN) {
+                continue;
+            }
+
+            PLOG(ERROR) << "failed to write";
             return false;
+        }
+
         size -= s;
         buf = reinterpret_cast<const char*>(buf) + s;
     }
