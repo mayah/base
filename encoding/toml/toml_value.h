@@ -119,6 +119,10 @@ public:
     void write(std::ostream*, const std::string& keyPrefix = std::string()) const;
     friend std::ostream& operator<<(std::ostream&, const Value&);
 
+    Value& operator[](const std::string& key);
+    friend bool operator==(const Value& lhs, const Value& rhs);
+    friend bool operator!=(const Value& lhs, const Value& rhs) { return !(lhs == rhs); }
+
 private:
     static const char* type_to_string(Type);
 

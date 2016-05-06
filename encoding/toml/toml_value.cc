@@ -248,6 +248,45 @@ std::ostream& operator<<(std::ostream& os, const toml::Value& v)
     return os;
 }
 
+bool operator==(const Value& lhs, const Value& rhs)
+{
+    if (lhs.type() != rhs.type())
+        return false;
+
+    switch (lhs.type()) {
+    case Value::Type::NULL_TYPE:
+        return true;
+    case Value::Type::BOOL_TYPE:
+        return lhs.bool_ == rhs.bool_;
+    case Value::Type::INT_TYPE:
+        return lhs.int_ == rhs.int_;
+    case Value::Type::DOUBLE_TYPE:
+        return lhs.double_ == rhs.double_;
+    case Value::Type::STRING_TYPE:
+        return *lhs.string_ == *rhs.string_;
+    case Value::Type::TIME_TYPE:
+        return *lhs.time_ == *rhs.time_;
+    case Value::Type::ARRAY_TYPE:
+        return *lhs.array_ == *rhs.array_;
+    case Value::Type::TABLE_TYPE:
+        return *lhs.table_ == *rhs.table_;
+    default:
+        CHECK(false) << "Unknown type";
+        return false;
+    }
+}
+
+Value& Value::operator[](const std::string& key)
+{
+    if (!valid())
+        *this = Value((Table()));
+
+    if (Value* v = find_child(key))
+        return *v;
+
+    return *set_child(key, Value());
+}
+
 const Value* Value::find(const std::string& key) const
 {
     if (!is<Table>())
