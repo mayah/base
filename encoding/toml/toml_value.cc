@@ -362,6 +362,17 @@ Value* Value::set_child(const std::string& key, const Value& v)
     return &(*table_)[key];
 }
 
+Value* Value::set_child(const std::string& key, Value&& v)
+{
+    if (!valid())
+        *this = Value((Table()));
+
+    CHECK(is<Table>()) << "type must be table to do set(key, v).";
+
+    (*table_)[key] = std::move(v);
+    return &(*table_)[key];
+}
+
 bool Value::erase(const std::string& key)
 {
     if (!is<Table>())
@@ -419,6 +430,16 @@ Value* Value::push(const Value& v)
     CHECK(is<Array>()) << "type must be array to do push(Value).";
 
     array_->push_back(v);
+    return &array_->back();
+}
+
+Value* Value::push(Value&& v)
+{
+    if (!valid())
+        *this = Value((Array()));
+
+    CHECK(is<Array>()) << "type must be array to do push(Value)";
+    array_->push_back(std::move(v));
     return &array_->back();
 }
 

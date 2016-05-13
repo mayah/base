@@ -107,6 +107,7 @@ public:
     Value* find_child(const std::string& key);
     const Value* find_child(const std::string& key) const;
     Value* set_child(const std::string& key, const Value& v);
+    Value* set_child(const std::string& key, Value&& v);
     bool erase_child(const std::string& key);
 
     // For array value
@@ -114,6 +115,7 @@ public:
     const Value* find(size_t index) const;
     Value* find(size_t index);
     Value* push(const Value& v);
+    Value* push(Value&& v);
 
     // Writer.
     void write(std::ostream*, const std::string& keyPrefix = std::string()) const;
