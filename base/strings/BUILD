@@ -35,7 +35,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ]
 )
 
@@ -47,7 +47,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -59,7 +59,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -71,7 +71,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -83,7 +83,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -95,7 +95,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -107,7 +107,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -119,7 +119,7 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -131,6 +131,6 @@ cc_test(
     deps = [
         ":strings",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )

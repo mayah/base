@@ -39,7 +39,7 @@ cc_test(
         ":hex",
         "//base",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -52,6 +52,6 @@ cc_test(
         ":base64",
         "//base",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )

@@ -26,6 +26,6 @@ cc_test(
     deps = [
         ":time",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )

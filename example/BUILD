@@ -46,7 +46,7 @@ cc_binary(
     deps = [
         "//base/file",
         "//base/strings",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -57,7 +57,7 @@ cc_binary(
     ],
     deps = [
         "//base/file",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -78,7 +78,7 @@ cc_binary(
     ],
     deps = [
         "//base/file",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -89,7 +89,7 @@ cc_binary(
     ],
     deps = [
         "//base/file",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -101,7 +101,7 @@ cc_binary(
     deps = [
         "//base/time",
         "//net/socket",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -112,7 +112,7 @@ cc_binary(
     ],
     deps = [
         "//net/socket",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -128,7 +128,7 @@ cc_binary(
         "//base/concurrent",
         "//base/strings",
         "//net/socket",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -140,7 +140,7 @@ cc_binary(
     deps = [
         "//base/time",
         "//net/socket",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -154,7 +154,7 @@ cc_binary(
     ],
     deps = [
         "//net/socket",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -166,6 +166,6 @@ cc_binary(
     deps = [
         "//base/file",
         "//base/strings",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )

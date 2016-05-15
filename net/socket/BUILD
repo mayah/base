@@ -26,6 +26,6 @@ cc_library(
     ],
     deps = [
         "//base",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )

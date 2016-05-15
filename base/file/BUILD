@@ -20,7 +20,7 @@ cc_library(
     deps = [
         "//base",
         "//base/strings",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -32,6 +32,6 @@ cc_test(
     deps = [
         ":file",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )

@@ -22,7 +22,7 @@ cc_test(
     deps = [
         ":base",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -34,7 +34,7 @@ cc_test(
     deps = [
         ":base",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
 
@@ -46,6 +46,6 @@ cc_test(
     deps = [
         ":base",
         "//external:gtest",
-        "//third_party:glog",
+        "//third_party/glog",
     ],
 )
