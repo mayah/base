@@ -1,5 +1,24 @@
 cc_library(
     name = "glog",
+    hdrs = [
+        "glog/logging.h",
+        "glog/log_severity.h",
+        "glog/raw_logging.h",
+        "glog/stl_logging.h",
+        "glog/vlog_is_on.h",
+    ],
+    deps = [
+        ":glog_internal",
+    ],
+    linkopts = [
+        "-pthread"
+    ],
+    visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_library(
+    name = "glog_internal",
     srcs = [
         "demangle.cc",
         "logging.cc",
@@ -26,7 +45,6 @@ cc_library(
     linkopts = [
         "-pthread"
     ],
-    visibility = ["//visibility:public"],
     includes = ["."],
     licenses = ["notice"],
 )
