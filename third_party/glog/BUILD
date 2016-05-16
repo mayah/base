@@ -20,6 +20,7 @@ cc_library(
         "glog/vlog_is_on.h",
     ],
     deps = [
+        "//base",
         "//third_party:gflags",
     ],
     linkopts = [

@@ -1,3 +1,5 @@
+#include "base/build_config.h"
+
 /* src/config.h.  Generated from config.h.in by configure.  */
 /* src/config.h.in.  Generated from configure.ac by autoheader.  */
 
@@ -8,7 +10,9 @@
 #define GOOGLE_NAMESPACE google
 
 /* Define if you have the `dladdr' function */
-/* #undef HAVE_DLADDR */
+#if OS_MACOSX
+# define HAVE_DLADDR 1
+#endif
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
@@ -83,7 +87,9 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the <syscall.h> header file. */
-#define HAVE_SYSCALL_H 1
+#if OS_LINUX
+# define HAVE_SYSCALL_H 1
+#endif
 
 /* Define to 1 if you have the <syslog.h> header file. */
 #define HAVE_SYSLOG_H 1
@@ -107,7 +113,9 @@
 #define HAVE_SYS_UTSNAME_H 1
 
 /* Define to 1 if you have the <ucontext.h> header file. */
-#define HAVE_UCONTEXT_H 1
+#if OS_LINUX
+# define HAVE_UCONTEXT_H 1
+#endif
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
@@ -153,7 +161,11 @@
 #define PACKAGE_VERSION "0.3.4"
 
 /* How to access the PC from a struct ucontext */
-#define PC_FROM_UCONTEXT uc_mcontext.gregs[REG_RIP]
+#if OS_LINUX
+# define PC_FROM_UCONTEXT uc_mcontext.gregs[REG_RIP]
+#elif OS_MACOSX
+# define PC_FROM_UCONTEXT uc_mcontext->__ss.__rip
+#endif
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
