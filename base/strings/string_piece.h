@@ -5,7 +5,7 @@
 #include <ostream>
 #include <string>
 
-#include <glog/logging.h>
+#include "third_party/glog/glog/logging.h"
 
 namespace strings {
 

@@ -1,7 +1,7 @@
 #include "base/concurrent/executor.h"
 
 #include <gflags/gflags.h>
-#include <glog/logging.h>
+#include "third_party/glog/glog/logging.h"
 
 DEFINE_int32(num_threads, 1, "The default number of threads");
 

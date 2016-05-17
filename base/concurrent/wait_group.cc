@@ -1,6 +1,6 @@
 #include "base/concurrent/wait_group.h"
 
-#include <glog/logging.h>
+#include "third_party/glog/glog/logging.h"
 
 using namespace std;
 

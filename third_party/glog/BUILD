@@ -1,4 +1,4 @@
-cc_inc_library(
+cc_library(
     name = "glog",
     hdrs = [
         "glog/logging.h",
@@ -8,6 +8,7 @@ cc_inc_library(
         "glog/vlog_is_on.h",
     ],
     deps = [":glog_impl"],
+    includes = ["."],
     visibility = ["//visibility:public"],
     licenses = ["notice"],
 )
@@ -15,24 +16,15 @@ cc_inc_library(
 cc_library(
     name = "glog_impl",
     srcs = [
-        "demangle.cc",
-        "logging.cc",
-        "raw_logging.cc",
-        "signalhandler.cc",
-        "symbolize.cc",
-        "utilities.cc",
-        "vlog_is_on.cc",
+        "impl/demangle.cc",
+        "impl/logging.cc",
+        "impl/raw_logging.cc",
+        "impl/signalhandler.cc",
+        "impl/symbolize.cc",
+        "impl/utilities.cc",
+        "impl/vlog_is_on.cc",
     ],
-    hdrs = glob(["*.h"]) + [
-        "base/commandlineflags.h",
-        "base/googleinit.h",
-        "base/mutex.h",
-        "glog/logging.h",
-        "glog/log_severity.h",
-        "glog/raw_logging.h",
-        "glog/stl_logging.h",
-        "glog/vlog_is_on.h",
-    ],
+    hdrs = glob(["impl/*.h", "impl/base/*.h", "glog/*.h"]),
     deps = [
         "//base",
         "//third_party:gflags",

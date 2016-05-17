@@ -25,6 +25,9 @@ cc_library(
     visibility = [
         "//visibility:public",
     ],
+    deps = [
+        "//third_party/glog",
+    ]
 )
 
 cc_test(
