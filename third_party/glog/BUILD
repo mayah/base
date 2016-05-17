@@ -13,6 +13,9 @@ cc_library(
     linkopts = [
         "-pthread"
     ],
+    includes = [
+        "."
+    ],
     visibility = ["//visibility:public"],
     licenses = ["notice"],
 )
@@ -28,7 +31,19 @@ cc_library(
         "utilities.cc",
         "vlog_is_on.cc",
     ],
-    hdrs = glob(["*.h"]) + [
+    hdrs = [
+        "config.h",
+        "demangle.h",
+        "googletest.h",
+        "mock-log.h",
+        "stacktrace.h",
+        "stacktrace_generic-inl.h",
+        "stacktrace_libunwind-inl.h",
+        "stacktrace_powerpc-inl.h",
+        "stacktrace_x86-inl.h",
+        "stacktrace_x86_64-inl.h",
+        "symbolize.h",
+        "utilities.h",
         "base/commandlineflags.h",
         "base/googleinit.h",
         "base/mutex.h",
@@ -45,6 +60,8 @@ cc_library(
     linkopts = [
         "-pthread"
     ],
-    includes = ["."],
+    copts = [
+        "-Ithird_party/glog"
+    ],
     licenses = ["notice"],
 )

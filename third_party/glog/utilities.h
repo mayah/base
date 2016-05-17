@@ -34,6 +34,9 @@
 #ifndef UTILITIES_H__
 #define UTILITIES_H__
 
+#include "base/build_config.h"
+
+#if 0
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
 # define OS_WINDOWS
 #elif defined(__CYGWIN__) || defined(__CYGWIN32__)
@@ -50,6 +53,7 @@
 # define OS_OPENBSD
 #else
 // TODO(hamaji): Add other platforms.
+#endif
 #endif
 
 // printf macros for size_t, in the style of inttypes.h
