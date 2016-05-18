@@ -2,10 +2,9 @@
 #include <thread>
 #include <vector>
 
-#include <glog/logging.h>
-
 #include "net/socket/socket_factory.h"
 #include "net/socket/tcp_server_socket.h"
+#include "third_party/glog/glog/logging.h"
 
 class Task {
 public:

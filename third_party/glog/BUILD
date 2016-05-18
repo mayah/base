@@ -8,7 +8,6 @@ cc_library(
         "glog/vlog_is_on.h",
     ],
     deps = [":glog_impl"],
-    includes = ["."],
     visibility = ["//visibility:public"],
     licenses = ["notice"],
 )

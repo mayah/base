@@ -1,6 +1,6 @@
 #include "encoding/hex.h"
 
-#include <glog/logging.h>
+#include "third_party/glog/glog/logging.h"
 
 namespace encoding {
 namespace hex {

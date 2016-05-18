@@ -1,7 +1,8 @@
 #include "encoding/base64.h"
 
 #include <cstdint>
-#include <glog/logging.h>
+
+#include "third_party/glog/glog/logging.h"
 
 namespace encoding {
 namespace base64 {

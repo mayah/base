@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <new>
 
-#include <glog/logging.h>
+#include "third_party/glog/glog/logging.h"
 
 namespace base {
 

@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
-#include "glog/logging.h"
+#include "third_party/glog/glog/logging.h"
 
 namespace net {
 

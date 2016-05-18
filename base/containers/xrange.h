@@ -1,7 +1,7 @@
 #ifndef BASE_CONTAINERS_XRANGE_H_
 #define BASE_CONTAINERS_XRANGE_H_
 
-#include <glog/logging.h>
+#include "third_party/glog/glog/logging.h"
 
 namespace base {
 

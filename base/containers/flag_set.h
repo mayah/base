@@ -2,7 +2,8 @@
 #define BASE_CONTAINERS_FLAG_SET_H_
 
 #include <cstdint>
-#include <glog/logging.h>
+
+#include "third_party/glog/glog/logging.h"
 
 namespace base {
 

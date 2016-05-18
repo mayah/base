@@ -6,9 +6,8 @@
 #include <string>
 #include <vector>
 
-#include <glog/logging.h>
-
 #include "encoding/toml/toml_util.h"
+#include "third_party/glog/glog/logging.h"
 
 namespace toml {
 

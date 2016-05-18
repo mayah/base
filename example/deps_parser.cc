@@ -2,10 +2,9 @@
 #include <string>
 #include <vector>
 
-#include <glog/logging.h>
-
 #include "base/strings/strings.h"
 #include "base/file/file.h"
+#include "third_party/glog/glog/logging.h"
 
 using namespace std;
 

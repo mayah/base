@@ -1,12 +1,9 @@
 #include "base/file/scoped_temp_file.h"
 
 #include <stdlib.h>
-#include <glog/logging.h>
 
 #include "base/file/path.h"
-
-#include <iostream>
-using namespace std;
+#include "third_party/glog/glog/logging.h"
 
 namespace file {
 

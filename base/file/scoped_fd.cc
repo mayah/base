@@ -1,10 +1,11 @@
 #include "base/file/scoped_fd.h"
 
 #include <fcntl.h>
-#include <glog/logging.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+
+#include "third_party/glog/glog/logging.h"
 
 namespace file {
 

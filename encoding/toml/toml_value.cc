@@ -1,8 +1,7 @@
 #include "encoding/toml/toml_value.h"
 
-#include <glog/logging.h>
-
 #include "encoding/toml/toml_lexer.h"
+#include "third_party/glog/glog/logging.h"
 
 namespace toml {
 
