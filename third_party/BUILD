@@ -1,9 +1,13 @@
 cc_library(
     name = "gflags",
-    linkopts = [
-        "-lgflags",
-    ],
+    linkopts = select({
+        "//config:darwin": ["-headerpad_max_install_names"],
+        "//conditions:default": [],
+    }),
     visibility = [
         "//visibility:public",
+    ],
+    deps = [
+        "//external:gflags",
     ],
 )
