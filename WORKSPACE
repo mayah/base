@@ -1,3 +1,14 @@
+git_repository(
+    name = "gflags_repo",
+    remote = "https://github.com/gflags/gflags.git",
+    commit = "d701ceac73be2c43b6e7b97474184e626fded88b",
+)
+
+bind(
+    name = "gflags",
+    actual = "@gflags_repo//:gflags",
+)
+
 new_git_repository(
     name = "gtest_repo",
     build_file = "third_party/gtest.BUILD",

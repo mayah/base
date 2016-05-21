@@ -30,7 +30,11 @@ cc_library(
     ],
     linkopts = [
         "-pthread"
-    ],
+    ] + select({
+        "//config:linux_x64": ["-lunwind"],
+        "//config:linux_x86": ["-lunwind"],
+        "//conditions:default": [],
+    }),
     copts = [
         "-Ithird_party/glog"
     ],
