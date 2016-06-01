@@ -27,6 +27,7 @@ cc_test(
     deps = [
         ":containers",
         "//base/concurrent",
+        "//base/test:move_only",
         "//external:gtest",
         "//third_party/glog",
     ],

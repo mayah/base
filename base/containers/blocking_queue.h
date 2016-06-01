@@ -19,6 +19,7 @@ public:
     size_t capacity() const { return capacity_; }
 
     void push(const T& v);
+    void push(T&& v);
     T take();
 
     // Takes a value to |v| if queue is not empty.
@@ -64,6 +65,18 @@ void BlockingQueue<T>::push(const T& v)
     }
 
     q_.push(v);
+    take_cond_var_.notify_one();
+}
+
+template<typename T>
+void BlockingQueue<T>::push(T&& v)
+{
+    std::unique_lock<std::mutex> lock(mu_);
+    while (capacity_ <= q_.size()) {
+        push_cond_var_.wait(lock);
+    }
+
+    q_.push(std::forward<T>(v));
     take_cond_var_.notify_one();
 }
 

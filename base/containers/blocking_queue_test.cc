@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 
 #include "base/concurrent/wait_group.h"
+#include "base/test/move_only.h"
 
 TEST(BlockingQueue, basic)
 {
@@ -32,6 +33,19 @@ TEST(BlockingQueue, basic)
     EXPECT_EQ(10U, q.capacity());
     EXPECT_EQ(0U, q.size());
     EXPECT_EQ(10U, q.available());
+}
+
+TEST(BlockingQueue, move_only)
+{
+    base::BlockingQueue<base::MoveOnlyInt> q(10);
+    q.push(base::MoveOnlyInt(0));
+    q.push(base::MoveOnlyInt(1));
+    q.push(base::MoveOnlyInt(2));
+
+    base::MoveOnlyInt v1 = q.take();
+    EXPECT_EQ(0, v1.get());
+
+    EXPECT_EQ(2U, q.size());
 }
 
 TEST(BlockingQueue, producer_consumer)
