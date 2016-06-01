@@ -98,7 +98,7 @@ cc_test(
 cc_test(
     name = "vectors_test",
     srcs = [
-        "vectors_test.cc"
+        "vectors_test.cc",
     ],
     deps = [
         ":containers",
@@ -110,7 +110,7 @@ cc_test(
 cc_test(
     name = "vectors_io_test",
     srcs = [
-        "vectors_io_test.cc"
+        "vectors_io_test.cc",
     ],
     deps = [
         ":containers",
@@ -122,7 +122,7 @@ cc_test(
 cc_test(
     name = "xrange_test",
     srcs = [
-        "xrange_test.cc"
+        "xrange_test.cc",
     ],
     deps = [
         ":containers",
