@@ -7,6 +7,7 @@ cc_library(
         "blocking_queue.h",
         "flag_set.h",
         "flat_set.h",
+        "matrix.h",
         "reverse_range.h",
         "slice.h",
         "static_vector.h",
@@ -49,6 +50,18 @@ cc_test(
     name = "flat_set_test",
     srcs = [
         "flat_set_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//external:gtest",
+        "//third_party/glog",
+    ],
+)
+
+cc_test(
+    name = "matrix_test",
+    srcs = [
+        "matrix_test.cc",
     ],
     deps = [
         ":containers",
