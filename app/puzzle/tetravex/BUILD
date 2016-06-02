@@ -1,4 +1,9 @@
 cc_binary(
     name = "tetravex",
-    srcs = ["tetravex.cc"],
+    srcs = [
+        "tetravex.cc",
+    ],
+    deps = [
+        "//base/containers",
+    ],
 )

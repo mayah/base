@@ -2,6 +2,8 @@
 #include <sstream>
 #include <vector>
 
+#include "base/containers/matrix.h"
+
 // Caution:
 // The order of input is north, west, east, south.
 // However the output if north, east, south, west.
@@ -41,7 +43,7 @@ private:
 };
 
 bool iter(const std::vector<Tetra>& tetras, int N,
-          int pos, std::vector<std::vector<Tetra>>* field, std::vector<int>* used)
+          int pos, base::Matrix<Tetra>* field, std::vector<int>* used)
 {
     if (pos == N * N)
         return true;
@@ -52,18 +54,17 @@ bool iter(const std::vector<Tetra>& tetras, int N,
     for (int i = 0; i < N * N; ++i) {
         if ((*used)[i])
             continue;
-        if (x != 0 && tetras[i].west()  != (*field)[y][x - 1].east())
+        if (x != 0 && tetras[i].west()  != (*field)(y, x - 1).east())
             continue;
-        if (y != 0 && tetras[i].north() != (*field)[y - 1][x].south())
+        if (y != 0 && tetras[i].north() != (*field)(y - 1, x).south())
             continue;
 
         (*used)[i] = true;
-        (*field)[y][x] = tetras[i];
+        (*field)(y, x) = tetras[i];
         // cout << pos << " ";
         // tetras[i].print();
         if (iter(tetras, N, pos + 1, field, used)) { return true; }
         (*used)[i] = false;
-
     }
 
     return false;
@@ -71,7 +72,7 @@ bool iter(const std::vector<Tetra>& tetras, int N,
 
 void solve(const std::vector<Tetra>& tetras, int N)
 {
-    std::vector<std::vector<Tetra> > field(N, std::vector<Tetra>(N));
+    base::Matrix<Tetra> field(N, N);
     std::vector<int> used(N * N);
 
     if (!iter(tetras, N, 0, &field, &used)) {
@@ -81,7 +82,7 @@ void solve(const std::vector<Tetra>& tetras, int N)
 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
-            std::cout << field[i][j].to_string() << std::endl;
+            std::cout << field(i, j).to_string() << std::endl;
         }
         std::cout << std::endl;
     }
