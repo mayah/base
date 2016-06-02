@@ -4,6 +4,7 @@ cc_library(
         "vectors.cc",
     ],
     hdrs = [
+        "assoc_map.h",
         "blocking_queue.h",
         "flag_set.h",
         "flat_set.h",
@@ -17,6 +18,18 @@ cc_library(
     ],
     visibility = [
         "//visibility:public",
+    ],
+)
+
+cc_test(
+    name = "assoc_map_test",
+    srcs = [
+        "assoc_map_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//external:gtest",
+        "//third_party/glog",
     ],
 )
 
