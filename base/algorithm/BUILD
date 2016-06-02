@@ -1,9 +1,9 @@
 cc_library(
     name = "algorithm",
     hdrs = [
-        "fold.h"
+        "fold.h",
     ],
-    visibility = [ "//visibility:public" ],
+    visibility = ["//visibility:public"],
 )
 
 cc_test(

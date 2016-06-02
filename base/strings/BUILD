@@ -3,9 +3,9 @@ cc_library(
     srcs = [
         "ascii_ctype.cc",
         "replace_string.cc",
+        "split.cc",
         "string_piece.cc",
         "strings.cc",
-        "split.cc",
         "symbol.cc",
         "symbol_pool.cc",
         "utf8.cc",
@@ -15,9 +15,9 @@ cc_library(
         "concat.h",
         "join.h",
         "replace_string.h",
+        "split.h",
         "string_piece.h",
         "strings.h",
-        "split.h",
         "symbol.h",
         "symbol_pool.h",
         "utf8.h",
@@ -27,7 +27,7 @@ cc_library(
     ],
     deps = [
         "//third_party/glog",
-    ]
+    ],
 )
 
 cc_test(
@@ -39,7 +39,7 @@ cc_test(
         ":strings",
         "//external:gtest",
         "//third_party/glog",
-    ]
+    ],
 )
 
 cc_test(
@@ -129,7 +129,7 @@ cc_test(
 cc_test(
     name = "utf8_test",
     srcs = [
-        "utf8_test.cc"
+        "utf8_test.cc",
     ],
     deps = [
         ":strings",

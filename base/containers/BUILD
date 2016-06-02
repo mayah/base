@@ -104,7 +104,7 @@ cc_test(
     deps = [
         ":containers",
         "//external:gtest",
-        "//third_party/glog"
+        "//third_party/glog",
     ],
 )
 
@@ -116,7 +116,7 @@ cc_test(
     deps = [
         ":containers",
         "//external:gtest",
-        "//third_party/glog"
+        "//third_party/glog",
     ],
 )
 
@@ -128,6 +128,6 @@ cc_test(
     deps = [
         ":containers",
         "//external:gtest",
-        "//third_party/glog"
+        "//third_party/glog",
     ],
 )

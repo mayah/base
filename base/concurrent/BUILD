@@ -6,7 +6,7 @@ cc_library(
     ],
     hdrs = [
         "executor.h",
-        "wait_group.h"
+        "wait_group.h",
     ],
     visibility = [
         "//visibility:public",
