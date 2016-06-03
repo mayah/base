@@ -1,10 +1,12 @@
 cc_library(
     name = "containers",
     srcs = [
+        "byte_buffer.cc",
         "vectors.cc",
     ],
     hdrs = [
         "assoc_map.h",
+        "byte_buffer.h",
         "blocking_queue.h",
         "flag_set.h",
         "flat_set.h",
@@ -42,6 +44,18 @@ cc_test(
         ":containers",
         "//base/concurrent",
         "//base/test:move_only",
+        "//external:gtest",
+        "//third_party/glog",
+    ],
+)
+
+cc_test(
+    name = "byte_buffer_test",
+    srcs = [
+        "byte_buffer_test.cc",
+    ],
+    deps = [
+        ":containers",
         "//external:gtest",
         "//third_party/glog",
     ],
