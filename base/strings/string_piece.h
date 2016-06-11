@@ -63,7 +63,7 @@ public:
 
     char get(size_t i) const
     {
-        DCHECK_LE(0, i);
+        DCHECK_LE(0U, i);
         DCHECK_LT(i, length_);
         return ptr_[i];
     }
