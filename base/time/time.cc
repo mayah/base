@@ -1,6 +1,7 @@
 #include "base/time/time.h"
 
 #include <string.h>
+#include <time.h>
 
 namespace base {
 
@@ -16,6 +17,12 @@ std::string Time::to_localtime_string() const
         return std::string();
 
     return std::string(buf, buf + (len - 1));
+}
+
+bool Time::to_tm(std::tm* stm) const
+{
+    time_t tt = to_time_t();
+    return gmtime_r(&tt, stm) != nullptr;
 }
 
 }

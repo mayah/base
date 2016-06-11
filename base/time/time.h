@@ -13,8 +13,9 @@ public:
 
     const std::chrono::system_clock::time_point& time_point() const { return tp_; }
     time_t to_time_t() const { return std::chrono::system_clock::to_time_t(tp_); }
-
     std::string to_localtime_string() const;
+
+    bool to_tm(std::tm*) const;
 
 private:
     std::chrono::system_clock::time_point tp_;
