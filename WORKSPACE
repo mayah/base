@@ -13,5 +13,5 @@ new_git_repository(
     name = "gtest_repo",
     build_file = "third_party/gtest/gtest.BUILD",
     remote = "https://github.com/google/googletest.git",
-    commit = "13206d6f53aaff844f2d3595a01ac83a29e383db",
+    commit = "0a439623f75c029912728d80cb7f1b8b48739ca4",
 )
