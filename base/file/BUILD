@@ -31,7 +31,7 @@ cc_test(
     ],
     deps = [
         ":file",
-        "//external:gtest",
         "//third_party/glog",
+        "//third_party/gtest",
     ],
 )

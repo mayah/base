@@ -17,6 +17,6 @@ cc_test(
     ],
     deps = [
         ":move_only",
-        "//external:gtest",
+        "//third_party/gtest",
     ],
 )

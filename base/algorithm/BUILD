@@ -13,7 +13,7 @@ cc_test(
     ],
     deps = [
         ":algorithm",
-        "//external:gtest",
         "//third_party/glog",
+        "//third_party/gtest",
     ],
 )

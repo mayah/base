@@ -30,7 +30,7 @@ cc_test(
     ],
     deps = [
         ":toml",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -42,7 +42,7 @@ cc_test(
     ],
     deps = [
         ":toml",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -54,7 +54,7 @@ cc_test(
     ],
     deps = [
         ":toml",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )

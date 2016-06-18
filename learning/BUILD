@@ -44,7 +44,7 @@ cc_test(
     ],
     deps = [
         ":multi_layer_perceptron",
-        "//external:gtest",
+        "//third_party/gtest",
     ],
 )
 
@@ -55,6 +55,6 @@ cc_test(
     ],
     deps = [
         ":arow",
-        "//external:gtest",
+        "//third_party/gtest",
     ],
 )

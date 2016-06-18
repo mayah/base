@@ -18,7 +18,7 @@ cc_test(
     ],
     deps = [
         ":union_find",
-        "//external:gtest",
         "//third_party/glog",
+        "//third_party/gtest",
     ],
 )

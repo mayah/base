@@ -38,7 +38,7 @@ cc_test(
     deps = [
         ":hex",
         "//base",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -51,7 +51,7 @@ cc_test(
     deps = [
         ":base64",
         "//base",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )

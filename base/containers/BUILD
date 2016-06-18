@@ -30,7 +30,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -44,7 +44,7 @@ cc_test(
         ":containers",
         "//base/concurrent",
         "//base/test:move_only",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -56,7 +56,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -68,7 +68,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -80,7 +80,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -92,7 +92,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -105,7 +105,7 @@ cc_test(
     deps = [
         ":containers",
         "//base",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -118,7 +118,7 @@ cc_test(
     deps = [
         ":containers",
         "//base",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -131,7 +131,7 @@ cc_test(
     deps = [
         ":containers",
         "//base",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -143,7 +143,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -155,7 +155,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
@@ -167,7 +167,7 @@ cc_test(
     ],
     deps = [
         ":containers",
-        "//external:gtest",
+        "//third_party/gtest",
         "//third_party/glog",
     ],
 )
