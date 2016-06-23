@@ -14,6 +14,7 @@ cc_library(
         "linked_map.h",
         "matrix.h",
         "reverse_range.h",
+        "ring_buffer.h",
         "slice.h",
         "static_vector.h",
         "vectors.h",
@@ -164,6 +165,20 @@ cc_test(
     size = "small",
     srcs = [
         "reverse_range_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//base",
+        "//third_party/gtest",
+        "//third_party/glog",
+    ],
+)
+
+cc_test(
+    name = "ring_buffer_test",
+    size = "small",
+    srcs = [
+        "ring_buffer_test.cc",
     ],
     deps = [
         ":containers",
