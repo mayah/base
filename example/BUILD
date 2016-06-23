@@ -1,47 +1,47 @@
 cc_binary(
     name = "blocking_queue",
     srcs = [
-        "blocking_queue.cc"
+        "blocking_queue.cc",
     ],
     deps = [
-        "//base/containers"
+        "//base/containers",
     ],
 )
 
 cc_binary(
     name = "copy_file",
     srcs = [
-        "copy_file.cc"
+        "copy_file.cc",
     ],
     deps = [
-        "//base/file"
+        "//base/file",
     ],
 )
 
 cc_binary(
     name = "read_file",
     srcs = [
-        "read_file.cc"
+        "read_file.cc",
     ],
     deps = [
-        "//base/file"
+        "//base/file",
     ],
 )
 
 cc_binary(
     name = "write_file",
     srcs = [
-        "write_file.cc"
+        "write_file.cc",
     ],
     deps = [
-        "//base/file"
+        "//base/file",
     ],
 )
 
 cc_binary(
     name = "rm_tree",
     srcs = [
-        "rm_tree.cc"
+        "rm_tree.cc",
     ],
     deps = [
         "//base/file",
@@ -74,7 +74,7 @@ cc_binary(
 cc_binary(
     name = "scoped_temp_dir",
     srcs = [
-        "scoped_temp_dir.cc"
+        "scoped_temp_dir.cc",
     ],
     deps = [
         "//base/file",
@@ -85,7 +85,7 @@ cc_binary(
 cc_binary(
     name = "scoped_temp_file",
     srcs = [
-        "scoped_temp_file.cc"
+        "scoped_temp_file.cc",
     ],
     deps = [
         "//base/file",
@@ -96,7 +96,7 @@ cc_binary(
 cc_binary(
     name = "unix_domain_socket_client",
     srcs = [
-        "unix_domain_socket_client.cc"
+        "unix_domain_socket_client.cc",
     ],
     deps = [
         "//base/time",
@@ -108,7 +108,7 @@ cc_binary(
 cc_binary(
     name = "unix_domain_socket_server",
     srcs = [
-        "unix_domain_socket_server.cc"
+        "unix_domain_socket_server.cc",
     ],
     deps = [
         "//net/socket",
@@ -119,7 +119,7 @@ cc_binary(
 cc_binary(
     name = "unix_domain_socket_experimental",
     srcs = [
-        "unix_domain_socket_experimental.cc"
+        "unix_domain_socket_experimental.cc",
     ],
     linkopts = [
         "-pthread",
@@ -135,7 +135,7 @@ cc_binary(
 cc_binary(
     name = "tcp_socket_client",
     srcs = [
-        "tcp_socket_client.cc"
+        "tcp_socket_client.cc",
     ],
     deps = [
         "//base/time",
@@ -147,7 +147,7 @@ cc_binary(
 cc_binary(
     name = "tcp_socket_server",
     srcs = [
-        "tcp_socket_server.cc"
+        "tcp_socket_server.cc",
     ],
     linkopts = [
         "-pthread",
