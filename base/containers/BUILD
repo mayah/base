@@ -10,6 +10,7 @@ cc_library(
         "byte_buffer.h",
         "flag_set.h",
         "flat_set.h",
+        "linked_map.h",
         "matrix.h",
         "reverse_range.h",
         "slice.h",
@@ -82,6 +83,19 @@ cc_test(
     size = "small",
     srcs = [
         "flat_set_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//third_party/gtest",
+        "//third_party/glog",
+    ],
+)
+
+cc_test(
+    name = "linked_map_test",
+    size = "small",
+    srcs = [
+        "linked_map_test.cc",
     ],
     deps = [
         ":containers",
