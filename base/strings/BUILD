@@ -32,6 +32,7 @@ cc_library(
 
 cc_test(
     name = "ascii_ctype_test",
+    size = "small",
     srcs = [
         "ascii_ctype_test.cc",
     ],
@@ -44,6 +45,7 @@ cc_test(
 
 cc_test(
     name = "concat_test",
+    size = "small",
     srcs = [
         "concat_test.cc",
     ],
@@ -56,6 +58,7 @@ cc_test(
 
 cc_test(
     name = "join_test",
+    size = "small",
     srcs = [
         "join_test.cc",
     ],
@@ -68,6 +71,7 @@ cc_test(
 
 cc_test(
     name = "replace_string_test",
+    size = "small",
     srcs = [
         "replace_string_test.cc",
     ],
@@ -80,6 +84,7 @@ cc_test(
 
 cc_test(
     name = "strings_test",
+    size = "small",
     srcs = [
         "strings_test.cc",
     ],
@@ -92,6 +97,7 @@ cc_test(
 
 cc_test(
     name = "string_piece_test",
+    size = "small",
     srcs = [
         "string_piece_test.cc",
     ],
@@ -104,6 +110,7 @@ cc_test(
 
 cc_test(
     name = "split_test",
+    size = "small",
     srcs = [
         "split_test.cc",
     ],
@@ -116,6 +123,7 @@ cc_test(
 
 cc_test(
     name = "symbol_test",
+    size = "small",
     srcs = [
         "symbol_test.cc",
     ],
@@ -128,6 +136,7 @@ cc_test(
 
 cc_test(
     name = "utf8_test",
+    size = "small",
     srcs = [
         "utf8_test.cc",
     ],

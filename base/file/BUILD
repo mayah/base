@@ -26,6 +26,7 @@ cc_library(
 
 cc_test(
     name = "path_test",
+    size = "small",
     srcs = [
         "path_test.cc",
     ],

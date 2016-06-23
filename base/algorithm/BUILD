@@ -8,6 +8,7 @@ cc_library(
 
 cc_test(
     name = "fold_test",
+    size = "small",
     srcs = [
         "fold_test.cc",
     ],

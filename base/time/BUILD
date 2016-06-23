@@ -22,6 +22,7 @@ cc_library(
 
 cc_test(
     name = "fake_clock_test",
+    size = "small",
     srcs = [
         "fake_clock_test.cc",
     ],
@@ -34,6 +35,7 @@ cc_test(
 
 cc_test(
     name = "time_test",
+    size = "small",
     srcs = [
         "time_test.cc",
     ],

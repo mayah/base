@@ -13,6 +13,7 @@ cc_library(
 
 cc_test(
     name = "union_find_test",
+    size = "small",
     srcs = [
         "union_find_test.cc",
     ],

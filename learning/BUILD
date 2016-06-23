@@ -39,6 +39,7 @@ cc_library(
 
 cc_test(
     name = "multi_layer_perceptron_test",
+    size = "small",
     srcs = [
         "multi_layer_perceptron_test.cc"
     ],
@@ -50,6 +51,7 @@ cc_test(
 
 cc_test(
     name = "arow_test",
+    size = "small",
     srcs = [
         "arow_test.cc"
     ],

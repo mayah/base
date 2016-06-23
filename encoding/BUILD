@@ -32,6 +32,7 @@ cc_library(
 
 cc_test(
     name = "hex_test",
+    size = "small",
     srcs = [
         "hex_test.cc",
     ],
@@ -45,6 +46,7 @@ cc_test(
 
 cc_test(
     name = "base64_test",
+    size = "small",
     srcs = [
         "base64_test.cc",
     ],

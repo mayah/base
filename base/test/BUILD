@@ -12,6 +12,7 @@ cc_library(
 
 cc_test(
     name = "move_only_test",
+    size = "small",
     srcs = [
         "move_only_test.cc",
     ],

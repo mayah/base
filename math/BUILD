@@ -20,6 +20,7 @@ cc_library(
 
 cc_test(
     name = "gauss_test",
+    size = "small",
     srcs = [
         "gauss_test.cc",
     ],
@@ -32,6 +33,7 @@ cc_test(
 
 cc_test(
     name = "math_test",
+    size = "small",
     srcs = [
         "math_test.cc",
     ],
@@ -44,6 +46,7 @@ cc_test(
 
 cc_test(
     name = "prime_test",
+    size = "small",
     srcs = [
         "prime_test.cc",
     ],

@@ -25,6 +25,7 @@ cc_library(
 
 cc_test(
     name = "toml_value_test",
+    size = "small",
     srcs = [
         "toml_value_test.cc",
     ],
@@ -37,6 +38,7 @@ cc_test(
 
 cc_test(
     name = "toml_lexer_test",
+    size = "small",
     srcs = [
         "toml_lexer_test.cc",
     ],
@@ -49,6 +51,7 @@ cc_test(
 
 cc_test(
     name = "toml_parser_test",
+    size = "small",
     srcs = [
         "toml_parser_test.cc",
     ],

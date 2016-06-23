@@ -34,6 +34,7 @@ cc_library(
 
 cc_test(
     name = "macros",
+    size = "small",
     srcs = [
         "macros_test.cc",
     ],
@@ -46,6 +47,7 @@ cc_test(
 
 cc_test(
     name = "memory_test",
+    size = "small",
     srcs = [
         "memory_test.cc",
     ],
@@ -58,6 +60,7 @@ cc_test(
 
 cc_test(
     name = "unit_test",
+    size = "small",
     srcs = [
         "unit_test.cc",
     ],

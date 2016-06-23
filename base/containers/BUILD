@@ -6,8 +6,8 @@ cc_library(
     ],
     hdrs = [
         "assoc_map.h",
-        "byte_buffer.h",
         "blocking_queue.h",
+        "byte_buffer.h",
         "flag_set.h",
         "flat_set.h",
         "matrix.h",
@@ -25,6 +25,7 @@ cc_library(
 
 cc_test(
     name = "assoc_map_test",
+    size = "small",
     srcs = [
         "assoc_map_test.cc",
     ],
@@ -37,6 +38,7 @@ cc_test(
 
 cc_test(
     name = "blocking_queue_test",
+    size = "small",
     srcs = [
         "blocking_queue_test.cc",
     ],
@@ -51,6 +53,7 @@ cc_test(
 
 cc_test(
     name = "byte_buffer_test",
+    size = "small",
     srcs = [
         "byte_buffer_test.cc",
     ],
@@ -63,6 +66,7 @@ cc_test(
 
 cc_test(
     name = "flag_set_test",
+    size = "small",
     srcs = [
         "flag_set_test.cc",
     ],
@@ -75,6 +79,7 @@ cc_test(
 
 cc_test(
     name = "flat_set_test",
+    size = "small",
     srcs = [
         "flat_set_test.cc",
     ],
@@ -87,6 +92,7 @@ cc_test(
 
 cc_test(
     name = "matrix_test",
+    size = "small",
     srcs = [
         "matrix_test.cc",
     ],
@@ -99,6 +105,7 @@ cc_test(
 
 cc_test(
     name = "static_vector_test",
+    size = "small",
     srcs = [
         "static_vector_test.cc",
     ],
@@ -112,6 +119,7 @@ cc_test(
 
 cc_test(
     name = "slice_test",
+    size = "small",
     srcs = [
         "slice_test.cc",
     ],
@@ -125,6 +133,7 @@ cc_test(
 
 cc_test(
     name = "reverse_range_test",
+    size = "small",
     srcs = [
         "reverse_range_test.cc",
     ],
@@ -138,6 +147,7 @@ cc_test(
 
 cc_test(
     name = "vectors_test",
+    size = "small",
     srcs = [
         "vectors_test.cc",
     ],
@@ -150,6 +160,7 @@ cc_test(
 
 cc_test(
     name = "vectors_io_test",
+    size = "small",
     srcs = [
         "vectors_io_test.cc",
     ],
@@ -162,6 +173,7 @@ cc_test(
 
 cc_test(
     name = "xrange_test",
+    size = "small",
     srcs = [
         "xrange_test.cc",
     ],
