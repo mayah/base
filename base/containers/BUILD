@@ -9,6 +9,7 @@ cc_library(
         "blocking_queue.h",
         "byte_buffer.h",
         "flag_set.h",
+        "flat_map.h",
         "flat_set.h",
         "linked_map.h",
         "matrix.h",
@@ -70,6 +71,19 @@ cc_test(
     size = "small",
     srcs = [
         "flag_set_test.cc",
+    ],
+    deps = [
+        ":containers",
+        "//third_party/gtest",
+        "//third_party/glog",
+    ],
+)
+
+cc_test(
+    name = "flat_map_test",
+    size = "small",
+    srcs = [
+        "flat_map_test.cc",
     ],
     deps = [
         ":containers",
