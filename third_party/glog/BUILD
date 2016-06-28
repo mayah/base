@@ -1,15 +1,15 @@
 cc_library(
     name = "glog",
     hdrs = [
-        "glog/logging.h",
         "glog/log_severity.h",
+        "glog/logging.h",
         "glog/raw_logging.h",
         "glog/stl_logging.h",
         "glog/vlog_is_on.h",
     ],
-    deps = [":glog_impl"],
-    visibility = ["//visibility:public"],
     licenses = ["notice"],
+    visibility = ["//visibility:public"],
+    deps = [":glog_impl"],
 )
 
 cc_library(
@@ -23,21 +23,25 @@ cc_library(
         "impl/utilities.cc",
         "impl/vlog_is_on.cc",
     ],
-    hdrs = glob(["impl/*.h", "impl/base/*.h", "glog/*.h"]),
-    deps = [
-        "//base",
-        "//third_party:gflags",
+    hdrs = glob([
+        "impl/*.h",
+        "impl/base/*.h",
+        "glog/*.h",
+    ]),
+    copts = [
+        "-Ithird_party/glog",
     ],
+    licenses = ["notice"],
     linkopts = [
-        "-pthread"
+        "-pthread",
     ] + select({
         "//config:linux_x64": ["-lunwind"],
         "//config:linux_x86": ["-lunwind"],
         "//conditions:default": [],
     }),
-    copts = [
-        "-Ithird_party/glog"
-    ],
-    licenses = ["notice"],
     visibility = ["//visibility:private"],
+    deps = [
+        "//base",
+        "//third_party:gflags",
+    ],
 )

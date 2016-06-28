@@ -1,21 +1,21 @@
 cc_library(
     name = "gtest",
+    licenses = ["notice"],
     visibility = [
         "//visibility:public",
     ],
     deps = [
-        "@gtest_repo//:gtest"
+        "@gtest_repo//:gtest",
     ],
-    licenses = ["notice"],
 )
 
 cc_library(
     name = "gtest_prod",
+    licenses = ["notice"],
     visibility = [
         "//visibility:public",
     ],
     deps = [
-        "@gtest_repo//:gtest_prod"
+        "@gtest_repo//:gtest_prod",
     ],
-    licenses = ["notice"],
 )
