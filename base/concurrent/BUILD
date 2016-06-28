@@ -13,7 +13,7 @@ cc_library(
     ],
     deps = [
         "//base",
-        "//third_party:gflags",
+        "//third_party/gflags",
         "//third_party/glog",
     ],
 )

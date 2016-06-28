@@ -5,7 +5,7 @@ cc_binary(
     ],
     deps = [
         "//base/file",
-        "//third_party:gflags",
+        "//third_party/gflags",
         "//third_party/glog",
     ],
 )

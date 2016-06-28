@@ -42,6 +42,6 @@ cc_library(
     visibility = ["//visibility:private"],
     deps = [
         "//base",
-        "//third_party:gflags",
+        "//third_party/gflags",
     ],
 )
