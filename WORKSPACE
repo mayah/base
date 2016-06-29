@@ -1,3 +1,18 @@
+# ----------------------------------------------------------------------
+# language skylark rules
+
+git_repository(
+    name = "io_bazel_rules_rust",
+    remote = "https://github.com/bazelbuild/rules_rust.git",
+    tag = "0.0.1",
+)
+load("@io_bazel_rules_rust//rust:rust.bzl", "rust_repositories")
+
+rust_repositories()
+
+# ----------------------------------------------------------------------
+# third-party libraries
+
 git_repository(
     name = "gflags_repo",
     remote = "https://github.com/gflags/gflags.git",
