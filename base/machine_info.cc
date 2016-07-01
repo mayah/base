@@ -120,7 +120,7 @@ std::int64_t system_total_memory()
 
 std::int64_t memory_resident()
 {
-    const pid_t pid = Getpid();
+    const pid_t pid = getpid();
 
     struct proc_taskinfo taskinfo;
     int infosize = proc_pidinfo(pid, PROC_PIDTASKINFO, 0,
