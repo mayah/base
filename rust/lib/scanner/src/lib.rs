@@ -35,7 +35,11 @@ impl<R: io::Read> Scanner<io::Bytes<R>> {
                 },
                 Some(Ok(c)) => {
                     if is_whitespace(c) {
-                        return Some(String::from_utf8(result).unwrap());
+                        if result.len() > 0 {
+                            return Some(String::from_utf8(result).unwrap());
+                        } else {
+                            continue;
+                        }
                     } else {
                         result.push(c);
                     }
