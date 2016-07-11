@@ -28,7 +28,7 @@
 *.app
 
 # bazel
-bazel-base.git
+bazel-workspace.git
 bazel-bin
 bazel-genfiles
 bazel-out
