@@ -3,6 +3,9 @@ cc_binary(
     srcs = [
         "fork_perf.cc",
     ],
+    linkopts = [
+        "-pthread",
+    ],
     deps = [
         "//base/time",
         "//third_party/gflags",
