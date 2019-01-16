@@ -1,12 +1,12 @@
 #include "lib/terminal/scoped_noncanonical_terminal.h"
 
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <sys/types.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <termios.h>
+#include <unistd.h>
 
 namespace terminal {
 

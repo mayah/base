@@ -1,7 +1,6 @@
-#include <gflags/gflags.h>
-#include <glog/logging.h>
-
 #include "net/socket/socket_factory.h"
+#include "third_party/gflags/gflags/gflags.h"
+#include "third_party/glog/glog/logging.h"
 
 DEFINE_int32(port, 8000, "port");
 
