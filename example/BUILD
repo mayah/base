@@ -169,3 +169,10 @@ cc_binary(
         "//third_party/glog",
     ],
 )
+
+cc_binary(
+    name = "tree_walk",
+    srcs = [
+        "tree_walk.cc",
+    ],
+)
